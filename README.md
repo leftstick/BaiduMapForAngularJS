@@ -4,7 +4,7 @@
 
 ## Getting started
 
-v1.0.4
+Latest stable version: v1.0.4
 
 This is a directive for AngularJS `~1.2.0+`. And ease the way to display a baidu-map on your page.
 
