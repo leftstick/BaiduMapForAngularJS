@@ -56,7 +56,7 @@
     };
 
     /**
-     * Construction function     * Does not need any AngularJS DI
+     * Construction function
      *
      * @constructor
      */
