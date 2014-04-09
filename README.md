@@ -3,6 +3,9 @@
 > AngularJS directives for Baidu Maps
 
 ## Getting started
+
+v1.0.4
+
 This is a directive for AngularJS `~1.2.0+`. And ease the way to display a baidu-map on your page.
 
 If you plan to hack on the directives or want to run the example, first thing to do is to install NPM dependencies:
