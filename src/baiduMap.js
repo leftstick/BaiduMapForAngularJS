@@ -4,7 +4,7 @@
  *
  *  Usages:
  *
- *      <ad-map options="options"></ad-map>
+ *      <baidu-map options="options"></baidu-map>
  *
  *      options: The configurations for the map
  *            .width[Number]{M}:        The width of the map
@@ -31,7 +31,7 @@
  *
  *  @author      Howard.Zuo
  *  @copyright   April 9, 2014
- *  @version     1.0.3
+ *  @version     1.0.4
  *
  */
 (function(angular) {
