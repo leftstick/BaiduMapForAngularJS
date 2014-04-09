@@ -1,5 +1,13 @@
 ## Basic Usage
 
+
+### Download the source code or install the git package by using [bower](http://bower.io/)
+
+```shell
+bower install angular-baidu-map -S
+```
+> `-S` means update the `bower.json` with `angular-baidu-map` involved while installing.
+
 ### Add `script` tag to the `index.html` for retrieving baidu-map API
 
 ``` html
