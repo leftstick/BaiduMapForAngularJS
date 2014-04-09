@@ -65,3 +65,10 @@ app.controller('demoCtrl', ['$scope',
 | options.overviewCtrl | boolean | No | Whether to add a OverviewMapControl to the map, default to true | false |
 | options.enableScrollWheelZoom | boolean | No | Whether to enableScrollWheelZoom to the map, default to true | false
 | options.markers | array | no | The markers you'd like to have on the displayed map | [{longitude: longitude,latitude: latitude,icon: 'img/mappiont.png',width: 49,height: 60,title: 'Where',content: 'Put description here'}] |
+| marker.longitude | number | Yes | The longitude of the the markder | 121.506191 |
+| marker.latitude | number | Yes | The latitude of the the markder | 31.245554 |
+| marker.icon | string | No | The icon's url for the marker. The default icon will be set if you haven't set this value. | 'img/mappiont.png' |
+| marker.width | number | No | The icon's width for the icon. you have to set this value if `icon` is set. | 40 |
+| marker.height | number | Yes | The icon's height for the icon. you have to set this value if `icon` is set. | 60 |
+| marker.title | string | No | The title on the infowindow displayed once you click the marker. | 'hello' |
+| marker.content | string | No | The content on the infowindow displayed once you click the marker. | 'hello world' |
