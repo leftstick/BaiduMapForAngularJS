@@ -1,6 +1,6 @@
 {
     "name": "BaiduMapForAngularJS",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "homepage": "https://github.com/leftstick/BaiduMapForAngularJS",
     "authors": [
         "Howard.Zuo"
@@ -18,7 +18,8 @@
         "test",
         "tests",
         "demo",
-        "src"
+        "src",
+        "docs"
     ],
     "dependencies": {
         "angular": "1.2.16"

@@ -31,7 +31,7 @@
  *
  *  @author      Howard.Zuo
  *  @copyright   April 9, 2014
- *  @version     1.0.2
+ *  @version     1.0.3
  *
  */
 (function(angular) {
