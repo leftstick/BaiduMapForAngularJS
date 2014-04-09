@@ -1,6 +1,6 @@
 {
   "name": "BaiduMapForAngularJS",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A baidu-map directive for AngularJS",
   "repository": {
     "type": "git",
