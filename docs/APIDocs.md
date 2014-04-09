@@ -53,7 +53,7 @@ app.controller('demoCtrl', ['$scope',
 ### Description of attributes
 
 | Attribute        | Type           | Required  | Description | Example  |
-| :------------- |:-------------| :-----:| :-----|
+| :------------- |:-------------| :-----:| :-----| :-----|
 | options.center.longitude | number | Yes | The longitude of the center point | 121.506191 |
 | options.center.latitude | number | Yes | The latitude of the center point | 31.245554 |
 | options.zoom | number | Yes | Map's zoom level. This must be a number between 3 and 19 | 9 |
@@ -64,12 +64,4 @@ app.controller('demoCtrl', ['$scope',
 | options.scaleCtrl | boolean | No | Whether to add a ScaleControl to the map, default to true | false |
 | options.overviewCtrl | boolean | No | Whether to add a OverviewMapControl to the map, default to true | false |
 | options.enableScrollWheelZoom | boolean | No | Whether to enableScrollWheelZoom to the map, default to true | false
-| options.markers | array | no | The markers you'd like to have on the displayed map | [{
-                longitude: longitude,
-                latitude: latitude,
-                icon: 'img/mappiont.png',
-                width: 49,
-                height: 60,
-                title: 'Where',
-                content: 'Put description here'
-            }] |
+| options.markers | array | no | The markers you'd like to have on the displayed map | [{longitude: longitude,latitude: latitude,icon: 'img/mappiont.png',width: 49,height: 60,title: 'Where',content: 'Put description here'}] |
