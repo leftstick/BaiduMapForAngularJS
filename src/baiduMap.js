@@ -18,19 +18,20 @@
  *            .enableScrollWheelZoom[Boolean]{O}: Whether to enableScrollWheelZoom to the map
  *            .city[String]{M}:         The city name which you want to display on the map
  *            .markers[Array]{O}:       An array of marker which will be added on the map
- *                   .longitude{M}:        The longitude of the marker
- *                   .latitude{M}:         The latitude of the marker
- *                   .icon{O}:             The icon's url for the marker
- *                   .width{O}:            The icon's width for the icon
- *                   .height{O}:           The icon's height for the icon
- *                   .title{O}:            The title of the marker
- *                   .content{O}:          The content of the marker
+ *                   .longitude{M}:                The longitude of the marker
+ *                   .latitude{M}:                 The latitude of the marker
+ *                   .icon[String]{O}:             The icon's url for the marker
+ *                   .width[Number]{O}:            The icon's width for the icon
+ *                   .height[Number]{O}:           The icon's height for the icon
+ *                   .title[String]{O}:            The title on the infowindow displayed once you click the marker
+ *                   .content[String]{O}:          The content on the infowindow displayed once you click the marker
+ *                   .enableMessage[Boolean]{O}:   Whether to enable the SMS feature for this marker window. This option only available when title/content are defined.
  *
  *
  *
  *  @author      Howard.Zuo
  *  @copyright   April 9, 2014
- *
+ *  @version     1.0.2
  *
  */
 (function(angular) {
@@ -151,9 +152,9 @@
                     if (!marker.title && !marker.content) {
                         return;
                     }
-                    var infoWindow2 = new BMap.InfoWindow();
-                    infoWindow2.setTitle(marker.title ? marker.title : '');
-                    infoWindow2.setContent(marker.content ? marker.content : '');
+                    var infoWindow2 = new BMap.InfoWindow("<p>" + (marker.title ? marker.title : '') + "</p><p>" + (marker.content ? marker.content : '') + "</p>", {
+                        enableMessage: checkNull(marker.enableMessage) ? false : marker.enableMessage
+                    });
                     marker2.addEventListener("click", openInfoWindow(infoWindow2));
                 }
 
