@@ -72,3 +72,4 @@ app.controller('demoCtrl', ['$scope',
 | marker.height | number | Yes | The icon's height for the icon. you have to set this value if `icon` is set. | 60 |
 | marker.title | string | No | The title on the infowindow displayed once you click the marker. | 'hello' |
 | marker.content | string | No | The content on the infowindow displayed once you click the marker. | 'hello world' |
+| marker.enableMessage | boolean | No | Whether to enable the SMS feature for this marker window. This option only available when title/content are defined. Default false | true |
