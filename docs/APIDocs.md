@@ -3,6 +3,8 @@
 
 ### Download the source code or install the git package by using [bower](http://bower.io/)
 
+v1.0.4 released
+
 ```shell
 bower install angular-baidu-map -S
 ```
