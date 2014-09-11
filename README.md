@@ -20,7 +20,7 @@ bower install ( for specs and dev dependencies)
 To build the library after you made changes, simply run gulp:
 
 ```shell
-gulp
+gulp compress
 ```
 
 ### Running the demo

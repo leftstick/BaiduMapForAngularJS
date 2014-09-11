@@ -1,27 +1,27 @@
 {
-    "name": "BaiduMapForAngularJS",
-    "version": "1.0.4",
-    "homepage": "https://github.com/leftstick/BaiduMapForAngularJS",
-    "authors": [
-        "Howard.Zuo"
-    ],
-    "description": "A baidu-map directive for AngularJS",
-    "keywords": [
-        "baidu-map",
-        "angularjs"
-    ],
-    "license": "MIT",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests",
-        "demo",
-        "src",
-        "docs"
-    ],
-    "dependencies": {
-        "angular": "1.2.16"
-    }
+  "name": "BaiduMapForAngularJS",
+  "version": "1.0.4",
+  "homepage": "https://github.com/leftstick/BaiduMapForAngularJS",
+  "authors": [
+    "Howard.Zuo"
+  ],
+  "description": "A baidu-map directive for AngularJS",
+  "keywords": [
+    "baidu-map",
+    "angularjs"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "demo",
+    "src",
+    "docs"
+  ],
+  "dependencies": {
+    "angular": "~1.2.24"
+  }
 }
