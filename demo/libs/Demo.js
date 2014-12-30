@@ -11,8 +11,6 @@ demo.controller('demoCtrl', ['$scope',
             },
             zoom: 17,
             city: 'ShangHai',
-            width: 500,
-            height: 400,
             markers: [{
                 longitude: longitude,
                 latitude: latitude,

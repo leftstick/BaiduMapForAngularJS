@@ -7,8 +7,6 @@
  *      <baidu-map options="options"></baidu-map>
  *
  *      options: The configurations for the map
- *            .width[Number]{M}:        The width of the map
- *            .height[Number]{M}:       The height of the map
  *            .center.longitude[Number]{M}: The longitude of the center point
  *            .center.latitude[Number]{M}: The latitude of the center point
  *            .zoom[Number]{O}:         Map's zoom level. This must be a number between 3 and 19
@@ -27,27 +25,24 @@
  *                   .content[String]{O}:          The content on the infowindow displayed once you click the marker
  *                   .enableMessage[Boolean]{O}:   Whether to enable the SMS feature for this marker window. This option only available when title/content are defined.
  *
- *
- *
  *  @author      Howard.Zuo
- *  @copyright   April 9, 2014
- *  @version     1.0.4
+ *  @copyright   Dec 30, 2014
+ *  @version     1.1.0
  *
  */
-(function(angular) {
-    "use strict";
+(function(global, angular, factory) {
+    'use strict';
 
-    var defaults = {
-        navCtrl: true,
-        scaleCtrl: true,
-        overviewCtrl: true,
-        enableScrollWheelZoom: true,
-        zoom: 10
-    };
+    if (typeof exports === 'object') {
+        module.exports = factory();
+    } else if (typeof define === 'function' && define.amd) {
+        define([], factory);
+    } else {
+        factory();
+    }
 
-    var checkNull = function(obj) {
-        return obj === null || obj === undefined;
-    };
+}(window, angular, function() {
+    'use strict';
 
     var checkMandatory = function(prop, desc) {
         if (!prop) {
@@ -55,11 +50,14 @@
         }
     };
 
-    /**
-     * Construction function
-     *
-     * @constructor
-     */
+    var defaults = function(dest, src) {
+        for (var key in src) {
+            if (typeof dest[key] === 'undefined') {
+                dest[key] = src[key];
+            }
+        }
+    };
+
     var baiduMapDir = function() {
 
         // Return configured, directive instance
@@ -71,58 +69,48 @@
             },
             link: function($scope, element, attrs) {
 
-                var ops = {};
-                ops.navCtrl = checkNull($scope.options.navCtrl) ? defaults.navCtrl : $scope.options.navCtrl;
-                ops.scaleCtrl = checkNull($scope.options.scaleCtrl) ? defaults.scaleCtrl : $scope.options.scaleCtrl;
-                ops.overviewCtrl = checkNull($scope.options.overviewCtrl) ? defaults.overviewCtrl : $scope.options.overviewCtrl;
-                ops.enableScrollWheelZoom = checkNull($scope.options.enableScrollWheelZoom) ? defaults.enableScrollWheelZoom : $scope.options.enableScrollWheelZoom;
-                ops.zoom = checkNull($scope.options.zoom) ? defaults.zoom : $scope.options.zoom;
-
-                checkMandatory($scope.options.width, 'options.width must be set');
-                checkMandatory($scope.options.height, 'options.height must be set');
-                checkMandatory($scope.options.center, 'options.center must be set');
-                checkMandatory($scope.options.center.longitude, 'options.center.longitude must be set');
-                checkMandatory($scope.options.center.latitude, 'options.center.latitude must be set');
-                checkMandatory($scope.options.city, 'options.city must be set');
-
-                ops.width = $scope.options.width;
-                ops.height = $scope.options.height;
-                ops.center = {
-                    longitude: $scope.options.center.longitude,
-                    latitude: $scope.options.center.latitude
+                var defaultOpts = {
+                    navCtrl: true,
+                    scaleCtrl: true,
+                    overviewCtrl: true,
+                    enableScrollWheelZoom: true,
+                    zoom: 10
                 };
-                ops.city = $scope.options.city;
-                ops.markers = $scope.options.markers;
 
-                element.find('div').css('width', ops.width + 'px');
-                element.find('div').css('height', ops.height + 'px');
+                var opts = $scope.options;
+                defaults(opts, defaultOpts);
+
+                checkMandatory(opts.center, 'options.center must be set');
+                checkMandatory(opts.center.longitude, 'options.center.longitude must be set');
+                checkMandatory(opts.center.latitude, 'options.center.latitude must be set');
+                checkMandatory(opts.city, 'options.city must be set');
 
                 // create map instance
                 var map = new BMap.Map(element.find('div')[0]);
 
                 // init map, set central location and zoom level
-                map.centerAndZoom(new BMap.Point(ops.center.longitude, ops.center.latitude), ops.zoom);
-                if (ops.navCtrl) {
+                map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
+                if (opts.navCtrl) {
                     // add navigation control
                     map.addControl(new BMap.NavigationControl());
                 }
-                if (ops.scaleCtrl) {
+                if (opts.scaleCtrl) {
                     // add scale control
                     map.addControl(new BMap.ScaleControl());
                 }
-                if (ops.overviewCtrl) {
+                if (opts.overviewCtrl) {
                     //add overview map control
                     map.addControl(new BMap.OverviewMapControl());
                 }
-                if (ops.enableScrollWheelZoom) {
+                if (opts.enableScrollWheelZoom) {
                     //enable scroll wheel zoom
                     map.enableScrollWheelZoom();
                 }
                 // set the city name
-                map.setCurrentCity(ops.city);
+                map.setCurrentCity(opts.city);
 
 
-                if (!ops.markers) {
+                if (!opts.markers) {
                     return;
                 }
                 //create markers
@@ -132,8 +120,8 @@
                         this.openInfoWindow(infoWin);
                     };
                 };
-                for (var i in ops.markers) {
-                    var marker = ops.markers[i];
+                for (var i in opts.markers) {
+                    var marker = opts.markers[i];
                     var pt = new BMap.Point(marker.longitude, marker.latitude);
                     var marker2;
                     if (marker.icon) {
@@ -141,8 +129,7 @@
                         marker2 = new BMap.Marker(pt, {
                             icon: icon
                         });
-                    }
-                    else {
+                    } else {
                         marker2 = new BMap.Marker(pt);
                     }
 
@@ -153,18 +140,17 @@
                         return;
                     }
                     var infoWindow2 = new BMap.InfoWindow("<p>" + (marker.title ? marker.title : '') + "</p><p>" + (marker.content ? marker.content : '') + "</p>", {
-                        enableMessage: checkNull(marker.enableMessage) ? false : marker.enableMessage
+                        enableMessage: !!marker.enableMessage
                     });
                     marker2.addEventListener("click", openInfoWindow(infoWindow2));
                 }
 
 
             },
-            template: '<div></div>'
+            template: '<div style="width: 100%; height: 100%;"></div>'
         };
     };
 
     var baiduMap = angular.module('baiduMap', []);
     baiduMap.directive('baiduMap', [baiduMapDir]);
-
-})(angular);
+}));

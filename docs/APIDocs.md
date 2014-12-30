@@ -3,7 +3,7 @@
 
 ### Download the source code or install the git package by using [bower](http://bower.io/)
 
-Latest stable version: v1.0.4
+Latest stable version: v1.1.0
 
 ```shell
 bower install angular-baidu-map -S
@@ -44,8 +44,6 @@ app.controller('demoCtrl', ['$scope',
             },
             zoom: 17,
             city: 'ShangHai',
-            width: 500,
-            height: 400,
             markers: [{
                 longitude: longitude,
                 latitude: latitude,
@@ -68,8 +66,6 @@ app.controller('demoCtrl', ['$scope',
 | options.center.latitude | number | Yes | The latitude of the center point | 31.245554 |
 | options.zoom | number | Yes | Map's zoom level. This must be a number between 3 and 19 | 9 |
 | options.city | string | Yes | The city name which you want to display on the map | 'ShangHai' |
-| options.width | number | Yes | The width of the map | 600 |
-| options.height | number | Yes | The height of the map | 600 |
 | options.navCtrl | boolean | No | Whether to add a NavigationControl to the map, default to true | false |
 | options.scaleCtrl | boolean | No | Whether to add a ScaleControl to the map, default to true | false |
 | options.overviewCtrl | boolean | No | Whether to add a OverviewMapControl to the map, default to true | false |
