@@ -1,5 +1,5 @@
 {
-  "name": "BaiduMapForAngularJS",
+  "name": "angular-baidu-map",
   "version": "1.2.0",
   "description": "A baidu-map directive for AngularJS",
   "main": "./src/baiduMap.js",
