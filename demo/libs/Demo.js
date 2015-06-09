@@ -1,7 +1,8 @@
 var demo = angular.module('demo', ['baiduMap']);
 
-demo.controller('demoCtrl', ['$scope',
-    function($scope) {
+demo.controller('demoCtrl', ['$scope', '$timeout',
+    function($scope, $timeout) {
+
         var longitude = 121.506191;
         var latitude = 31.245554;
         $scope.mapOptions = {
@@ -21,5 +22,12 @@ demo.controller('demoCtrl', ['$scope',
                 content: 'Put description here'
             }]
         };
+
+        $timeout(function() {
+            $scope.mapOptions.center.longitude = 121.500885;
+            $scope.mapOptions.center.latitude = 31.190032;
+            $scope.mapOptions.markers[0].longitude = 121.500885;
+            $scope.mapOptions.markers[0].latitude = 31.190032;
+        }, 5000);
     }
 ]);

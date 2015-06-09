@@ -11,14 +11,11 @@ gulp.task('lint', function() {
 gulp.task('compress', ['lint', 'copyDist'], function() {
     var uglify = require('gulp-uglify');
     var rename = require('gulp-rename');
-    var sourcemaps = require('gulp-sourcemaps');
     return gulp.src('./src/baiduMap.js')
-        .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(rename({
             extname: '.min.js'
         }))
-        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./'));
 });
 

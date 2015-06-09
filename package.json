@@ -1,7 +1,8 @@
 {
   "name": "BaiduMapForAngularJS",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A baidu-map directive for AngularJS",
+  "main": "./src/baiduMap.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/leftstick/BaiduMapForAngularJS.git"
@@ -17,11 +18,10 @@
   },
   "homepage": "https://github.com/leftstick/BaiduMapForAngularJS",
   "devDependencies": {
-    "gulp": "^3.8.8",
-    "gulp-jshint": "^1.8.4",
-    "gulp-rename": "^1.2.0",
-    "gulp-sourcemaps": "^1.1.5",
-    "gulp-uglify": "^1.0.1",
-    "gulp-webserver": "^0.8.0"
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-webserver": "^0.9.1"
   }
 }

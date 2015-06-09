@@ -4,7 +4,7 @@
  *
  *  Usages:
  *
- *      <baidu-map options="options"></baidu-map>
+ *      <baidu-map options='options'></baidu-map>
  *
  *      options: The configurations for the map
  *            .center.longitude[Number]{M}: The longitude of the center point
@@ -26,31 +26,31 @@
  *                   .enableMessage[Boolean]{O}:   Whether to enable the SMS feature for this marker window. This option only available when title/content are defined.
  *
  *  @author      Howard.Zuo
- *  @copyright   Dec 30, 2014
- *  @version     1.1.0
- *  
+ *  @copyright   Jun 9, 2015
+ *  @version     1.2.0
+ *
  *  @author fenglin han
  *  @copyright 6/9/2015
  *  @version 1.1.1
  * 
  *  Usages:
  *
- *      <baidu-map options="options" ng-model="options"></baidu-map>
- *  comments: this is a improvement for the baidu map directive, such that when the options are changed outside of directive  (in your controllers), the centering and markers can be changed automatically
- * 
+ *  <baidu-map options='options' ></baidu-map>
+ *  comments: An improvement that the map should update automatically while coordinates changes
+ *
  */
-(function(global, angular, factory) {
+(function(global, factory) {
     'use strict';
 
     if (typeof exports === 'object') {
-        module.exports = factory();
+        module.exports = factory(require('angular'));
     } else if (typeof define === 'function' && define.amd) {
-        define([], factory);
+        define(['angular'], factory);
     } else {
-        factory();
+        factory(global.angular);
     }
 
-}(window, angular, function() {
+}(window, function(angular) {
     'use strict';
 
     var checkMandatory = function(prop, desc) {
@@ -60,10 +60,9 @@
     };
 
     var defaults = function(dest, src) {
-                        console.log(dest);
         for (var key in src) {
             if (typeof dest[key] === 'undefined') {
-               // console.log(dest[key])
+                // console.log(dest[key])
                 dest[key] = src[key];
             }
         }
@@ -76,8 +75,7 @@
         return {
             restrict: 'E',
             scope: {
-                'options': '=',
-                model: '=ngModel'
+                'options': '='
             },
             link: function($scope, element, attrs) {
 
@@ -133,7 +131,8 @@
                         this.openInfoWindow(infoWin);
                     };
                 };
-                var mark = function (){
+
+                var mark = function() {
 
                     for (var i in opts.markers) {
                         var marker = opts.markers[i];
@@ -149,29 +148,31 @@
                         }
 
                         // add marker to the map
-                        map.addOverlay(marker2); // ����ע��ӵ���ͼ��
+                        map.addOverlay(marker2);
 
                         if (!marker.title && !marker.content) {
                             return;
                         }
-                        var infoWindow2 = new BMap.InfoWindow("<p>" + (marker.title ? marker.title : '') + "</p><p>" + (marker.content ? marker.content : '') + "</p>", {
+                        var infoWindow2 = new BMap.InfoWindow('<p>' + (marker.title ? marker.title : '') + '</p><p>' + (marker.content ? marker.content : '') + '</p>', {
                             enableMessage: !!marker.enableMessage
                         });
-                        marker2.addEventListener("click", openInfoWindow(infoWindow2));
-                    }                    
+                        marker2.addEventListener('click', openInfoWindow(infoWindow2));
+                    }
                 };
+
                 mark();
 
-                $scope.$watch('options.center.latitude', function(newValue, oldValue) {
+                $scope.$watch('options.center', function(newValue, oldValue) {
 
-                        opts = $scope.options;
-                        map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
-                        mark();
-
-                });
-                $scope.$watch('options.markers',function(newValue,oldValue){
+                    opts = $scope.options;
+                    map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
                     mark();
-                })
+
+                }, true);
+
+                $scope.$watch('options.markers', function(newValue, oldValue) {
+                    mark();
+                });
 
             },
             template: '<div style="width: 100%; height: 100%;"></div>'
