@@ -4,7 +4,7 @@
 
 ## Getting started
 
-Latest stable version: v1.0.4
+Latest stable version: v1.2.0
 > Note: Baidu-map API currently doesn't support `https`, switch to goole-map API if you plan deploy the application on `https` server.
 
 This is a directive for AngularJS `~1.2.0+`. And ease the way to display a baidu-map on your page.
