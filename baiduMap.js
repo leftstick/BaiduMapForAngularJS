@@ -28,7 +28,16 @@
  *  @author      Howard.Zuo
  *  @copyright   Dec 30, 2014
  *  @version     1.1.0
+ *  
+ *  @author fenglin han
+ *  @copyright 6/9/2015
+ *  @version 1.1.1
+ * 
+ *  Usages:
  *
+ *      <baidu-map options="options" ng-model="options"></baidu-map>
+ *  comments: this is a improvement for the baidu map directive, such that when the options are changed outside of directive  (in your controllers), the centering and markers can be changed automatically
+ * 
  */
 (function(global, angular, factory) {
     'use strict';
@@ -51,8 +60,10 @@
     };
 
     var defaults = function(dest, src) {
+                        console.log(dest);
         for (var key in src) {
             if (typeof dest[key] === 'undefined') {
+               // console.log(dest[key])
                 dest[key] = src[key];
             }
         }
@@ -65,7 +76,8 @@
         return {
             restrict: 'E',
             scope: {
-                'options': '='
+                'options': '=',
+                model: '=ngModel'
             },
             link: function($scope, element, attrs) {
 
@@ -78,6 +90,7 @@
                 };
 
                 var opts = $scope.options;
+
                 defaults(opts, defaultOpts);
 
                 checkMandatory(opts.center, 'options.center must be set');
@@ -120,31 +133,45 @@
                         this.openInfoWindow(infoWin);
                     };
                 };
-                for (var i in opts.markers) {
-                    var marker = opts.markers[i];
-                    var pt = new BMap.Point(marker.longitude, marker.latitude);
-                    var marker2;
-                    if (marker.icon) {
-                        var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
-                        marker2 = new BMap.Marker(pt, {
-                            icon: icon
+                var mark = function (){
+
+                    for (var i in opts.markers) {
+                        var marker = opts.markers[i];
+                        var pt = new BMap.Point(marker.longitude, marker.latitude);
+                        var marker2;
+                        if (marker.icon) {
+                            var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
+                            marker2 = new BMap.Marker(pt, {
+                                icon: icon
+                            });
+                        } else {
+                            marker2 = new BMap.Marker(pt);
+                        }
+
+                        // add marker to the map
+                        map.addOverlay(marker2); // ����ע��ӵ���ͼ��
+
+                        if (!marker.title && !marker.content) {
+                            return;
+                        }
+                        var infoWindow2 = new BMap.InfoWindow("<p>" + (marker.title ? marker.title : '') + "</p><p>" + (marker.content ? marker.content : '') + "</p>", {
+                            enableMessage: !!marker.enableMessage
                         });
-                    } else {
-                        marker2 = new BMap.Marker(pt);
-                    }
+                        marker2.addEventListener("click", openInfoWindow(infoWindow2));
+                    }                    
+                };
+                mark();
 
-                    // add marker to the map
-                    map.addOverlay(marker2); // 将标注添加到地图中
+                $scope.$watch('options.center.latitude', function(newValue, oldValue) {
 
-                    if (!marker.title && !marker.content) {
-                        return;
-                    }
-                    var infoWindow2 = new BMap.InfoWindow("<p>" + (marker.title ? marker.title : '') + "</p><p>" + (marker.content ? marker.content : '') + "</p>", {
-                        enableMessage: !!marker.enableMessage
-                    });
-                    marker2.addEventListener("click", openInfoWindow(infoWindow2));
-                }
+                        opts = $scope.options;
+                        map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
+                        mark();
 
+                });
+                $scope.$watch('options.markers',function(newValue,oldValue){
+                    mark();
+                })
 
             },
             template: '<div style="width: 100%; height: 100%;"></div>'
