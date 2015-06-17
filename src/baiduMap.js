@@ -38,6 +38,9 @@
  *  <baidu-map options='options' ></baidu-map>
  *  comments: An improvement that the map should update automatically while coordinates changes
  *
+ *  @version 1.2.1
+ *  comments: Accounding to 史魁杰's comments, markers' watcher should have set deep watch equal to true, and previous overlaies should be removed
+ *
  */
 (function(global, factory) {
     'use strict';
@@ -126,6 +129,8 @@
                 }
                 //create markers
 
+                var previousMarkers = [];
+
                 var openInfoWindow = function(infoWin) {
                     return function() {
                         this.openInfoWindow(infoWin);
@@ -134,7 +139,15 @@
 
                 var mark = function() {
 
-                    for (var i in opts.markers) {
+                    var i = 0;
+
+                    for (i = 0; i < previousMarkers.length; i++) {
+                        previousMarkers[i].removeEventListener('click', openInfoWindow(infoWindow2));
+                        map.removeOverlay(previousMarkers[i]);
+                    }
+                    previousMarkers.length = 0;
+
+                    for (i = 0; i < opts.markers.length; i++) {
                         var marker = opts.markers[i];
                         var pt = new BMap.Point(marker.longitude, marker.latitude);
                         var marker2;
@@ -149,6 +162,7 @@
 
                         // add marker to the map
                         map.addOverlay(marker2);
+                        previousMarkers.push(marker2);
 
                         if (!marker.title && !marker.content) {
                             return;
@@ -172,7 +186,7 @@
 
                 $scope.$watch('options.markers', function(newValue, oldValue) {
                     mark();
-                });
+                }, true);
 
             },
             template: '<div style="width: 100%; height: 100%;"></div>'
