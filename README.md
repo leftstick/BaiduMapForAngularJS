@@ -2,6 +2,8 @@
 
 > AngularJS directives for Baidu Maps
 
+Try online demo here: [demonstration](http://leftstick.github.io/BaiduMapForAngularJS/)
+
 ## Getting started
 
 Latest stable version: v1.2.0
