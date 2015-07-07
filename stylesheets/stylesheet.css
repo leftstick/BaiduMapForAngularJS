@@ -46,7 +46,7 @@ header {
 header h1 {
   font-size: 30px;
   line-height: 1.5;
-  margin: 0 0 0 -40px;
+  margin: 0;
   font-weight: bold;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color: #b5e853;
@@ -55,11 +55,6 @@ header h1 {
                0 0 10px rgba(181, 232, 83, 0.1);
   letter-spacing: -1px;
   -webkit-font-smoothing: antialiased;
-}
-
-header h1:before {
-  content: "./ ";
-  font-size: 24px;
 }
 
 header h2 {
@@ -244,4 +239,53 @@ a {
 
 .cf {
   zoom:1;
+}
+
+.map-container{
+    width: 100rem;
+    height: 500px;
+    margin-bottom: 25px;
+}
+
+.oper-btn{
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    text-align: center;
+    padding: 8px 18px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+    background: #627d4d;
+    background: -moz-radial-gradient(center, ellipse cover, #627d4d 0%, #1f3b08 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #627d4d), color-stop(100%, #1f3b08));
+    background: -webkit-radial-gradient(center, ellipse cover, #627d4d 0%, #1f3b08 100%);
+    background: -o-radial-gradient(center, ellipse cover, #627d4d 0%, #1f3b08 100%);
+    background: -ms-radial-gradient(center, ellipse cover, #627d4d 0%, #1f3b08 100%);
+    background: radial-gradient(ellipse at center, #627d4d 0%, #1f3b08 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#627d4d', endColorstr='#1f3b08', GradientType=1 );
+}
+
+.oper-btn:hover {
+    background: -moz-radial-gradient(center, ellipse cover, #495C3A 0%, #1f3b08 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #495C3A), color-stop(100%, #1f3b08));
+    background: -webkit-radial-gradient(center, ellipse cover, #495C3A 0%, #1f3b08 100%);
+    background: -o-radial-gradient(center, ellipse cover, #495C3A 0%, #1f3b08 100%);
+    background: -ms-radial-gradient(center, ellipse cover, #495C3A 0%, #1f3b08 100%);
+    background: radial-gradient(ellipse at center, #495C3A 0%, #1f3b08 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#495C3A', endColorstr='#1f3b08', GradientType=1 );
+}
+
+.oper-btn[disabled]{
+    pointer-events: none;
+    cursor: not-allowed;
+    color: #3A3A3A;
+    background: -moz-radial-gradient(center, ellipse cover, #DADADA 0%, #1f3b08 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #DADADA), color-stop(100%, #1f3b08));
+    background: -webkit-radial-gradient(center, ellipse cover, #DADADA 0%, #1f3b08 100%);
+    background: -o-radial-gradient(center, ellipse cover, #DADADA 0%, #1f3b08 100%);
+    background: -ms-radial-gradient(center, ellipse cover, #DADADA 0%, #1f3b08 100%);
+    background: radial-gradient(ellipse at center, #DADADA 0%, #1f3b08 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DADADA', endColorstr='#1f3b08', GradientType=1 );
 }
