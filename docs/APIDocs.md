@@ -3,12 +3,20 @@
 
 ### Download the source code or install the git package by using [bower](http://bower.io/)
 
-Latest stable version: v1.2.0
+Latest stable version: v1.2.1
+
+#### Using bower
 
 ```shell
 bower install angular-baidu-map -S
 ```
 > `-S` means update the `bower.json` with `angular-baidu-map` involved while installing.
+
+#### Using npm
+
+```shell
+npm install angular-baidu-map --save
+```
 
 ### Add `script` tag to the `index.html` for retrieving baidu-map API
 
