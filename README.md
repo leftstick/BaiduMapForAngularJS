@@ -4,6 +4,8 @@
 
 Try online demo here: [demonstration](http://leftstick.github.io/BaiduMapForAngularJS/)
 
+>If you are looking for `angular2` support, check it here: [angular2-baidu-map](https://github.com/cheng-jie/angular2-baidu-map)
+
 ## Getting started
 
 Latest stable version: v1.2.0
