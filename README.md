@@ -5,7 +5,7 @@ Baidu-map For AngularJS
 ![][dt-url]
 ![][license-url]
 
-> A damn easy directive for Baidu Map
+> A damn easy directive for Baidu Map, and it's totally a re-write version for the previous one, including API updates and offline friendly
 
 Try online demo here: [demonstration](http://leftstick.github.io/BaiduMapForAngularJS/)
 
@@ -15,7 +15,7 @@ Try online demo here: [demonstration](http://leftstick.github.io/BaiduMapForAngu
 
 ## Getting started
 
-> Note: Baidu-map API currently doesn't support `https`, switch to goole-map API if you plan deploy the application on `https` server.
+> Note: Baidu-map API currently doesn't support `https`, switch to [a-map](https://github.com/leftstick/angular-amap) API if you plan deploying to an `https` server.
 
 This is a directive for AngularJS `~1.2.0+`. And ease the way to display a baidu-map on your page.
 
