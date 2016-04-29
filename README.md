@@ -1,14 +1,15 @@
-# Baidu-map For AngularJS
-
-> AngularJS directives for Baidu Maps
+Baidu-map For AngularJS
+=======================
+> A damn easy directive for Baidu Map
 
 Try online demo here: [demonstration](http://leftstick.github.io/BaiduMapForAngularJS/)
+
+>If you are using the previous version `1.2.1`, [read it here](https://github.com/leftstick/BaiduMapForAngularJS/tree/1.x)
 
 >If you are looking for `angular2` support, check it here: [angular2-baidu-map](https://github.com/cheng-jie/angular2-baidu-map)
 
 ## Getting started
 
-Latest stable version: v1.2.0
 > Note: Baidu-map API currently doesn't support `https`, switch to goole-map API if you plan deploy the application on `https` server.
 
 This is a directive for AngularJS `~1.2.0+`. And ease the way to display a baidu-map on your page.
@@ -17,21 +18,14 @@ If you plan to hack on the directives or want to run the example, first thing to
 
 ```shell
 npm install
-bower install ( for specs and dev dependencies)
 ```
 
-### Building
-To build the library after you made changes, simply run gulp:
+### Launch the demo
 
-```shell
-gulp compress
-```
-
-### Running the demo
 To run the demo page, just run
 
 ```shell
-gulp demo
+npm start
 ```
 
 and open your browser on `http://localhost:8080/`.
