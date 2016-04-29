@@ -37,7 +37,7 @@ gulp demo
 and open your browser on `http://localhost:8080/`.
 
 ### Documentation
-The API specification documented at [API Docs](https://github.com/leftstick/BaiduMapForAngularJS/blob/master/docs/APIDocs.md).
+The API specification documented at [API Docs](https://github.com/leftstick/BaiduMapForAngularJS/blob/1.x/docs/APIDocs.md).
 
 
 
