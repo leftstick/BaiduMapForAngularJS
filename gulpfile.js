@@ -1,34 +1,23 @@
+'use strict';
+
 var gulp = require('gulp');
 
-
-gulp.task('lint', function() {
-    var jshint = require('gulp-jshint');
-    return gulp.src('./src/baiduMap.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
-});
-
-gulp.task('compress', ['lint', 'copyDist'], function() {
+gulp.task('compress', ['copyDist'], function() {
     var uglify = require('gulp-uglify');
     var rename = require('gulp-rename');
     return gulp.src('./src/baiduMap.js')
         .pipe(uglify())
-        .pipe(rename({
-            extname: '.min.js'
-        }))
+        .pipe(rename({extname: '.min.js'}))
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('copyDist', ['lint'], function() {
+gulp.task('copyDist', [], function() {
     return gulp.src('./src/baiduMap.js')
         .pipe(gulp.dest('./'));
 });
 
 gulp.task('copyDemo', function() {
-    return gulp.src([
-        './bower_components/angular/angular.js',
-        './src/baiduMap.js'
-    ])
+    return gulp.src(['./src/baiduMap.js'])
         .pipe(gulp.dest('./demo/libs/'));
 });
 
@@ -45,5 +34,4 @@ gulp.task('demo', ['copyDemo'], function(cons) {
         }));
 
     cons();
-
 });
