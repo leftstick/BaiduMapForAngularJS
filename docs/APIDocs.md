@@ -8,16 +8,16 @@ npm install angular-baidu-map --save
 
 ## Import
 
-**CommonJS**
-
-```javascript
-var map = require('angular-baidu-map').ngBaiduMap;
-```
-
 **ES2015**
 
 ```javascript
 import {ngBaiduMap} from 'angular-baidu-map';
+```
+
+**CommonJS**
+
+```javascript
+var ngBaiduMap = require('angular-baidu-map').ngBaiduMap;
 ```
 
 **script**
@@ -33,7 +33,7 @@ import {ngBaiduMap} from 'angular-baidu-map';
 ## Usage ##
 
 ```JavaScript
-var app = angular.module('app', ['baiduMap']);
+var app = angular.module('app', [ngBaiduMap]);
 ```
 
 ### Use `baidu-map` directive in the template
