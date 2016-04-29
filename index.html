@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
     <title>angular-baidu-map by leftstick</title>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gd0GyxGUxSCoAbmdyQBhyhrZ"></script>
   </head>
 
   <body>
@@ -30,7 +29,7 @@
         <h3><a id="welcome-to-baidu" class="anchor" href="#welcome-to-baidu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demonstration</h3>
 
         <div class="map-container">
-            <baidu-map options="mapOptions" style="width: 500px; height: 500px;display: block;"></baidu-map>
+            <baidu-map options="mapOptions" style="width: 500px; height: 500px;display: block;" ak="gd0GyxGUxSCoAbmdyQBhyhrZ"></baidu-map>
         </div>
 
         <button type="button" class="oper-btn" ng-disabled="markerAdded" ng-click="addMarker()">add marker</button>
@@ -48,8 +47,6 @@
       </section>
     </div>
 
-  <script type="text/javascript" src="javascripts/angular.min.js"></script>
-  <script type="text/javascript" src="javascripts/baiduMap.min.js"></script>
-  <script type="text/javascript" src="javascripts/main.js"></script>
+  <script type="text/javascript" src="dist/bundle.js"></script>
   </body>
 </html>

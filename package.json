@@ -1,0 +1,27 @@
+{
+  "name": "angular-baidu-map",
+  "version": "1.0.0",
+  "description": "Demo page",
+  "main": "webpack.config.js",
+  "scripts": {
+      "build": "webpack"
+  },
+  "dependencies": {
+      "angular-baidu-map": "https://github.com/leftstick/BaiduMapForAngularJS.git"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leftstick/BaiduMapForAngularJS.git"
+  },
+  "keywords": [
+    "angular",
+    "baidu-map"
+  ],
+  "author": "Howard.Zuo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leftstick/BaiduMapForAngularJS/issues"
+  },
+  "homepage": "https://github.com/leftstick/BaiduMapForAngularJS#readme"
+}
