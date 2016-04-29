@@ -1,5 +1,10 @@
 Baidu-map For AngularJS
 =======================
+[![NPM version][npm-image]][npm-url]
+![][david-url]
+![][dt-url]
+![][license-url]
+
 > A damn easy directive for Baidu Map
 
 Try online demo here: [demonstration](http://leftstick.github.io/BaiduMapForAngularJS/)
@@ -34,11 +39,13 @@ and open your browser on `http://localhost:8080/`.
 The API specification documented at [API Docs](https://github.com/leftstick/BaiduMapForAngularJS/blob/master/docs/APIDocs.md).
 
 
+## LICENSE ##
 
-Contributing
+[MIT License](https://raw.githubusercontent.com/leftstick/BaiduMapForAngularJS/master/LICENSE)
 
-Pull requests more than welcome! If you're adding new features, it would be appreciated if you would provide some docs about the feature. This can be done either by adding a card to our Trello board, forking the website branch and issuing a PR with the updated documentation page, or by opening an issue for us to add the documentation to the site.
 
-Branching Model w Git Flow We are trying to follow the git flow branching model where all bugs that are considered urgent / patches will be pull requested against master. If the PR (pull request) is an improvement and a non urgent fix it will go towards develop which is the working(SNAPSHOT) next version of what master will be.
-
-When patches and bugs are rolled into master they will be immediatley rolled into develop as well. Where the flow is PR(bug fix) -> merge master -> merge develop .
+[npm-url]: https://npmjs.org/package/angular-baidu-map
+[npm-image]: https://badge.fury.io/js/angular-baidu-map.png
+[david-url]: https://david-dm.org/leftstick/BaiduMapForAngularJS.png
+[dt-url]:https://img.shields.io/npm/dt/angular-baidu-map.svg
+[license-url]:https://img.shields.io/npm/l/angular-baidu-map.svg

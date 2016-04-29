@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.angularBaiduMap = undefined;
+	exports.ngBaiduMap = undefined;
 
 	var _angular = __webpack_require__(1);
 
@@ -77,7 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var angularBaiduMap = exports.angularBaiduMap = function () {
+	var ngBaiduMap = exports.ngBaiduMap = function () {
 	    var name = 'baiduMap';
 
 	    (0, _directiveDef.def)(name, {

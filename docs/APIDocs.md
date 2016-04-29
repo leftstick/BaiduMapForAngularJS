@@ -1,37 +1,42 @@
-## Basic Usage
+## Installation
 
-
-### Download the source code or install the git package by using [bower](http://bower.io/)
-
-Latest stable version: v1.2.1
-
-#### Using bower
-
-```shell
-bower install angular-baidu-map -S
-```
-> `-S` means update the `bower.json` with `angular-baidu-map` involved while installing.
-
-#### Using npm
+**via npm**
 
 ```shell
 npm install angular-baidu-map --save
 ```
 
-### Add `script` tag to the `index.html` for retrieving baidu-map API
+## Import
 
-``` html
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={ak}"></script>
+**CommonJS**
+
+```javascript
+var map = require('angular-baidu-map').ngBaiduMap;
 ```
-> The ak should be applied on [Apply ak](http://lbsyun.baidu.com/apiconsole/key?application=key).
 
-### Include `baiduMap.js` file in your page. Then add the `baiduMap` module to your Angular App file, e.g.
+**ES2015**
+
+```javascript
+import {ngBaiduMap} from 'angular-baidu-map';
+```
+
+**script**
+
+```html
+<script type="text/javascript" src="angular/angular.min.js"></script>
+<script type="text/javascript" src="angular-baidu-map/dist/angular-baidu-map.js"></script>
+<script type="text/javascript">
+    var ngBaiduMap = window.ngBaiduMap;
+</script>
+```
+
+## Usage ##
 
 ```JavaScript
-var app = angular.module('app', ["baiduMap"]);
+var app = angular.module('app', ['baiduMap']);
 ```
 
-### Use `baiduMap` directive in the html
+### Use `baidu-map` directive in the template
 
 ```html
 <baidu-map options="mapOptions"></baidu-map>

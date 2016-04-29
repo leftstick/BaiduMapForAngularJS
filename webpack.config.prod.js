@@ -1,4 +1,6 @@
+
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
     entry: {
@@ -6,7 +8,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'angular-baidu-map.js',
+        filename: 'angular-baidu-map.min.js',
         libraryTarget: 'umd'
     },
     module: {
@@ -20,5 +22,12 @@ module.exports = {
     },
     externals: {
         angular: 'angular'
-    }
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
+    ]
 };

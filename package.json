@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "webpack",
-    "prepublish": "webpack",
+    "dist": "webpack; webpack --config webpack.config.prod.js",
+    "prepublish": "npm run dist",
     "start": "npm run build; cp dist/angular-baidu-map.js demo/libs/; lite-server -c liteServerConfig.js"
   },
   "files": [

@@ -6,7 +6,7 @@ import {loader} from './baiduScriptLoader';
 
 import {createInstance, redrawMarkers} from './map';
 
-export const angularBaiduMap = (function() {
+export const ngBaiduMap = (function() {
     var name = 'baiduMap';
 
     def(name, {
