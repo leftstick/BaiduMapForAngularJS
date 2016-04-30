@@ -6,3 +6,8 @@ export const defaultOpts = {
     enableScrollWheelZoom: true,
     zoom: 10
 };
+
+export const defaultOfflineOpts = {
+    retryInterval: 30000,
+    txt: 'OFFLINE'
+};

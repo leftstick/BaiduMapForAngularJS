@@ -1,5 +1,5 @@
 
-export const loader = function(ak, callback) {
+export const loader = function(ak, offlineOpts, callback) {
     var MAP_URL = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=baidumapinit`;
 
     var baiduMap = window.baiduMap;
@@ -19,8 +19,23 @@ export const loader = function(ak, callback) {
         window.baiduMap.callbacks = [];
     };
 
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = MAP_URL;
-    document.body.appendChild(script);
+    var createTag = function() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = MAP_URL;
+        script.onerror = function() {
+
+            Array.prototype
+                .slice
+                .call(document.querySelectorAll('baidu-map div'))
+                .forEach(function(node) {
+                    node.style.opacity = 1;
+                });
+            document.body.removeChild(script);
+            setTimeout(createTag, offlineOpts.retryInterval);
+        };
+        document.body.appendChild(script);
+    };
+
+    createTag();
 };

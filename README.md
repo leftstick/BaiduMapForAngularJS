@@ -17,9 +17,9 @@ Try online demo here: [demonstration](http://leftstick.github.io/BaiduMapForAngu
 
 > Note: Baidu-map API currently doesn't support `https`, switch to [a-map](https://github.com/leftstick/angular-amap) API if you plan deploying to an `https` server.
 
-This is a directive for AngularJS `~1.2.0+`. And ease the way to display a baidu-map on your page.
+This is a directive for AngularJS `^1.2.0`. And ease the way to display a baidu-map on your page.
 
-If you plan to hack on the directives or want to run the example, first thing to do is to install NPM dependencies:
+If you plan to hack on the directives or want to run the example locally, first thing to do is to install NPM dependencies:
 
 ```shell
 npm install

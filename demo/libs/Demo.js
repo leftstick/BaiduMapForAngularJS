@@ -3,6 +3,8 @@ var demo = angular.module('demo', ['baiduMap']);
 demo.controller('demoCtrl', ['$scope', '$timeout',
     function($scope, $timeout) {
 
+        $scope.offlineOpts = {retryInterval: 5000};
+
         var longitude = 121.506191;
         var latitude = 31.245554;
         $scope.mapOptions = {

@@ -39,15 +39,24 @@ var app = angular.module('app', [ngBaiduMap]);
 ### Use `baidu-map` directive in the template
 
 ```html
-<baidu-map options="mapOptions"></baidu-map>
+<baidu-map options="mapOptions" ak="<your-ak>" offline="offlineOpts" class="<style-for-it>"></baidu-map>
 ```
-> `mapOptions` is what you defined in the controller.
+* `mapOptions` is what you defined in the controller
+* `ak` is a plain text you applied at [开放平台](http://lbsyun.baidu.com/apiconsole/key)
+* `offlineOpts` is used to control offline retry interval
+* `class` or `style` has to be defined, otherwise the map cannot be shown
 
 ### Define `mapOptions` in controller
 
 ```JavaScript
 app.controller('demoCtrl', ['$scope',
     function($scope) {
+
+        $scope.offlineOpts = {
+            retryInterval: 10000,
+            txt: 'Offline Mode'
+        };
+
         var longitude = 121.506191;
         var latitude = 31.245554;
         $scope.mapOptions = {
@@ -71,7 +80,7 @@ app.controller('demoCtrl', ['$scope',
 ]);
 ```
 
-### Description of attributes
+### Description of options
 
 | Attribute        | Type           | Required  | Description | Example  |
 | :------------- |:-------------| :-----:| :-----| :-----|
@@ -92,3 +101,11 @@ app.controller('demoCtrl', ['$scope',
 | marker.title | string | No | The title on the infowindow displayed once you click the marker. | 'hello' |
 | marker.content | string | No | The content on the infowindow displayed once you click the marker. | 'hello world' |
 | marker.enableMessage | boolean | No | Whether to enable the SMS feature for this marker window. This option only available when title/content are defined. Default false | true |
+
+
+### Description of offline
+
+| Attribute        | Type           | Required  | Description | Example  |
+| :------------- |:-------------| :-----:| :-----| :-----|
+| offline.retryInterval | number | No | retry interval while no network available. It's millisecond | 5000 |
+| offline.txt | string | No | hint words while offline mode | OFFLINE MODE |

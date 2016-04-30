@@ -84,18 +84,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        restrict: 'E',
 	        scope: {
 	            options: '=',
-	            ak: '@'
+	            ak: '@',
+	            offline: '='
 	        },
 	        link: function link($scope, element, attrs) {
 
 	            var opts = _angular2.default.extend({}, _defaults.defaultOpts, $scope.options);
+	            var offlineOpts = _angular2.default.extend({}, _defaults.defaultOfflineOpts, $scope.offline);
+	            $scope.offlineWords = offlineOpts.txt;
 	            (0, _validator.validator)($scope.ak, 'ak must not be empty');
 	            (0, _validator.validator)(opts.center, 'options.center must be set');
 	            (0, _validator.validator)(opts.center.longitude, 'options.center.longitude must be set');
 	            (0, _validator.validator)(opts.center.latitude, 'options.center.latitude must be set');
 	            (0, _validator.validator)(opts.city, 'options.city must be set');
 
-	            (0, _baiduScriptLoader.loader)($scope.ak, function () {
+	            (0, _baiduScriptLoader.loader)($scope.ak, offlineOpts, function () {
 
 	                var map = (0, _map.createInstance)(opts, element);
 
@@ -115,7 +118,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    (0, _map.redrawMarkers)(map, previousMarkers, opts);
 	                }, true);
 	            });
-	        }
+
+	            $scope.divStyle = {
+	                width: '100%',
+	                height: '100%',
+	                backgroundColor: '#E6E6E6',
+	                position: 'relative',
+	                opacity: 0
+	            };
+
+	            $scope.labelStyle = {
+	                fontSize: '30px',
+	                position: 'absolute',
+	                top: '50%',
+	                marginTop: 0,
+	                left: '50%',
+	                marginLeft: 0
+	            };
+
+	            setTimeout(function () {
+	                var $label = document.querySelector('baidu-map div label');
+	                $scope.labelStyle.marginTop = $label.clientHeight / -2 + 'px';
+	                $scope.labelStyle.marginLeft = $label.clientWidth / -2 + 'px';
+	                $scope.$apply();
+	            });
+	        },
+	        template: '<div ng-style="divStyle"><label ng-style="labelStyle">{{ offlineWords }}</label></div>'
 	    });
 
 	    return name;
@@ -131,7 +159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 2 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -142,6 +170,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    overviewCtrl: true,
 	    enableScrollWheelZoom: true,
 	    zoom: 10
+	};
+
+	var defaultOfflineOpts = exports.defaultOfflineOpts = {
+	    retryInterval: 30000,
+	    txt: 'OFFLINE'
 	};
 
 /***/ },
@@ -191,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var loader = exports.loader = function loader(ak, callback) {
+	var loader = exports.loader = function loader(ak, offlineOpts, callback) {
 	    var MAP_URL = 'http://api.map.baidu.com/api?v=2.0&ak=' + ak + '&callback=baidumapinit';
 
 	    var baiduMap = window.baiduMap;
@@ -213,10 +246,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        window.baiduMap.callbacks = [];
 	    };
 
-	    var script = document.createElement('script');
-	    script.type = 'text/javascript';
-	    script.src = MAP_URL;
-	    document.body.appendChild(script);
+	    var createTag = function createTag() {
+	        var script = document.createElement('script');
+	        script.type = 'text/javascript';
+	        script.src = MAP_URL;
+	        script.onerror = function () {
+
+	            Array.prototype.slice.call(document.querySelectorAll('baidu-map div')).forEach(function (node) {
+	                node.style.opacity = 1;
+	            });
+	            document.body.removeChild(script);
+	            setTimeout(createTag, offlineOpts.retryInterval);
+	        };
+	        document.body.appendChild(script);
+	    };
+
+	    createTag();
 	};
 
 /***/ },
