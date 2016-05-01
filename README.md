@@ -7,7 +7,7 @@ Baidu-map For AngularJS
 
 > A damn easy directive for Baidu Map, and it's totally a re-write version for the previous one, including API updates and offline friendly
 
-![](https://github.com/leftstick/BaiduMapForAngularJS/blob/master/docs/offline.gif)
+![](https://raw.githubusercontent.com/leftstick/BaiduMapForAngularJS/master/docs/offline.gif)
 
 Try online demo here: [demonstration](http://leftstick.github.io/BaiduMapForAngularJS/)
 
