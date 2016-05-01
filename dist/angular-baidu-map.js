@@ -73,7 +73,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _baiduScriptLoader = __webpack_require__(5);
 
-	var _map = __webpack_require__(6);
+	var _offline = __webpack_require__(6);
+
+	var _map = __webpack_require__(7);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -119,22 +121,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }, true);
 	            });
 
-	            $scope.divStyle = {
-	                width: '100%',
-	                height: '100%',
-	                backgroundColor: '#E6E6E6',
-	                position: 'relative',
-	                opacity: 0
-	            };
-
-	            $scope.labelStyle = {
-	                fontSize: '30px',
-	                position: 'absolute',
-	                top: '50%',
-	                marginTop: 0,
-	                left: '50%',
-	                marginLeft: 0
-	            };
+	            $scope.divStyle = _offline.divStyle;
+	            $scope.labelStyle = _offline.labelStyle;
 
 	            setTimeout(function () {
 	                var $label = document.querySelector('baidu-map div label');
@@ -266,6 +254,32 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var divStyle = exports.divStyle = {
+	    width: '100%',
+	    height: '100%',
+	    backgroundColor: '#E6E6E6',
+	    position: 'relative',
+	    opacity: 0
+	};
+
+	var labelStyle = exports.labelStyle = {
+	    fontSize: '30px',
+	    position: 'absolute',
+	    top: '50%',
+	    marginTop: 0,
+	    left: '50%',
+	    marginLeft: 0
+	};
+
+/***/ },
+/* 7 */
 /***/ function(module, exports) {
 
 	'use strict';

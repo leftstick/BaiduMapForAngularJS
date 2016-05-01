@@ -3,6 +3,7 @@ import {defaultOpts, defaultOfflineOpts} from './defaults';
 import {validator} from './validator';
 import {def} from './directiveDef';
 import {loader} from './baiduScriptLoader';
+import {divStyle, labelStyle} from './style/offline';
 
 import {createInstance, redrawMarkers} from './map';
 
@@ -51,22 +52,8 @@ export const ngBaiduMap = (function() {
 
             });
 
-            $scope.divStyle = {
-                width: '100%',
-                height: '100%',
-                backgroundColor: '#E6E6E6',
-                position: 'relative',
-                opacity: 0
-            };
-
-            $scope.labelStyle = {
-                fontSize: '30px',
-                position: 'absolute',
-                top: '50%',
-                marginTop: 0,
-                left: '50%',
-                marginLeft: 0
-            };
+            $scope.divStyle = divStyle;
+            $scope.labelStyle = labelStyle;
 
             setTimeout(function() {
                 var $label = document.querySelector('baidu-map div label');
