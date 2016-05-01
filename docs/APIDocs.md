@@ -107,5 +107,5 @@ app.controller('demoCtrl', ['$scope',
 
 | Attribute        | Type           | Required  | Description | Example  |
 | :------------- |:-------------| :-----:| :-----| :-----|
-| offline.retryInterval | number | No | retry interval while no network available. It's millisecond | 5000 |
-| offline.txt | string | No | hint words while offline mode | OFFLINE MODE |
+| offline.retryInterval | number | No | retry interval while no network available. 30000ms by default | 5000 |
+| offline.txt | string | No | hint words while offline mode, 'OFFLINE' by default | OFFLINE MODE |
