@@ -15,7 +15,14 @@
   },
   "files": [
     "dist/angular-baidu-map.js",
-    "src/index.js"
+    "dist/angular-baidu-map.min.js",
+    "src/style/offline.js",
+    "src/baiduScriptLoader.js",
+    "src/defaults.js",
+    "src/directiveDef.js",
+    "src/index.js",
+    "src/map.js",
+    "src/validator.js"
   ],
   "keywords": [
     "baidu-map",
