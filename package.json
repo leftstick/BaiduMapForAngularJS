@@ -1,6 +1,6 @@
 {
   "name": "angular-baidu-map",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A baidu-map directive for AngularJS",
   "main": "dist/angular-baidu-map.js",
   "repository": {
