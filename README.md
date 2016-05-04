@@ -47,7 +47,7 @@ The API specification documented at [API Docs](https://github.com/leftstick/Baid
 
 
 [npm-url]: https://npmjs.org/package/angular-baidu-map
-[npm-image]: https://badge.fury.io/js/angular-baidu-map.png
+[npm-image]: https://img.shields.io/npm/v/angular-baidu-map.svg
 [david-url]: https://david-dm.org/leftstick/BaiduMapForAngularJS.png
 [dt-url]:https://img.shields.io/npm/dt/angular-baidu-map.svg
 [license-url]:https://img.shields.io/npm/l/angular-baidu-map.svg
