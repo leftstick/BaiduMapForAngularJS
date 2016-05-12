@@ -1,6 +1,7 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -28,6 +29,7 @@ module.exports = {
             compress: {
                 warnings: false
             }
-        })
+        }),
+        new UnminifiedWebpackPlugin()
     ]
 };
