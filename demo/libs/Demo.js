@@ -25,6 +25,10 @@ demo.controller('demoCtrl', ['$scope', '$timeout',
             }]
         };
 
+        $scope.mapLoaded = function(map) {
+            console.log(map);
+        };
+
         $timeout(function() {
             $scope.mapOptions.center.longitude = 121.500885;
             $scope.mapOptions.center.latitude = 31.190032;

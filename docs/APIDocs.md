@@ -39,11 +39,12 @@ var app = angular.module('app', [ngBaiduMap]);
 ### Use `baidu-map` directive in the template
 
 ```html
-<baidu-map options="mapOptions" ak="<your-ak>" offline="offlineOpts" class="<style-for-it>"></baidu-map>
+<baidu-map options="mapOptions" ak="<your-ak>" offline="offlineOpts" on-map-loaded="loadMap(map)" class="<style-for-it>"></baidu-map>
 ```
 * `mapOptions` is what you defined in the controller
 * `ak` is a plain text you applied at [开放平台](http://lbsyun.baidu.com/apiconsole/key)
 * `offlineOpts` is used to control offline retry interval
+* `on-map-loaded` is used for hacking purpose, in case some of you insist getting `map` instance
 * `class` or `style` has to be defined, otherwise the map cannot be shown
 
 ### Define `mapOptions` in controller
@@ -75,6 +76,10 @@ app.controller('demoCtrl', ['$scope',
                 title: 'Where',
                 content: 'Put description here'
             }]
+        };
+
+        $scope.loadMap = function(map) {
+            console.log(map);//gets called while map instance created
         };
     }
 ]);

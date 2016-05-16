@@ -15,7 +15,8 @@ export const ngBaiduMap = (function() {
         scope: {
             options: '=',
             ak: '@',
-            offline: '='
+            offline: '=',
+            onMapLoaded: '&'
         },
         link: function($scope, element, attrs) {
 
@@ -31,6 +32,8 @@ export const ngBaiduMap = (function() {
             loader($scope.ak, offlineOpts, function() {
 
                 var map = createInstance(opts, element);
+
+                $scope.onMapLoaded({map});
 
                 //create markers
                 var previousMarkers = [];

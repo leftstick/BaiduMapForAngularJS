@@ -87,7 +87,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        scope: {
 	            options: '=',
 	            ak: '@',
-	            offline: '='
+	            offline: '=',
+	            onMapLoaded: '&'
 	        },
 	        link: function link($scope, element, attrs) {
 
@@ -103,6 +104,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            (0, _baiduScriptLoader.loader)($scope.ak, offlineOpts, function () {
 
 	                var map = (0, _map.createInstance)(opts, element);
+
+	                $scope.onMapLoaded({ map: map });
 
 	                //create markers
 	                var previousMarkers = [];
