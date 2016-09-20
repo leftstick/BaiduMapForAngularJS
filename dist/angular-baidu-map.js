@@ -216,7 +216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 	var loader = exports.loader = function loader(ak, offlineOpts, callback) {
-	    var MAP_URL = '//api.map.baidu.com/api?v=2.0&ak=' + ak + '&callback=baidumapinit';
+	    var MAP_URL = '//api.map.baidu.com/api?v=2.0&ak=' + ak + '&callback=baidumapinit&s=' + (location.protocol === 'https:' ? 1 : 0);
 
 	    var baiduMap = window.baiduMap;
 	    if (baiduMap && baiduMap.status === 'loading') {
