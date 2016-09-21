@@ -1,6 +1,6 @@
 
 export const loader = function(ak, offlineOpts, callback) {
-    var MAP_URL = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=baidumapinit`;
+    var MAP_URL = `//api.map.baidu.com/api?v=2.0&ak=${ak}&callback=baidumapinit&s=${location.protocol === 'https:' ? 1 : 0}`;
 
     var baiduMap = window.baiduMap;
     if (baiduMap && baiduMap.status === 'loading') {
