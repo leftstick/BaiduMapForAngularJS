@@ -1,11 +1,43 @@
 import './home.css';
+
+const ORIENTAL_PEARL = {
+    longitude: 121.506191,
+    latitude: 31.245554
+};
+
+const NEW_SHANGHAI_INTERNATIONAL_TOWER = {
+    longitude: 121.51606,
+    latitude: 31.244604
+};
+
 export default {
     template: `
     <h1 style="margin-bottom: 15px;">Angular Baidu Map</h1>
-    <baidu-map></baidu-map>
+
+    <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts" on-loaded="$ctrl.onLoadMap(map)">
+        <marker point="$ctrl.markerPoint1"></marker>
+        <marker point="$ctrl.markerPoint2"></marker>
+    </baidu-map>
+
     <github></github>
     `,
     controller: class {
-        constructor() {}
+        /*ngInject*/
+        constructor() {
+            this.opts = {
+                currentCity: '上海市',
+                centerAndZoom: {
+                    ...ORIENTAL_PEARL,
+                    zoom: 16
+                },
+                enableScrollWheelZoom: true
+            };
+            this.markerPoint1 = ORIENTAL_PEARL;
+            this.markerPoint2 = NEW_SHANGHAI_INTERNATIONAL_TOWER;
+        }
+
+        onLoadMap(map) {
+            console.log('Map is created', map);
+        }
     }
 };

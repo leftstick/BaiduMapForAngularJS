@@ -1,12 +1,3 @@
-/**
- *  RouterConfig collect route information from each feature and combine them
- *  with ngRoute.
- *
- *
- *  @author  howard
- *  @date    Jan 5, 2017
- *
- */
 import {omit, pluck} from '../helper/object';
 
 import Things from 'features/main';
@@ -72,6 +63,6 @@ function config(routes, $routeProvider, $locationProvider) {
         });
     }
 
-    
-    $locationProvider.html5Mode(false); 
+
+    $locationProvider.html5Mode(false);
 }

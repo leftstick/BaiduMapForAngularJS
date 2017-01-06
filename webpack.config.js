@@ -23,7 +23,7 @@ module.exports = {
             },
             {
                 test: /\.(js|co)$/,
-                loader: 'ng-annotate!babel?{"presets":["es2015"]}',
+                loader: 'ng-annotate!babel?{"presets":["es2015"], "plugins": ["transform-object-rest-spread"]}',
                 exclude: /(node_modules)/
             },
             {

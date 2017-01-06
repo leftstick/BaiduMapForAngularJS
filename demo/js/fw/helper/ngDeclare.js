@@ -1,10 +1,4 @@
-/**
- *  Collection of framework registers
- *
- *  @author  howard
- *  @date    Jan 5, 2017
- *
- */
+
 import angular from 'angular';
 import {isArray, isObject, isInjectedFunction, flatten} from './object';
 

@@ -1,10 +1,4 @@
-/**
- *  Collection of Object helpers
- *
- *  @author  howard
- *  @date    Jan 5, 2017
- *
- */
+
 import {isObject, isArray, isString} from 'angular';
 
 const clone = function(obj) {

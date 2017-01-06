@@ -1,11 +1,4 @@
-/**
- *  Return all information of external angular resources
- *
- *  @author  howard
- *  @date    Jan 5, 2017
- *
- */
-
 import 'angular-route';
+import '../../../../src';
 
-export default ['ngRoute'];
+export default ['ngRoute', 'baiduMap'];
