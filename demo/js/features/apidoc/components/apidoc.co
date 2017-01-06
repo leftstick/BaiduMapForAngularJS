@@ -1,0 +1,9 @@
+import './apidoc.css';
+export default {
+    template: `
+    apidoc
+    `,
+    controller: class {
+        constructor() {}
+    }
+};

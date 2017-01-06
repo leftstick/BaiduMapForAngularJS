@@ -1,0 +1,9 @@
+import './quickstart.css';
+export default {
+    template: `
+    quickstart
+    `,
+    controller: class {
+        constructor() {}
+    }
+};

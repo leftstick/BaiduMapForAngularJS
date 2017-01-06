@@ -1,0 +1,20 @@
+menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    color: #7f8c8d;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 15px;
+}
+
+.nav-link.active {
+    color: #424242;
+}
+
+.nav-link:hover {
+  border-bottom: 3px solid #dd1b16;
+}

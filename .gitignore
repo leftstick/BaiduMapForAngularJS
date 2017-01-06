@@ -1,3 +1,8 @@
 #npm
 node_modules/
-demo/libs/angular-baidu-map.js
+
+#osx
+.DS_Store
+
+#build
+build/

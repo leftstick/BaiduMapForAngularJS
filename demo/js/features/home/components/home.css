@@ -1,0 +1,11 @@
+home {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+baidu-map {
+    width: 780px;
+    height: 290px;
+}

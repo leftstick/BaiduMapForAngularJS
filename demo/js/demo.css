@@ -1,0 +1,10 @@
+demo {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: #fafafa;
+}
+
+div[ng-view] {
+    padding: 30px 10px 10px 10px;
+}

@@ -1,0 +1,10 @@
+import './demo.css';
+export default {
+    template: `
+    <menu></menu>
+    <div ng-view autoscroll="true"></div>
+    `,
+    controller: class {
+        constructor() {}
+    }
+};

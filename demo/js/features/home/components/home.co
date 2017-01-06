@@ -1,0 +1,11 @@
+import './home.css';
+export default {
+    template: `
+    <h1 style="margin-bottom: 15px;">Angular Baidu Map</h1>
+    <baidu-map></baidu-map>
+    <github></github>
+    `,
+    controller: class {
+        constructor() {}
+    }
+};
