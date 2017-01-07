@@ -1,5 +1,5 @@
 
-import {map as mapStyle, offline, offlineLabel} from '../style';
+import * as style from '../style';
 import {nullCheck} from '../helper/validate';
 import {load} from '../helper/loader';
 import {create} from '../helper/map';
@@ -9,25 +9,23 @@ export default {
         ak: '@',
         offlineTxt: '<',
         mapOptions: '<',
-        onLoaded: '&'
+        onLoaded: '&',
+        click: '&'
     },
     transclude: true,
     template: `
         <div ng-style="$ctrl.style.map" class="baidu-map-instance"></div>
-        <div ng-style="$ctrl.style.div" class="baidu-map-offline">
-            <label ng-style="$ctrl.style.label">{{ $ctrl.offlineTxt || 'NO_NETWORK' }}</label>
+        <div ng-style="$ctrl.style.offline" class="baidu-map-offline">
+            <label ng-style="$ctrl.style.offlineLabel">{{ $ctrl.offlineTxt || 'NO_NETWORK' }}</label>
         </div>
         <div ng-transclude style="display: none"></div>
     `,
     controller: class {
         /*ngInject*/
-        constructor($element) {
+        constructor($element, $attrs) {
             this.$element = $element;
-            this.style = {
-                div: offline,
-                label: offlineLabel,
-                map: mapStyle
-            };
+            this.$attrs = $attrs;
+            this.style = style;
         }
 
         $onInit() {
@@ -41,9 +39,24 @@ export default {
                     this.onLoaded({
                         map
                     });
-                    this.map = map;
-                    return map;
+                    //eslint-disable-next-line
+                    return this.map = map;
+                })
+                .then(() => {
+                    if (!this.$attrs.click) {
+                        return;
+                    }
+                    const clickListener = this.clickListener = (e) => {
+                        this.click({
+                            e
+                        });
+                    };
+                    this.map.addEventListener('click', clickListener);
                 });
+        }
+
+        $onDestroy() {
+            this.map.removeEventListener('click', this.clickListener);
         }
 
         addOverlay(marker) {
@@ -70,3 +83,4 @@ function handleMapOperation(map, method, ...args) {
         resolve();
     });
 }
+

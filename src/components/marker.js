@@ -35,8 +35,9 @@ export default {
                     if (!this.$attrs.click) {
                         return;
                     }
-                    this.clickHandler = () => {
+                    this.clickHandler = (e) => {
                         this.click({
+                            e,
                             marker
                         });
                     };

@@ -1,3 +1,4 @@
+import {stop} from '../../../fw/helper/event';
 import './home.css';
 import markericonUrl from 'img/markericon.png';
 
@@ -16,7 +17,7 @@ export default {
     <h1 style="margin-bottom: 15px;">Angular Baidu Map</h1>
 
     <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts" on-loaded="$ctrl.onLoadMap(map)">
-        <marker point="$ctrl.markerPoint1" click="$ctrl.onMarker1Clicked(marker)"></marker>
+        <marker point="$ctrl.markerPoint1" click="$ctrl.onMarker1Clicked(e, marker)"></marker>
         <marker point="$ctrl.markerPoint2" options="$ctrl.markerOptions2"></marker>
         <control type="panorama"></control>
     </baidu-map>
@@ -53,17 +54,10 @@ export default {
 
         onLoadMap(map) {
             console.log('Map is created', map);
-        // this.copyrights = {
-        //     anchor: window.BMAP_ANCHOR_TOP_RIGHT,
-        //     copyrights: [{
-        //         id: 1,
-        //         content: '<h1>I am customized COPYRIGHT</h1>',
-        //         bounds: map.getBounds()
-        //     }]
-        // };
         }
 
-        onMarker1Clicked(marker) {
+        onMarker1Clicked(e, marker) {
+            stop(e.domEvent);
             const p = marker.getPosition();
             //eslint-disable-next-line
             alert(`The marker you clicked at: ${p.lng}, ${p.lat}`);
