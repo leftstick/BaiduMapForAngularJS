@@ -46,9 +46,15 @@ export default {
                     }
                 }
             };
-            this.show = false;
             $timeout(() => {
-                this.show = true;
+                this.opts = {
+                    currentCity: '上海市',
+                    centerAndZoom: {
+                        ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
+                        zoom: 16
+                    },
+                    enableScrollWheelZoom: true
+                };
             }, 3000);
         }
 

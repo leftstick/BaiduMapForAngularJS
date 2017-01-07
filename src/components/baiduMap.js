@@ -2,7 +2,7 @@
 import * as style from '../style';
 import {nullCheck} from '../helper/validate';
 import {load} from '../helper/loader';
-import {create} from '../helper/map';
+import {create, refresh} from '../helper/map';
 
 export default {
     bindings: {
@@ -53,6 +53,13 @@ export default {
                     };
                     this.map.addEventListener('click', clickListener);
                 });
+        }
+
+        $onChanges(changes) {
+            if (!this.map) {
+                return;
+            }
+            refresh(this.map, changes.mapOptions.currentValue);
         }
 
         $onDestroy() {
