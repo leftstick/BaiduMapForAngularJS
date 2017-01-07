@@ -1,3 +1,14 @@
-about {
+quickstart {
     width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+quickstart .container {
+    width: 1000px;
+}
+
+quickstart .container > h1 {
+    text-align: center;
+    margin-bottom: 15px;
 }

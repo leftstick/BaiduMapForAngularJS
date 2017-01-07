@@ -8,3 +8,30 @@ demo {
 div[ng-view] {
     padding: 30px 10px 10px 10px;
 }
+
+code {
+    font-style: italic;
+    font-weight: bold;
+    color: gray;
+}
+
+p {
+    line-height: 25px;
+    margin-top: 3px;
+    font-family: 'Noto Sans','PT Sans','Open Sans','Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+.section {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.section h1 {
+    margin-bottom: 10px;
+}
+
+.snippet {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #cccccc;
+}

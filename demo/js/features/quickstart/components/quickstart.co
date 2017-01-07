@@ -1,7 +1,11 @@
 import './quickstart.css';
 export default {
     template: `
-    quickstart
+    <div class="container">
+        <h1>Quickstart</h1>
+        <p style="margin-bottom: 15px;">To start using <code>angular-baidu-map</code>, follow these simple steps for module setup. Afterwards, read <a href="#!/apidoc">API documentation</a> to learn about advanced usage.</p>
+        <install class="section"></install>
+    </div>
     `,
     controller: class {
         constructor() {}

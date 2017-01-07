@@ -1,0 +1,13 @@
+.install-menu {
+    list-style-type: circle;
+}
+
+.install-title {
+    margin-bottom: 10px;
+}
+
+.snippet code {
+    font-style: normal;
+    font-weight: normal;
+    color: #fff;
+}
