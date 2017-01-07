@@ -1,4 +1,5 @@
 import './home.css';
+import markericonUrl from 'img/markericon.png';
 
 const ORIENTAL_PEARL = {
     longitude: 121.506191,
@@ -15,15 +16,16 @@ export default {
     <h1 style="margin-bottom: 15px;">Angular Baidu Map</h1>
 
     <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts" on-loaded="$ctrl.onLoadMap(map)">
-        <marker point="$ctrl.markerPoint1"></marker>
-        <marker point="$ctrl.markerPoint2"></marker>
+        <marker point="$ctrl.markerPoint1" click="$ctrl.onMarker1Clicked(marker)"></marker>
+        <marker point="$ctrl.markerPoint2" options="$ctrl.markerOptions2"></marker>
+        <control type="panorama"></control>
     </baidu-map>
 
     <github></github>
     `,
     controller: class {
         /*ngInject*/
-        constructor() {
+        constructor($timeout) {
             this.opts = {
                 currentCity: '上海市',
                 centerAndZoom: {
@@ -34,10 +36,37 @@ export default {
             };
             this.markerPoint1 = ORIENTAL_PEARL;
             this.markerPoint2 = NEW_SHANGHAI_INTERNATIONAL_TOWER;
+            this.markerOptions2 = {
+                icon: {
+                    url: markericonUrl,
+                    size: {
+                        width: 49,
+                        height: 60
+                    }
+                }
+            };
+            this.show = false;
+            $timeout(() => {
+                this.show = true;
+            }, 3000);
         }
 
         onLoadMap(map) {
             console.log('Map is created', map);
+        // this.copyrights = {
+        //     anchor: window.BMAP_ANCHOR_TOP_RIGHT,
+        //     copyrights: [{
+        //         id: 1,
+        //         content: '<h1>I am customized COPYRIGHT</h1>',
+        //         bounds: map.getBounds()
+        //     }]
+        // };
+        }
+
+        onMarker1Clicked(marker) {
+            const p = marker.getPosition();
+            //eslint-disable-next-line
+            alert(`The marker you clicked at: ${p.lng}, ${p.lat}`);
         }
     }
 };

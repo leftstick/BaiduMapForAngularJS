@@ -9,7 +9,16 @@ export function load(ak) {
 
     //eslint-disable-next-line
     return window.loadBaiduMapPromise = new Promise((resolve, reject) => {
-        window.baidumapinit = resolve;
+        window.baidumapinit = () => {
+            Array.prototype
+                .slice
+                .call(document.querySelectorAll('baidu-map'))
+                .forEach(function(node) {
+                    node.removeChild(node.querySelector('.baidu-map-offline'));
+                    node.querySelector('.baidu-map-instance').style.display = 'block';
+                });
+            resolve();
+        };
 
         appendScriptTag(MAP_URL);
     });
@@ -23,13 +32,15 @@ function appendScriptTag(url) {
 
         Array.prototype
             .slice
-            .call(document.querySelectorAll('baidu-map div'))
+            .call(document.querySelectorAll('baidu-map .baidu-map-offline'))
             .forEach(function(node) {
-                node.style.opacity = 1;
+                node.style.display = 'block';
             });
         document.body.removeChild(script);
 
-        setTimeout(appendScriptTag, 30000);
+        setTimeout(() => {
+            appendScriptTag(url);
+        }, 30000);
     };
     document.body.appendChild(script);
 }

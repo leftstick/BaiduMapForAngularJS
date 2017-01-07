@@ -14,7 +14,7 @@ module.exports = {
         publicPath: '/'
     },
     debug: true,
-    devtool: 'source-map',
+    devtool: '#eval',
     module: {
         loaders: [
             {
