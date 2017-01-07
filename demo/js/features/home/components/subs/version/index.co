@@ -1,0 +1,15 @@
+import './version.css';
+export default {
+    template: `
+        <h1>Version</h1>
+        <p>There are 3 major versions available, and each of them is backwards compatible. Which means you should not writing codes at version's instruction, but with version 2 installed. Below are documentation references for previous version:</p>
+        <br/>
+        <ul>
+            <li><a href="https://github.com/leftstick/BaiduMapForAngularJS/tree/1.x" target="_blank">version 1.x</a></li>
+            <li><a href="https://github.com/leftstick/BaiduMapForAngularJS/tree/2.x" target="_blank">version 2.x</a></li>
+        </ul>
+    `,
+    controller: class {
+        constructor() {}
+    }
+};

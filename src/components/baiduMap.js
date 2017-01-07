@@ -29,6 +29,7 @@ export default {
         }
 
         $onInit() {
+            console.log('safsfsdafsfdsa');
             nullCheck(this.ak, 'ak is required for <baidu-map>');
 
             this.mapReady = load(this.ak)

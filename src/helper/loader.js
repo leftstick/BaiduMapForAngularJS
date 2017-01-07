@@ -4,24 +4,14 @@ export function load(ak) {
 
     const loadBaiduMapPromise = window.loadBaiduMapPromise;
     if (loadBaiduMapPromise) {
-        return loadBaiduMapPromise;
+        return loadBaiduMapPromise.then(displayMap);
     }
 
     //eslint-disable-next-line
     return window.loadBaiduMapPromise = new Promise((resolve, reject) => {
-        window.baidumapinit = () => {
-            Array.prototype
-                .slice
-                .call(document.querySelectorAll('baidu-map'))
-                .forEach(function(node) {
-                    node.removeChild(node.querySelector('.baidu-map-offline'));
-                    node.querySelector('.baidu-map-instance').style.display = 'block';
-                });
-            resolve();
-        };
-
+        window.baidumapinit = resolve;
         appendScriptTag(MAP_URL);
-    });
+    }).then(displayMap);
 }
 
 function appendScriptTag(url) {
@@ -43,4 +33,14 @@ function appendScriptTag(url) {
         }, 30000);
     };
     document.body.appendChild(script);
+}
+
+function displayMap() {
+    return Array.prototype
+        .slice
+        .call(document.querySelectorAll('baidu-map'))
+        .forEach(function(node) {
+            node.removeChild(node.querySelector('.baidu-map-offline'));
+            node.querySelector('.baidu-map-instance').style.display = 'block';
+        });
 }

@@ -9,3 +9,28 @@ baidu-map {
     width: 780px;
     height: 290px;
 }
+
+.home-desc {
+    width: 800px;
+}
+
+.home-desc p {
+    line-height: 25px;
+    margin-top: 3px;
+    font-family: 'Noto Sans','PT Sans','Open Sans','Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+.home-desc code {
+    font-style: italic;
+    font-weight: bold;
+    color: gray;
+}
+
+.home-desc .section {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.home-desc .section h1 {
+    margin-bottom: 10px;
+}

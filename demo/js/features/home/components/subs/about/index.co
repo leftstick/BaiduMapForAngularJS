@@ -1,0 +1,11 @@
+import './about.css';
+export default {
+    template: `
+        <h1>About</h1>
+        <p><code>angular-baidu-map</code> is a set of components written in ES2015 which integrate <a href="http://lbsyun.baidu.com/" target="_blank">百度地图</a> in an AngularJS applications.</p>
+        <p>It is based on the <a href="http://lbsyun.baidu.com/" target="_blank">百度地图</a> Javascript API version 2.0, and <a href="https://angularjs.org/" target="_blank">Angular</a> version 1.6.1</p>
+    `,
+    controller: class {
+        constructor() {}
+    }
+};

@@ -20,9 +20,17 @@ export default {
         <marker point="$ctrl.markerPoint1" click="$ctrl.onMarker1Clicked(e, marker)"></marker>
         <marker point="$ctrl.markerPoint2" options="$ctrl.markerOptions2"></marker>
         <control type="panorama"></control>
+        <control type="navigation"></control>
+        <control type="overviewmap"></control>
     </baidu-map>
 
     <github></github>
+
+    <div class="home-desc">
+        <about class="section"></about>
+        <version class="section"></version>
+        <contribution class="section"></contribution>
+    <div>
     `,
     controller: class {
         /*ngInject*/
@@ -46,16 +54,6 @@ export default {
                     }
                 }
             };
-            $timeout(() => {
-                this.opts = {
-                    currentCity: '上海市',
-                    centerAndZoom: {
-                        ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
-                        zoom: 16
-                    },
-                    enableScrollWheelZoom: true
-                };
-            }, 3000);
         }
 
         onLoadMap(map) {
