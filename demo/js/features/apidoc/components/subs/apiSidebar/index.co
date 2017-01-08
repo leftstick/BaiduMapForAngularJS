@@ -1,0 +1,24 @@
+import './apiSidebar.css';
+import {stop} from '../../../../../fw/helper/event';
+export default {
+    bindings: {
+        click: '&'
+    },
+    template: `
+    <div class="api-nav">
+        <div class="api-nav-header">Components</div>
+        <div><a href ng-click="$ctrl.go($event, 'baidu-map')">baidu-map</a></div>
+    </div>
+    `,
+    controller: class {
+        /*ngInject*/
+        constructor() {}
+
+        go(e, api) {
+            stop(e);
+            this.click({
+                api
+            });
+        }
+    }
+};

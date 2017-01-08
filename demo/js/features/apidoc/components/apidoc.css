@@ -1,3 +1,23 @@
-about {
+apidoc {
     width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+apidoc .container {
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+apidoc .container h1 {
+    margin: 15px 0 30px 0;
+}
+
+apidoc .container .doc {
+    display: flex;
+}
+
+apidoc .container .doc api-sidebar {
+    flex-shrink: 0;
 }

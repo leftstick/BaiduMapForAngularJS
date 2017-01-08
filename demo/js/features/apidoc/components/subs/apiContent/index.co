@@ -1,0 +1,9 @@
+import './apiContent.css';
+export default {
+    template: `
+    api content
+    `,
+    controller: class {
+        constructor() {}
+    }
+};

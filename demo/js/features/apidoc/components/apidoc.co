@@ -1,7 +1,13 @@
 import './apidoc.css';
 export default {
     template: `
-    apidoc
+    <div class="container">
+        <h1>API Documentation</h1>
+        <div class="doc">
+            <api-sidebar></api-sidebar>
+            <api-content></api-content>
+        </div>
+    </div>
     `,
     controller: class {
         constructor() {}

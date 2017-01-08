@@ -1,0 +1,12 @@
+api-sidebar {
+    display: block;
+    width: 260px;
+    padding: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.api-nav .api-nav-header {
+    font-weight: bold;
+}
+
