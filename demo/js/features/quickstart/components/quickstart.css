@@ -12,3 +12,27 @@ quickstart .container > h1 {
     text-align: center;
     margin-bottom: 15px;
 }
+
+quickstart .menu {
+    list-style-type: circle;
+}
+
+quickstart  .menu li {
+    margin-bottom: 10px;
+}
+
+quickstart .title {
+    margin-bottom: 10px;
+}
+
+quickstart .snippet code {
+    font-style: normal;
+    font-weight: normal;
+    color: #fff;
+}
+
+quickstart blockquote {
+    margin: 10px 0 10px 0;
+    border-left: 5px solid gray;
+    padding-left: 10px;
+}

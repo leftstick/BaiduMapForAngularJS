@@ -1,0 +1,49 @@
+import './install.css';
+import hljs from 'highlight.js';
+export default {
+    template: `
+        <h1>Install</h1>
+        <ul class="menu">
+            <li>
+                <div>
+                    <div class="title">Npm:</div>
+                    <div class="snippet">
+                        <pre><code class="bash">npm install angular-baidu-map --save</code></pre>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="title">Bower:</div>
+                    <div class="snippet">
+                        <pre><code class="bash">bower install angular-baidu-map --save</code></pre>
+                    </div>
+                    <p>It is recommended to use <a href="http://webpack.github.io/" target="_blank">webpack</a> to bootstrap dependencies via ES2015 or CommonJS modular</p>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="title">Download:</div>
+                    <p>Alternatively, download <a href="https://raw.github.com/leftstick/BaiduMapForAngularJS/master/dist/angular-baidu-map.js">angular-baidu-map.js</a> (<a href="https://raw.github.com/leftstick/BaiduMapForAngularJS/master/dist/angular-baidu-map.min.js">minified version</a>)</p>
+                </div>
+            </li>
+        </ul>
+    `,
+    controller: class {
+        /*ngInject*/
+        constructor($element) {
+            this.$element = $element;
+        }
+
+        $onInit() {
+            const snippets = this.$element[0].querySelectorAll('.snippet pre code');
+            Array
+                .prototype
+                .slice
+                .apply(snippets)
+                .forEach(s => {
+                    hljs.highlightBlock(s);
+                });
+        }
+    }
+};

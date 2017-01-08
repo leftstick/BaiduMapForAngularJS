@@ -40,7 +40,7 @@ function displayMap() {
         .slice
         .call(document.querySelectorAll('baidu-map'))
         .forEach(function(node) {
-            node.removeChild(node.querySelector('.baidu-map-offline'));
+            node.querySelector('.baidu-map-offline') && node.removeChild(node.querySelector('.baidu-map-offline'));
             node.querySelector('.baidu-map-instance').style.display = 'block';
         });
 }

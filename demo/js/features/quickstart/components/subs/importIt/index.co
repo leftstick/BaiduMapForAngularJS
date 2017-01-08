@@ -1,0 +1,55 @@
+import './importIt.css';
+import hljs from 'highlight.js';
+export default {
+    template: `
+        <h1>Import</h1>
+        <ul class="menu">
+            <li>
+                <div>
+                    <div class="title">ES2015:</div>
+                    <div class="snippet">
+                        <pre><code class="javascript">import {ngBaiduMap} from 'angular-baidu-map';</code></pre>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="title">CommonJS:</div>
+                    <div class="snippet">
+                        <pre><code class="javascript">const {ngBaiduMap} = require('angular-baidu-map');</code></pre>
+                    </div>
+                    <p>It is recommended to use <a href="http://webpack.github.io/" target="_blank">webpack</a> to bootstrap dependencies via ES2015 or CommonJS modular</p>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="title">Script:</div>
+                    <div class="snippet">
+                        <pre><code class="html">&lt;script type="text/javascript" src="angular/angular.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="angular-baidu-map/dist/angular-baidu-map.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    var ngBaiduMap = window.ngBaiduMap;
+&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    `,
+    controller: class {
+        /*ngInject*/
+        constructor($element) {
+            this.$element = $element;
+        }
+
+        $onInit() {
+            const snippets = this.$element[0].querySelectorAll('.snippet pre code');
+            Array
+                .prototype
+                .slice
+                .apply(snippets)
+                .forEach(s => {
+                    hljs.highlightBlock(s);
+                });
+        }
+    }
+};

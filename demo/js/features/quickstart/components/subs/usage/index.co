@@ -1,0 +1,75 @@
+import './usage.css';
+import hljs from 'highlight.js';
+export default {
+    template: `
+        <h1>Usage</h1>
+        <ul class="menu">
+            <li>
+                <div>
+                    <div class="title">Use <code>angular-baidu-map</code> module:</div>
+                    <div class="snippet">
+                        <pre><code class="javascript">const app = angular.module('app', [ngBaiduMap]);</code></pre>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="title">Add <code>&lt;baidu-map&gt;</code> element in template:</div>
+                    <div class="snippet">
+                        <pre><code class="html">&lt;baidu-map ak="your ak" map-options="$ctrl.opts"&gt;&lt;/baidu-map&gt;</code></pre>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="title">Define <code>opts</code>:</div>
+                    <div class="snippet">
+                        <pre><code class="javascript">controller: class {
+    /*ngInject*/
+    constructor() {
+        this.opts = {
+            currentCity: '上海市',
+            centerAndZoom: {
+                longitude: 121.506191,
+                latitude: 31.245554
+                zoom: 16
+            },
+            enableScrollWheelZoom: true
+        };
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="title">Specify size for <code>&lt;baidu-map&gt;</code>:</div>
+                    <div class="snippet">
+                        <pre><code class="css">baidu-map {
+    width: 600px;
+    height: 500px;
+}</code></pre>
+                    </div>
+                    <blockquote>Map won't be visible if no size specified</blockquote>
+                </div>
+            </li>
+        </ul>
+    `,
+    controller: class {
+        /*ngInject*/
+        constructor($element) {
+            this.$element = $element;
+        }
+
+        $onInit() {
+            const snippets = this.$element[0].querySelectorAll('.snippet pre code');
+            Array
+                .prototype
+                .slice
+                .apply(snippets)
+                .forEach(s => {
+                    hljs.highlightBlock(s);
+                });
+        }
+    }
+};
