@@ -16,7 +16,7 @@ export default {
     template: `
     <h1 style="margin-bottom: 15px;">angular-baidu-map</h1>
 
-    <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts" on-loaded="$ctrl.onLoadMap(map)">
+    <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts" loaded="$ctrl.onLoadMap(map)">
         <marker point="$ctrl.markerPoint1" click="$ctrl.onMarker1Clicked(e, marker)"></marker>
         <marker point="$ctrl.markerPoint2" options="$ctrl.markerOptions2"></marker>
         <control type="panorama"></control>

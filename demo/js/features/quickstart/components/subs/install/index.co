@@ -1,9 +1,8 @@
 import './install.css';
-import hljs from 'highlight.js';
 export default {
     template: `
         <h1>Install</h1>
-        <ul class="menu">
+        <ul class="menu" highlight>
             <li>
                 <div>
                     <div class="title">Npm:</div>
@@ -31,19 +30,6 @@ export default {
     `,
     controller: class {
         /*ngInject*/
-        constructor($element) {
-            this.$element = $element;
-        }
-
-        $onInit() {
-            const snippets = this.$element[0].querySelectorAll('.snippet pre code');
-            Array
-                .prototype
-                .slice
-                .apply(snippets)
-                .forEach(s => {
-                    hljs.highlightBlock(s);
-                });
-        }
+        constructor() {}
     }
 };

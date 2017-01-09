@@ -20,6 +20,10 @@ export function isBoolean(bool) {
     return Object.prototype.toString.call(bool) === '[object Boolean]';
 }
 
+export function isNull(obj) {
+    return obj === null || obj === undefined;
+}
+
 export function isFunction(bool) {
     return Object.prototype.toString.call(bool) === '[object Function]';
 }

@@ -50,7 +50,7 @@
         "accessor-pairs": [1, { "getWithoutSet": true, "setWithoutGet": true }],
         "array-callback-return": 1,
         "block-scoped-var": 0,
-        "complexity": [1, 12],
+        "complexity": [1, 20],
         "consistent-return": 0,
         "curly": 1,
         "default-case": 2,

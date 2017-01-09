@@ -1,24 +1,21 @@
 import './apiSidebar.css';
 import {stop} from '../../../../../fw/helper/event';
 export default {
-    bindings: {
-        click: '&'
-    },
     template: `
     <div class="api-nav">
         <div class="api-nav-header">Components</div>
-        <div><a href ng-click="$ctrl.go($event, 'baidu-map')">baidu-map</a></div>
+        <div class="api-nav-item" ng-class="{active: $ctrl.api === 'baidu-map'}"><a href="#!/apidoc?api=baidu-map">baidu-map</a></div>
+        <div class="api-nav-header">Models</div>
+        <div class="api-nav-item" ng-class="{active: $ctrl.api === 'map-options'}"><a href="#!/apidoc?api=map-options">mapOptions</a></div>
+        <div class="api-nav-item" ng-class="{active: $ctrl.api === 'center-and-zoom'}"><a href="#!/apidoc?api=center-and-zoom">centerAndZoom</a></div>
     </div>
     `,
     controller: class {
         /*ngInject*/
-        constructor() {}
-
-        go(e, api) {
-            stop(e);
-            this.click({
-                api
-            });
+        constructor($location) {
+            this.$location = $location;
+            this.api = $location.search().api;
         }
+
     }
 };

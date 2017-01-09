@@ -5,7 +5,7 @@ home {
     align-items: center;
 }
 
-baidu-map {
+home baidu-map {
     width: 780px;
     height: 290px;
 }

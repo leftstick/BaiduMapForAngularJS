@@ -1,9 +1,22 @@
 import './apiContent.css';
 export default {
+    bindings: {
+        api: '<'
+    },
     template: `
-    api content
+    <div class="api-name">
+        <h3>{{ $ctrl.api }}</h3>
+    </div>
+    <div class="api-introduction">
+        <doc-baidu-map ng-if="$ctrl.api === 'baidu-map'"></doc-baidu-map>
+        <doc-map-options ng-if="$ctrl.api === 'map-options'"></doc-map-options>
+        <doc-center-and-zoom ng-if="$ctrl.api === 'center-and-zoom'"></doc-center-and-zoom>
+    </div>
     `,
     controller: class {
+        /*ngInject*/
         constructor() {}
+
+        $onChanges() {}
     }
 };

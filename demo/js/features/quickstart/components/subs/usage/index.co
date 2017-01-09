@@ -1,9 +1,8 @@
 import './usage.css';
-import hljs from 'highlight.js';
 export default {
     template: `
         <h1>Usage</h1>
-        <ul class="menu">
+        <ul class="menu" highlight>
             <li>
                 <div>
                     <div class="title">Use <code>angular-baidu-map</code> module:</div>
@@ -46,6 +45,7 @@ export default {
                     <div class="title">Specify size for <code>&lt;baidu-map&gt;</code>:</div>
                     <div class="snippet">
                         <pre><code class="css">baidu-map {
+    display: block;
     width: 600px;
     height: 500px;
 }</code></pre>
@@ -57,19 +57,6 @@ export default {
     `,
     controller: class {
         /*ngInject*/
-        constructor($element) {
-            this.$element = $element;
-        }
-
-        $onInit() {
-            const snippets = this.$element[0].querySelectorAll('.snippet pre code');
-            Array
-                .prototype
-                .slice
-                .apply(snippets)
-                .forEach(s => {
-                    hljs.highlightBlock(s);
-                });
-        }
+        constructor() {}
     }
 };

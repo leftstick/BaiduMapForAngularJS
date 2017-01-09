@@ -1,12 +1,23 @@
 api-sidebar {
     display: block;
-    width: 260px;
+    width: 210px;
     padding: 15px;
     border: 1px solid #cccccc;
-    border-radius: 4px;
+    border-radius: 4px 0 0 4px;
 }
 
 .api-nav .api-nav-header {
     font-weight: bold;
 }
 
+.api-nav > .api-nav-item {
+    padding: 3px 0 3px 10px;
+}
+
+.api-nav > .api-nav-item.active {
+    background-color: #eee;
+}
+
+.api-nav > .api-nav-item > a {
+    text-decoration: none;
+}

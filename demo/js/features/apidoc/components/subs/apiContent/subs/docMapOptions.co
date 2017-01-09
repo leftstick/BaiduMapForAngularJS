@@ -1,0 +1,82 @@
+
+export default {
+    template: `
+    <p>
+        The literal for constructing a <code>baidu-map</code> instance.
+    </p>
+    <p>
+        Basic options introduced at <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a0b1" target="_blank">MapOptions</a> are supported.
+    </p>
+    <table class="matrix">
+        <thead>
+            <tr>
+                <th style="width: 110px;">Property</th>
+                <th>Type</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>disableDragging</td>
+                <td><span class="label">Boolean</span></td>
+                <td>Whether to disable map dragable function</td>
+            </tr>
+            <tr>
+                <td>enableScrollWheelZoom</td>
+                <td><span class="label">Boolean</span></td>
+                <td>Whether to enable wheel for zooming function</td>
+            </tr>
+            <tr>
+                <td>disableDoubleClickZoom</td>
+                <td><span class="label">Boolean</span></td>
+                <td>Whether to disable double click for zooming function</td>
+            </tr>
+            <tr>
+                <td>enableKeyboard</td>
+                <td><span class="label">Boolean</span></td>
+                <td>Whether to enable keyboard for moving map function. You can use <code>up</code>, <code>right</code>, <code>down</code>, <code>left</code>, to move map.</td>
+            </tr>
+            <tr>
+                <td>enableInertialDragging</td>
+                <td><span class="label">Boolean</span></td>
+                <td>Whether to enable inertial drag function</td>
+            </tr>
+            <tr>
+                <td>enableContinuousZoom</td>
+                <td><span class="label">Boolean</span></td>
+                <td>Whether to enable continuous zooming function</td>
+            </tr>
+            <tr>
+                <td>disablePinchToZoom</td>
+                <td><span class="label">Boolean</span></td>
+                <td>Whether to disable pinch for zooming function</td>
+            </tr>
+            <tr>
+                <td>cursor</td>
+                <td><span class="label">String</span></td>
+                <td>Set default style of cursor, should follow CSS specification</td>
+            </tr>
+            <tr>
+                <td>draggingCursor</td>
+                <td><span class="label">String</span></td>
+                <td>Set default style of dragging cursor, should follow CSS specification</td>
+            </tr>
+            <tr>
+                <td>currentCity</td>
+                <td><span class="label">String</span></td>
+                <td>Set current city. Like: 北京市</td>
+            </tr>
+            <tr>
+                <td>centerAndZoom</td>
+                <td><span class="label">Object</span></td>
+                <td>See <a href="#!/apidoc?api=center-and-zoom">centerAndZoom</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <blockquote>Required properties are in red</blockquote>
+    `,
+    controller: class {
+        /*ngInject*/
+        constructor() {}
+    }
+};

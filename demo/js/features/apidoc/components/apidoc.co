@@ -1,15 +1,30 @@
 import './apidoc.css';
+import {isString} from '../../../fw/helper/object';
 export default {
     template: `
     <div class="container">
         <h1>API Documentation</h1>
         <div class="doc">
             <api-sidebar></api-sidebar>
-            <api-content></api-content>
+            <api-content api="$ctrl.api"></api-content>
         </div>
     </div>
     `,
     controller: class {
-        constructor() {}
+        /*ngInject*/
+        constructor($location) {
+            this.$location = $location;
+        }
+
+        $onInit() {
+            if (!isString(this.$location.search().api)) {
+                return this.$location.search('api', 'baidu-map');
+            }
+            this.api = this.$location.search().api;
+        }
+
+        onCheckApi(api) {
+            this.api = api;
+        }
     }
 };

@@ -9,7 +9,7 @@ export default {
         ak: '@',
         offlineTxt: '<',
         mapOptions: '<',
-        onLoaded: '&',
+        loaded: '&',
         click: '&'
     },
     transclude: true,
@@ -36,7 +36,7 @@ export default {
                     return create(this.$element.children()[0], this.mapOptions);
                 })
                 .then(map => {
-                    this.onLoaded({
+                    this.loaded({
                         map
                     });
                     //eslint-disable-next-line
