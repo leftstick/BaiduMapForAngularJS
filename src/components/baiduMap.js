@@ -81,6 +81,10 @@ export default {
         removeControl(control) {
             return handleMapOperation(this.map, 'removeControl', control);
         }
+
+        getMap() {
+            return this.map;
+        }
     }
 };
 

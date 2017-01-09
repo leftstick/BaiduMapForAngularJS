@@ -5,7 +5,7 @@ export default {
     <div class="container">
         <h1>API Documentation</h1>
         <div class="doc">
-            <api-sidebar></api-sidebar>
+            <api-sidebar api="$ctrl.api"></api-sidebar>
             <api-content api="$ctrl.api"></api-content>
         </div>
     </div>
@@ -21,10 +21,6 @@ export default {
                 return this.$location.search('api', 'baidu-map');
             }
             this.api = this.$location.search().api;
-        }
-
-        onCheckApi(api) {
-            this.api = api;
         }
     }
 };

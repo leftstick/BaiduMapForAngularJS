@@ -6,6 +6,11 @@ import apiContent from './components/subs/apiContent';
 import docBaiduMap from './components/subs/apiContent/subs/docBaiduMap';
 import docMapOptions from './components/subs/apiContent/subs/docMapOptions';
 import docCenterAndZoom from './components/subs/apiContent/subs/docCenterAndZoom';
+import docMarker from './components/subs/apiContent/subs/docMarker';
+import docPoint from './components/subs/apiContent/subs/docPoint';
+import docMarkerOptions from './components/subs/apiContent/subs/docMarkerOptions';
+import docSize from './components/subs/apiContent/subs/docSize';
+import docIcon from './components/subs/apiContent/subs/docIcon';
 
 export default {
     type: 'feature',
@@ -17,6 +22,11 @@ export default {
         apiContent,
         docBaiduMap,
         docMapOptions,
-        docCenterAndZoom
+        docCenterAndZoom,
+        docMarker,
+        docPoint,
+        docMarkerOptions,
+        docSize,
+        docIcon
     }
 };

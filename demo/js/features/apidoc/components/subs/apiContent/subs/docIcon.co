@@ -1,0 +1,34 @@
+
+export default {
+    template: `
+    <p>
+        The literal describes a <code>BMap.Icon</code> instance.
+    </p>
+    <table class="matrix">
+        <thead>
+            <tr>
+                <th style="width: 110px;">Property</th>
+                <th>Type</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>url</td>
+                <td><span class="label required">String</span></td>
+                <td>url of the specific ICON</td>
+            </tr>
+            <tr>
+                <td>size</td>
+                <td><span class="label required">Object</span></td>
+                <td>See <a href="#!/apidoc?api=size">size</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <blockquote>Required properties are in red</blockquote>
+    `,
+    controller: class {
+        /*ngInject*/
+        constructor() {}
+    }
+};

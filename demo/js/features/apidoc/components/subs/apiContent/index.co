@@ -11,12 +11,15 @@ export default {
         <doc-baidu-map ng-if="$ctrl.api === 'baidu-map'"></doc-baidu-map>
         <doc-map-options ng-if="$ctrl.api === 'map-options'"></doc-map-options>
         <doc-center-and-zoom ng-if="$ctrl.api === 'center-and-zoom'"></doc-center-and-zoom>
+        <doc-marker ng-if="$ctrl.api === 'marker'"></doc-marker>
+        <doc-point ng-if="$ctrl.api === 'point'"></doc-point>
+        <doc-marker-options ng-if="$ctrl.api === 'marker-options'"></doc-marker-options>
+        <doc-size ng-if="$ctrl.api === 'size'"></doc-size>
+        <doc-icon ng-if="$ctrl.api === 'icon'"></doc-icon>
     </div>
     `,
     controller: class {
         /*ngInject*/
         constructor() {}
-
-        $onChanges() {}
     }
 };

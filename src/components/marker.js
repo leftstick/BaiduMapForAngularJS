@@ -38,7 +38,8 @@ export default {
                     this.clickHandler = (e) => {
                         this.click({
                             e,
-                            marker
+                            marker,
+                            map: this.mapCtrl.getMap()
                         });
                     };
                     marker.addEventListener('click', this.clickHandler);

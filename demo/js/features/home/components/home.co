@@ -1,16 +1,11 @@
 import {stop} from '../../../fw/helper/event';
 import './home.css';
-import markericonUrl from 'img/markericon.png';
 
 const ORIENTAL_PEARL = {
     longitude: 121.506191,
     latitude: 31.245554
 };
 
-const NEW_SHANGHAI_INTERNATIONAL_TOWER = {
-    longitude: 121.51606,
-    latitude: 31.244604
-};
 
 export default {
     template: `

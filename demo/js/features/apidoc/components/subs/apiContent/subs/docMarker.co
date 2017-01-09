@@ -1,0 +1,135 @@
+import markericonUrl from 'img/markericon.png';
+
+const NEW_SHANGHAI_INTERNATIONAL_TOWER = {
+    longitude: 121.51606,
+    latitude: 31.244604
+};
+
+export default {
+    template: `
+    <p>
+        The <code>marker</code> component is sub-component of <code>baidu-map</code>. It is used to add <code>BMap.Marker</code> to the map.
+    </p>
+    <h2 class="title">Usage</h2>
+    <div class="snippet" highlight>
+        <pre><code class="html">&lt;baidu-map ak="{string}" map-options="{expression}"&gt;
+    &lt;marker point="{expression}" options="{expression}" click="{expression}"&gt;&lt;marker&gt;    
+&lt;/baidu-map&gt;</code></pre>
+    </div>
+    <h2 class="title">Attributes</h2>
+    <blockquote>Required properties are in red</blockquote>
+    <table class="matrix">
+        <thead>
+            <tr>
+                <th style="width: 110px;">Param</th>
+                <th>Type</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>point</td>
+                <td><span class="label required">expression</span></td>
+                <td>See <a href="#!/apidoc?api=point">point</a></td>
+            </tr>
+            <tr>
+                <td>options</td>
+                <td><span class="label">expression</span></td>
+                <td>
+                See <a href="#!/apidoc?api=marker-options">MarkerOptions</a>
+                </td>
+            </tr>
+            <tr>
+                <td>click</td>
+                <td><span class="label">expression</span></td>
+                <td>Expression to evaluate upon marker click event. (Three objects passed to this callback, <code>e</code> for event, <code>marker</code> for instance of <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a3b2" target="_blank">BMap.Marker</a>, <code>map</code> for instance of <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a0b0" target="_blank">BMap.Map</a>)</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="title">Example</h2>
+    <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts">
+        <marker point="$ctrl.point" options="$ctrl.markerOpts" click="$ctrl.showWindow(e, marker, map)"></marker>
+    </baidu-map>
+    <div class="snippet" highlight>
+        <pre><code class="html">&lt;baidu-map ak="your ak" map-options="opts"&gt;
+    &lt;marker point="point" options="markerOpts" click="showWindow(e, marker, map)"&gt;&lt;/marker&gt;
+&lt;/baidu-map&gt;</code></pre>
+    </div>
+    <br/>
+    <div class="snippet" highlight>
+        <pre><code class="javascript">app.controller('demoCtrl', ['$scope',
+    function($scope) {
+        $scope.opts = {
+            centerAndZoom: {
+                longitude: 121.51606,
+                latitude: 31.244604
+                zoom: 16
+            },
+            enableKeyboard: true
+        };
+
+        $scope.markerOpts = {
+            offset: {
+                width: 0,
+                height: -30
+            },
+            icon: {
+                url: markericonUrl,
+                size: {
+                    width: 49,
+                    height: 60
+                }
+            }
+        };
+
+        $scope.point = {
+            longitude: 121.51606,
+            latitude: 31.244604
+        };
+
+        $scope.showWindow = function(e, marker, map) {
+            map.openInfoWindow(new BMap.InfoWindow('地址：浦东南路360号', {
+                width: 200,
+                height: 70,
+                title: '新上海国际大厦'
+            }), marker.getPosition());
+        };
+    }
+]);</code></pre>
+    </div>
+    `,
+    controller: class {
+        /*ngInject*/
+        constructor() {
+            this.opts = {
+                centerAndZoom: {
+                    ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
+                    zoom: 16
+                },
+                enableKeyboard: true
+            };
+            this.markerOpts = {
+                offset: {
+                    width: 0,
+                    height: -30
+                },
+                icon: {
+                    url: markericonUrl,
+                    size: {
+                        width: 49,
+                        height: 60
+                    }
+                }
+            };
+            this.point = NEW_SHANGHAI_INTERNATIONAL_TOWER;
+        }
+
+        showWindow(e, marker, map) {
+            map.openInfoWindow(new BMap.InfoWindow('地址：浦东南路360号', {
+                width: 200,
+                height: 70,
+                title: '新上海国际大厦'
+            }), marker.getPosition());
+        }
+    }
+};
