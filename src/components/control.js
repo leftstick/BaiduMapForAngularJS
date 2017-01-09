@@ -25,6 +25,10 @@ export default {
                 });
         }
 
+        $onChanges() {
+            console.log('csd fuck');
+        }
+
         $onDestroy() {
             this.mapCtrl.removeControl(this.control);
         }

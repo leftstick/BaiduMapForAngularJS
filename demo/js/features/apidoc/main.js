@@ -11,6 +11,7 @@ import docPoint from './components/subs/apiContent/subs/docPoint';
 import docMarkerOptions from './components/subs/apiContent/subs/docMarkerOptions';
 import docSize from './components/subs/apiContent/subs/docSize';
 import docIcon from './components/subs/apiContent/subs/docIcon';
+import docControl from './components/subs/apiContent/subs/docControl';
 
 export default {
     type: 'feature',
@@ -27,6 +28,7 @@ export default {
         docPoint,
         docMarkerOptions,
         docSize,
-        docIcon
+        docIcon,
+        docControl
     }
 };

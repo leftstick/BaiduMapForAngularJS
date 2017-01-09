@@ -30,13 +30,13 @@ export default {
             <tr>
                 <td>point</td>
                 <td><span class="label required">expression</span></td>
-                <td>See <a href="#!/apidoc?api=point">point</a></td>
+                <td>Where to display the marker. See <a href="#!/apidoc?api=point">point</a></td>
             </tr>
             <tr>
                 <td>options</td>
                 <td><span class="label">expression</span></td>
                 <td>
-                See <a href="#!/apidoc?api=marker-options">MarkerOptions</a>
+                Literal for constructing marker. See <a href="#!/apidoc?api=marker-options">MarkerOptions</a>
                 </td>
             </tr>
             <tr>
@@ -64,10 +64,10 @@ export default {
                 longitude: 121.51606,
                 latitude: 31.244604
                 zoom: 16
-            },
-            enableKeyboard: true
+            }
         };
-
+        
+        //below are for marker
         $scope.markerOpts = {
             offset: {
                 width: 0,
@@ -89,9 +89,11 @@ export default {
 
         $scope.showWindow = function(e, marker, map) {
             map.openInfoWindow(new BMap.InfoWindow('地址：浦东南路360号', {
-                width: 200,
-                height: 70,
-                title: '新上海国际大厦'
+                title: '新上海国际大厦',
+                offset: {
+                    width: 0,
+                    height: -30
+                }
             }), marker.getPosition());
         };
     }
@@ -105,8 +107,7 @@ export default {
                 centerAndZoom: {
                     ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
                     zoom: 16
-                },
-                enableKeyboard: true
+                }
             };
             this.markerOpts = {
                 offset: {
@@ -126,9 +127,11 @@ export default {
 
         showWindow(e, marker, map) {
             map.openInfoWindow(new BMap.InfoWindow('地址：浦东南路360号', {
-                width: 200,
-                height: 70,
-                title: '新上海国际大厦'
+                title: '新上海国际大厦',
+                offset: {
+                    width: 0,
+                    height: -30
+                }
             }), marker.getPosition());
         }
     }

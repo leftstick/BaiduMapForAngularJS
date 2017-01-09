@@ -16,6 +16,7 @@ export default {
         <doc-marker-options ng-if="$ctrl.api === 'marker-options'"></doc-marker-options>
         <doc-size ng-if="$ctrl.api === 'size'"></doc-size>
         <doc-icon ng-if="$ctrl.api === 'icon'"></doc-icon>
+        <doc-control ng-if="$ctrl.api === 'control'"></doc-control>
     </div>
     `,
     controller: class {

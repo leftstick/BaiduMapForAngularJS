@@ -18,7 +18,7 @@ export default {
     <table class="matrix">
         <thead>
             <tr>
-                <th style="width: 110px;">Param</th>
+                <th style="width: 120px;">Param</th>
                 <th>Type</th>
                 <th>Details</th>
             </tr>
@@ -33,7 +33,7 @@ export default {
                 <td>map-options</td>
                 <td><span class="label required">expression</span></td>
                 <td>
-                See <a href="#!/apidoc?api=map-options">MapOptions</a>
+                Literal for constructing <code>baidu-map</code>. See <a href="#!/apidoc?api=map-options">MapOptions</a>
                 </td>
             </tr>
             <tr>
