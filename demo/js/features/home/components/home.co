@@ -33,8 +33,7 @@ export default {
                 centerAndZoom: {
                     ...ORIENTAL_PEARL,
                     zoom: 16
-                },
-                enableScrollWheelZoom: true
+                }
             };
             this.markerPoint1 = ORIENTAL_PEARL;
         }
