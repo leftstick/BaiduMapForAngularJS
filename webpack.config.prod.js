@@ -1,14 +1,14 @@
 
-var path = require('path');
-var webpack = require('webpack');
-var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
+const {resolve} = require('path');
+const webpack = require('webpack');
+const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './src/index.js'
+        index: resolve(__dirname, 'src', 'index.js')
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: resolve(__dirname, 'dist'),
         filename: 'angular-baidu-map.min.js',
         libraryTarget: 'umd'
     },
@@ -16,7 +16,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel?presets[]=es2015',
+                loader: 'ng-annotate!babel?{"presets":["es2015"], "plugins": ["transform-object-rest-spread"]}',
                 exclude: /(node_modules)/
             }
         ]

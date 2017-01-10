@@ -8,7 +8,8 @@
     "url": "git://github.com/leftstick/BaiduMapForAngularJS.git"
   },
   "scripts": {
-    "start": "webpack-dev-server --content-base build/ --hot --inline --host 0.0.0.0 --port 8080"
+    "start": "webpack-dev-server --content-base build/ --hot --inline --host 0.0.0.0 --port 8080",
+    "dist": "rm -rf dist && webpack --config webpack.config.prod.js"
   },
   "files": [],
   "keywords": [
@@ -36,6 +37,7 @@
     "ng-annotate-loader": "^0.2.0",
     "postcss-loader": "^1.2.1",
     "style-loader": "^0.13.1",
+    "unminified-webpack-plugin": "^1.2.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   }
