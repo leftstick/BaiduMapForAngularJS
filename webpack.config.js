@@ -1,6 +1,7 @@
 const {resolve} = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const postcssVars = require('postcss-simple-vars');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -36,7 +37,8 @@ module.exports = {
         return [
             autoprefixer({
                 browsers: ['last 5 versions']
-            })
+            }),
+            postcssVars()
         ];
     },
     resolve: {

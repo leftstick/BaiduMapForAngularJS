@@ -5,9 +5,9 @@ export default {
 
     componentDefinitionObject: {
         template: `
-            <a href="#!/home" class="nav-link" ng-class="{active: $ctrl.route === 'home'}">HOME</a>
-            <a href="#!/quickstart" class="nav-link" ng-class="{active: $ctrl.route === 'quickstart'}">QUICK START</a>
-            <a href="#!/apidoc" class="nav-link" ng-class="{active: $ctrl.route === 'apidoc'}">API DOCUMENTATION</a>
+            <a href="#!/home" ng-class="{active: $ctrl.route === 'home'}">HOME</a>
+            <a href="#!/quickstart" ng-class="{active: $ctrl.route === 'quickstart'}">QUICK START</a>
+            <a href="#!/apidoc" ng-class="{active: $ctrl.route === 'apidoc'}">API DOCUMENTATION</a>
         `,
         controller: class {
             /* @ngInject */

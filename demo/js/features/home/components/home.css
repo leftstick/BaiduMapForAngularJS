@@ -1,3 +1,6 @@
+$width: 800px;
+$s-width: 100%;
+
 home {
     width: 100%;
     display: flex;
@@ -6,10 +9,17 @@ home {
 }
 
 home baidu-map {
-    width: 780px;
+    width: $width;
     height: 290px;
 }
 
 .home-desc {
-    width: 800px;
+    width: $width;
+}
+
+@media screen and (max-width: 800px) {
+    home baidu-map,
+    .home-desc {
+        width: $s-width;
+    }
 }

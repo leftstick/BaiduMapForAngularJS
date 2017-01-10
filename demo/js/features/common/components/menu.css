@@ -5,17 +5,23 @@ menu {
     justify-content: center;
 }
 
-.nav-link {
+menu > a {
     color: #7f8c8d;
     cursor: pointer;
     text-decoration: none;
     padding: 15px;
 }
 
-.nav-link.active {
+menu > a.active {
     color: #424242;
 }
 
-.nav-link:hover {
+menu > a:hover {
   border-bottom: 3px solid #dd1b16;
+}
+
+@media screen and (max-width: 800px) {
+    menu > a {
+        padding: 15px 5px 15px 5px;
+    }
 }
