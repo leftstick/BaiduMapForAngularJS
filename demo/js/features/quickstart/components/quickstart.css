@@ -1,3 +1,5 @@
+$width: 1000px;
+
 quickstart {
     width: 100%;
     display: flex;
@@ -5,22 +7,23 @@ quickstart {
 }
 
 quickstart .container {
-    width: 1000px;
-}
-
-quickstart .container > h1 {
-    text-align: center;
-    margin-bottom: 15px;
+    width: $width;
 }
 
 quickstart .menu {
     list-style-type: circle;
 }
 
-quickstart  .menu li {
+quickstart .menu li {
     margin-bottom: 10px;
 }
 
-quickstart .title {
+quickstart .type-name {
     margin-bottom: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    quickstart .container {
+        width: 100%;
+    }
 }

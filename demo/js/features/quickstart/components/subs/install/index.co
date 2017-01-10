@@ -1,11 +1,10 @@
-import './install.css';
 export default {
     template: `
         <h1>Install</h1>
         <ul class="menu" highlight>
             <li>
                 <div>
-                    <div class="title">Npm:</div>
+                    <div class="type-name">Npm:</div>
                     <div class="snippet">
                         <pre><code class="bash">npm install angular-baidu-map --save</code></pre>
                     </div>
@@ -13,7 +12,7 @@ export default {
             </li>
             <li>
                 <div>
-                    <div class="title">Bower:</div>
+                    <div class="type-name">Bower:</div>
                     <div class="snippet">
                         <pre><code class="bash">bower install angular-baidu-map --save</code></pre>
                     </div>
@@ -22,7 +21,7 @@ export default {
             </li>
             <li>
                 <div>
-                    <div class="title">Download:</div>
+                    <div class="type-name">Download:</div>
                     <p>Alternatively, download <a href="https://raw.github.com/leftstick/BaiduMapForAngularJS/master/dist/angular-baidu-map.js">angular-baidu-map.js</a> (<a href="https://raw.github.com/leftstick/BaiduMapForAngularJS/master/dist/angular-baidu-map.min.js">minified version</a>)</p>
                 </div>
             </li>

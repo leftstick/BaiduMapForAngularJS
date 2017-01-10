@@ -21,6 +21,11 @@ p {
     font-family: 'Noto Sans','PT Sans','Open Sans','Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
+.page-title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
 .section {
     display: block;
     margin-bottom: 20px;

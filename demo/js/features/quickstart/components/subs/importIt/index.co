@@ -1,11 +1,10 @@
-import './importIt.css';
 export default {
     template: `
         <h1>Import</h1>
         <ul class="menu" highlight>
             <li>
                 <div>
-                    <div class="title">ES2015:</div>
+                    <div class="type-name">ES2015:</div>
                     <div class="snippet">
                         <pre><code class="javascript">import {ngBaiduMap} from 'angular-baidu-map';</code></pre>
                     </div>
@@ -13,7 +12,7 @@ export default {
             </li>
             <li>
                 <div>
-                    <div class="title">CommonJS:</div>
+                    <div class="type-name">CommonJS:</div>
                     <div class="snippet">
                         <pre><code class="javascript">const {ngBaiduMap} = require('angular-baidu-map');</code></pre>
                     </div>
@@ -22,7 +21,7 @@ export default {
             </li>
             <li>
                 <div>
-                    <div class="title">Script:</div>
+                    <div class="type-name">Script:</div>
                     <div class="snippet">
                         <pre><code class="html">&lt;script type="text/javascript" src="angular/angular.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="angular-baidu-map/dist/angular-baidu-map.js"&gt;&lt;/script&gt;
