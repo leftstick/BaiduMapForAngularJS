@@ -20,11 +20,14 @@
     "angularjs"
   ],
   "author": "Howard.Zuo",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/leftstick/BaiduMapForAngularJS/issues"
   },
   "homepage": "https://github.com/leftstick/BaiduMapForAngularJS",
+  "peerDependencies": {
+    "angular": "^1.6.1"
+  },
   "devDependencies": {
     "angular": "^1.6.1",
     "angular-route": "^1.6.1",
