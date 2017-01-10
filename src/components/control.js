@@ -10,7 +10,7 @@ export default {
     },
     template: '',
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor() {}
 
         $onInit() {

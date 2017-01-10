@@ -132,7 +132,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    transclude: true,
 	    template: '\n        <div ng-style="$ctrl.style.map" class="baidu-map-instance"></div>\n        <div ng-style="$ctrl.style.offline" class="baidu-map-offline">\n            <label ng-style="$ctrl.style.offlineLabel">{{ $ctrl.offlineTxt || \'NO_NETWORK\' }}</label>\n        </div>\n        <div ng-transclude style="display: none"></div>\n    ',
 	    controller: function () {
-	        /*ngInject*/
+	        /* @ngInject */
+	        controller.$inject = ["$scope", "$element", "$attrs"];
 	        function controller($scope, $element, $attrs) {
 	            _classCallCheck(this, controller);
 	
@@ -441,7 +442,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    template: '',
 	    controller: function () {
-	        /*ngInject*/
+	        /* @ngInject */
+	        controller.$inject = ["$scope", "$attrs"];
 	        function controller($scope, $attrs) {
 	            _classCallCheck(this, controller);
 	
@@ -569,7 +571,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    template: '',
 	    controller: function () {
-	        /*ngInject*/
+	        /* @ngInject */
 	        function controller() {
 	            _classCallCheck(this, controller);
 	        }

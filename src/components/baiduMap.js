@@ -21,7 +21,7 @@ export default {
         <div ng-transclude style="display: none"></div>
     `,
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor($scope, $element, $attrs) {
             this.$scope = $scope;
             this.$element = $element;

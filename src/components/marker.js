@@ -12,7 +12,7 @@ export default {
     },
     template: '',
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor($scope, $attrs) {
             this.$scope = $scope;
             this.$attrs = $attrs;
