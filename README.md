@@ -5,7 +5,7 @@ Baidu-map For AngularJS
 ![][dt-url]
 ![][license-url]
 
-> A damn easy directive for Baidu Map, and it's totally a re-write version for the previous one, including API updates and offline friendly
+> A damn easy angular component for Baidu Map, and it's totally a re-write version for the previous one, including API updates and offline friendly
 
 Read full documentation here: [documentation](http://leftstick.github.io/BaiduMapForAngularJS/)
 
