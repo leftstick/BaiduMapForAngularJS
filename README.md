@@ -7,7 +7,7 @@ Baidu-map For AngularJS
 
 > A damn easy angular component for Baidu Map, and it's totally a re-write version for the previous one, including API updates and offline friendly
 
-Read full documentation here: [documentation](http://leftstick.github.io/BaiduMapForAngularJS/)
+Read full documentation here: [documentation](https://leftstick.github.io/BaiduMapForAngularJS/)
 
 >If you are using the previous version `1.2.1`, [read it here](https://github.com/leftstick/BaiduMapForAngularJS/tree/1.x)
 
