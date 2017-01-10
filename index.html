@@ -1,52 +1,25 @@
 <!DOCTYPE html>
-<html ng-app="demo">
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+<html lang="en">
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <title>angular-baidu-map by leftstick</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <title>angular-baidu-map</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <style media="screen">
+        * {box-sizing: border-box;padding: 0;margin: 0;}
+        html, body{width: 100%;min-height: 100%; display: flex;}
+        #application {width: 100%;display: flex;}
+    </style>
+<style id="splash-spinner">
+        .spinner {position: fixed;border: 4px solid #f3f3f3;border-top: 4px solid #3498db;border-radius: 50%;top: 40%;left: 50%;margin-left: -22.5px;width: 45px;height: 45px;animation: spin 1s linear infinite;}
+        @keyframes spin {0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}
+    </style>
+<link rel="shortcut icon" href="/BaiduMapForAngularJS/favicon.ico"></head>
 
-  <body>
+<body>
+    <demo></demo>
+    <div class="spinner"></div>
+<script type="text/javascript" src="/BaiduMapForAngularJS/common.bundle.js"></script><script type="text/javascript" src="/BaiduMapForAngularJS/index.bundle.js"></script></body>
 
-    <header>
-      <div class="container">
-        <h1>angular-baidu-map</h1>
-        <h2>A baidu-map directive for AngularJS</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/leftstick/BaiduMapForAngularJS/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/leftstick/BaiduMapForAngularJS/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/leftstick/BaiduMapForAngularJS" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
-
-    <div class="container" ng-controller="demoCtrl">
-      <section id="main_content">
-        <h3><a id="welcome-to-baidu" class="anchor" href="#welcome-to-baidu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demonstration</h3>
-
-        <div class="map-container">
-            <baidu-map options="mapOptions" style="width: 500px; height: 500px;display: block;" ak="gd0GyxGUxSCoAbmdyQBhyhrZ"></baidu-map>
-        </div>
-
-        <button type="button" class="oper-btn" ng-disabled="markerAdded" ng-click="addMarker()">add marker</button>
-        <button type="button" class="oper-btn" ng-disabled="!markerAdded" ng-click="removeMarker()">remove marker</button>
-        <button type="button" class="oper-btn" ng-disabled="defMarker" ng-click="useDefaultMarker()">default marker</button>
-        <button type="button" class="oper-btn" ng-disabled="!defMarker" ng-click="useCustomMarker()">custom marker</button>
-
-        <h3 style="margin-top: 15px;"><a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-        <p>Feel free to give a <code>pull request</code>/<code>issue</code> while you finding something incorrect</p>
-
-        <h3><a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-        <p>Having trouble with Pages? Register <a href="https://github.com/leftstick/BaiduMapForAngularJS/issues">issue</a> or send me <a href="mailto:leftstick@qq.com">e-mail</a></p>
-      </section>
-    </div>
-
-  <script type="text/javascript" src="dist/bundle.js"></script>
-  </body>
 </html>
