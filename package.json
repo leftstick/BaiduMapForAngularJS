@@ -10,7 +10,7 @@
   "scripts": {
     "start": "webpack-dev-server --content-base build/ --hot --inline --host 0.0.0.0 --port 8080",
     "dist": "rm -rf dist && webpack --config webpack.config.prod.js",
-    "deployDemo": "webpack --output-public-path /BaiduMapForAngularJS/ && git checkout gh-pages && rm -rf !build && cp build/* ."
+    "deployDemo": "webpack --output-public-path /BaiduMapForAngularJS/ && git checkout gh-pages && rm -f *.* && mv build/* ."
   },
   "files": [
     "dist/angular-baidu-map.js",
