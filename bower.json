@@ -1,0 +1,27 @@
+{
+  "name": "angular-baidu-map",
+  "description": "A baidu-map directive for AngularJS",
+  "main": [
+    "dist/angular-baidu-map.js",
+    "dist/angular-baidu-map.min.js"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node",
+    "es6"
+  ],
+  "authors": [
+    "Howard.Zuo"
+  ],
+  "license": "GPL-3.0",
+  "keywords": [
+    "baidu-map",
+    "angularjs"
+  ],
+  "homepage": "https://github.com/leftstick/BaiduMapForAngularJS",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ]
+}
