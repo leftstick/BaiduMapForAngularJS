@@ -3,7 +3,7 @@ import {isString} from '../../../fw/helper/object';
 export default {
     template: `
     <div class="container">
-        <h1>API Documentation</h1>
+        <h1 class="page-title">API Documentation</h1>
         <div class="doc">
             <api-sidebar api="$ctrl.api"></api-sidebar>
             <api-content api="$ctrl.api"></api-content>

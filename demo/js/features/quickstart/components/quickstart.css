@@ -22,7 +22,7 @@ quickstart .type-name {
     margin-bottom: 10px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: $width) {
     quickstart .container {
         width: 100%;
     }

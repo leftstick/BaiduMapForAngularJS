@@ -1,7 +1,7 @@
 api-content {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    flex-grow: 5;
     border: 1px solid #cccccc;
     border-left: none;
     border-radius: 0 4px 4px 0;
@@ -28,4 +28,11 @@ api-content .api-introduction baidu-map {
     height: 300px;
     display: block;
     margin: 10px 0 10px 0;
+}
+
+@media screen and (max-width: 960px) {
+    api-content {
+        border-left: 1px solid #cccccc;
+        border-radius: 4px;
+    }
 }

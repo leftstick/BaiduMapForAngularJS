@@ -1,3 +1,5 @@
+$width: 1200px;
+
 apidoc {
     width: 100%;
     display: flex;
@@ -5,14 +7,10 @@ apidoc {
 }
 
 apidoc .container {
-    width: 1200px;
+    width: $width;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-apidoc .container > h1 {
-    margin: 0 0 30px 0;
 }
 
 apidoc .container .doc {
@@ -22,4 +20,10 @@ apidoc .container .doc {
 
 apidoc .container .doc api-sidebar {
     flex-shrink: 0;
+}
+
+@media screen and (max-width: $width) {
+    apidoc .container {
+        width: 100%;
+    }
 }
