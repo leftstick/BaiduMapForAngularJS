@@ -41,11 +41,10 @@ export default {
     </table>
     <h2 class="title">Example</h2>
     <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts" loaded="$ctrl.mapLoaded(map)">
-        <control ng-if="$ctrl.navOpts" type="navigation" options="$ctrl.navOpts"></control>
-        <control ng-if="$ctrl.overOpts" type="overviewmap" options="$ctrl.overOpts"></control>
+        <control type="navigation" options="$ctrl.navOpts"></control>
+        <control type="overviewmap" options="$ctrl.overOpts"></control>
         <control ng-if="$ctrl.copyOpts" type="copyright" options="$ctrl.copyOpts"></control>
     </baidu-map>
-    {{ $ctrl.navOpts }}
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map ak="your ak" map-options="opts" loaded="mapLoaded(map)"&gt;
     &lt;control type="navigation" options="navOpts"&gt;&lt;/control&gt;
@@ -64,34 +63,46 @@ export default {
                 zoom: 16
             }
         };
-        
-        //below are for marker
+
         $scope.navOpts = {
-            anchor: window.BMAP_ANCHOR_TOP_RIGHT
+            anchor: window.BMAP_ANCHOR_TOP_LEFT
         };
+        $scope.overOpts = {
+            anchor: window.BMAP_ANCHOR_BOTTOM_RIGHT
+        };
+
+        $scope.mapLoaded = function(map) {
+            $scope.copyOpts = {
+                anchor: 1,
+                copyrights: [{
+                    id: 0,
+                    content: '<strong>This is the customized Copyright</strong>!',
+                    bounds: map.getBounds()
+                }]
+            };
+        }
     }
 ]);</code></pre>
     </div>
     `,
     controller: class {
         /*ngInject*/
-        constructor($scope) {
-            this.$scope = $scope;
+        constructor() {
             this.opts = {
                 centerAndZoom: {
                     ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
                     zoom: 16
                 }
             };
-        }
-
-        mapLoaded(map) {
             this.navOpts = {
                 anchor: window.BMAP_ANCHOR_TOP_LEFT
             };
             this.overOpts = {
                 anchor: window.BMAP_ANCHOR_BOTTOM_RIGHT
             };
+        }
+
+        mapLoaded(map) {
             this.copyOpts = {
                 anchor: 1,
                 copyrights: [{
@@ -100,7 +111,6 @@ export default {
                     bounds: map.getBounds()
                 }]
             };
-            this.$scope.$apply();
         }
     }
 };

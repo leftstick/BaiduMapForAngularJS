@@ -22,7 +22,8 @@ export default {
     `,
     controller: class {
         /*ngInject*/
-        constructor($element, $attrs) {
+        constructor($scope, $element, $attrs) {
+            this.$scope = $scope;
             this.$element = $element;
             this.$attrs = $attrs;
             this.style = style;
@@ -39,6 +40,7 @@ export default {
                     this.loaded({
                         map
                     });
+                    this.$scope.$apply();
                     //eslint-disable-next-line
                     return this.map = map;
                 })

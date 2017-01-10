@@ -13,7 +13,8 @@ export default {
     template: '',
     controller: class {
         /*ngInject*/
-        constructor($attrs) {
+        constructor($scope, $attrs) {
+            this.$scope = $scope;
             this.$attrs = $attrs;
         }
 
@@ -41,6 +42,7 @@ export default {
                             marker,
                             map: this.mapCtrl.getMap()
                         });
+                        this.$scope.$apply();
                     };
                     marker.addEventListener('click', this.clickHandler);
                 });
