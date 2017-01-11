@@ -33,7 +33,7 @@ export default {
     <blockquote>Required properties are in red</blockquote>
     `,
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor() {}
     }
 };

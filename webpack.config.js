@@ -12,10 +12,10 @@ module.exports = {
         path: resolve(__dirname, 'build'),
         filename: '[name].bundle.js',
         chunkFilename: '[id].bundle.js',
-        publicPath: '/'
+        publicPath: process.env.DEMO ? '/BaiduMapForAngularJS/' : '/'
     },
-    debug: true,
-    devtool: '#eval',
+    debug: !process.env.DEMO,
+    devtool: process.env.DEMO ? '' : '#eval',
     module: {
         loaders: [
             {
@@ -52,7 +52,11 @@ module.exports = {
             '.co'
         ]
     },
-    plugins: [
+    plugins: (process.env.DEMO ? [new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    })] : []).concat([
         new webpack.optimize.CommonsChunkPlugin('common.bundle.js'),
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -61,5 +65,5 @@ module.exports = {
             favicon: resolve(__dirname, 'demo', 'img', 'favicon.ico'),
             hash: false
         })
-    ]
+    ])
 };

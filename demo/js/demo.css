@@ -7,6 +7,8 @@ demo {
 
 div[ng-view] {
     padding: 30px 10px 10px 10px;
+    display: flex;
+    flex-grow: 2;
 }
 
 code {

@@ -11,7 +11,7 @@ export default {
     </div>
     `,
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor($location) {
             this.$location = $location;
         }

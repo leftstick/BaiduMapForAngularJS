@@ -101,7 +101,7 @@ export default {
     </div>
     `,
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor() {
             this.opts = {
                 centerAndZoom: {

@@ -4,25 +4,42 @@ export default {
         api: '<'
     },
     template: `
-    <div style="width: 100%;">
+    <div swipe="$ctrl.onSwipe(direction)" skip-selectors="$ctrl.selectors">
         <div class="api-name">
             <h3>{{ $ctrl.api }}</h3>
         </div>
         <div class="api-introduction">
             <doc-baidu-map ng-if="$ctrl.api === 'baidu-map'"></doc-baidu-map>
+            <doc-marker ng-if="$ctrl.api === 'marker'"></doc-marker>
+            <doc-control ng-if="$ctrl.api === 'control'"></doc-control>
+
             <doc-map-options ng-if="$ctrl.api === 'map-options'"></doc-map-options>
             <doc-center-and-zoom ng-if="$ctrl.api === 'center-and-zoom'"></doc-center-and-zoom>
-            <doc-marker ng-if="$ctrl.api === 'marker'"></doc-marker>
-            <doc-point ng-if="$ctrl.api === 'point'"></doc-point>
             <doc-marker-options ng-if="$ctrl.api === 'marker-options'"></doc-marker-options>
+            <doc-point ng-if="$ctrl.api === 'point'"></doc-point>
             <doc-size ng-if="$ctrl.api === 'size'"></doc-size>
             <doc-icon ng-if="$ctrl.api === 'icon'"></doc-icon>
-            <doc-control ng-if="$ctrl.api === 'control'"></doc-control>
         </div>
     </div>
     `,
     controller: class {
-        /*ngInject*/
-        constructor() {}
+        /* @ngInject */
+        constructor($location) {
+            this.$location = $location;
+            this.selectors = ['.snippet', 'baidu-map'];
+            this.routesOrder = ['baidu-map', 'marker', 'control', 'map-options', 'center-and-zoom', 'marker-options', 'point', 'size', 'icon'];
+        }
+
+        onSwipe(dir) {
+            const curIndex = this.routesOrder.indexOf(this.api);
+            let route;
+            if (dir === 'right') {
+                route = curIndex - 1 < 0 ? this.routesOrder[0] : this.routesOrder[curIndex - 1];
+            } else {
+                route = curIndex + 1 > this.routesOrder.length - 1 ? this.routesOrder[this.routesOrder.length - 1] : this.routesOrder[curIndex + 1];
+            }
+            console.log('route', route);
+            this.$location.search('api', route);
+        }
     }
 };

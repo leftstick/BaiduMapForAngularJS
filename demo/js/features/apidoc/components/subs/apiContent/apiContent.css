@@ -7,6 +7,13 @@ api-content {
     border-radius: 0 4px 4px 0;
 }
 
+api-content > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+}
+
 api-content .api-name {
     width: 100%;
     padding: 15px;

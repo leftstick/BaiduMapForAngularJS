@@ -12,14 +12,14 @@ export default {
         <div class="api-nav-header">Models</div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'map-options'}"><a href="#!/apidoc?api=map-options">mapOptions</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'center-and-zoom'}"><a href="#!/apidoc?api=center-and-zoom">centerAndZoom</a></div>
-        <div class="api-nav-item" ng-class="{active: $ctrl.api === 'point'}"><a href="#!/apidoc?api=point">point</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'marker-options'}"><a href="#!/apidoc?api=marker-options">markerOptions</a></div>
+        <div class="api-nav-item" ng-class="{active: $ctrl.api === 'point'}"><a href="#!/apidoc?api=point">point</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'size'}"><a href="#!/apidoc?api=size">size</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'icon'}"><a href="#!/apidoc?api=icon">icon</a></div>
     </div>
     `,
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor() {}
     }
 };
