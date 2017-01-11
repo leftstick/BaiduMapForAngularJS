@@ -28,7 +28,7 @@ export default {
         </ul>
     `,
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor() {}
     }
 };

@@ -26,7 +26,7 @@ export default {
     <div>
     `,
     controller: class {
-        /*ngInject*/
+        /* @ngInject */
         constructor($timeout) {
             this.opts = {
                 currentCity: '上海市',
