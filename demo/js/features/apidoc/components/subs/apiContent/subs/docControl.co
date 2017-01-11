@@ -19,7 +19,7 @@ export default {
     <table class="matrix">
         <thead>
             <tr>
-                <th style="width: 110px;">Param</th>
+                <th style="width: 80px;">Param</th>
                 <th>Type</th>
                 <th>Details</th>
             </tr>
@@ -28,13 +28,13 @@ export default {
             <tr>
                 <td>type</td>
                 <td><span class="label required">string</span></td>
-                <td>What kind of control to be added to the map. Available options: <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b2" target="_blank">navigation</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b7" target="_blank">overviewmap</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b9" target="_blank">scale</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b15" target="_blank">maptype</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b12" target="_blank">copyright</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b5" target="_blank">geolocation</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b18" target="_blank">panorama</a>, </td>
+                <td><p class="line-text">What kind of control to be added to the map. Available options: <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b2" target="_blank">navigation</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b7" target="_blank">overviewmap</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b9" target="_blank">scale</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b15" target="_blank">maptype</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b12" target="_blank">copyright</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b5" target="_blank">geolocation</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b18" target="_blank">panorama</a></p> </td>
             </tr>
             <tr>
                 <td>options</td>
                 <td><span class="label">expression</span></td>
                 <td>
-                Literal for constructing <code>control</code>. See <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b3" target="_blank">NavigationControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b8" target="_blank">OverviewMapControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b10" target="_blank">ScaleControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b16" target="_blank">MapTypeControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b13" target="_blank">CopyrightControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b6" target="_blank">GeolocationControlOptions</a>
+                <p class="line-text">Literal for constructing <code>control</code>. See <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b3" target="_blank">NavigationControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b8" target="_blank">OverviewMapControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b10" target="_blank">ScaleControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b16" target="_blank">MapTypeControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b13" target="_blank">CopyrightControlOptions</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b6" target="_blank">GeolocationControlOptions</a></p>
                 </td>
             </tr>
         </tbody>

@@ -7,7 +7,7 @@ export default {
     <table class="matrix">
         <thead>
             <tr>
-                <th style="width: 110px;">Property</th>
+                <th style="width: 80px;">Property</th>
                 <th>Type</th>
                 <th>Details</th>
             </tr>

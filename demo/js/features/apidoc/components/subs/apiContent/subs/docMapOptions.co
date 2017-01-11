@@ -10,7 +10,7 @@ export default {
     <table class="matrix">
         <thead>
             <tr>
-                <th style="width: 110px;">Property</th>
+                <th style="width: 180px;">Property</th>
                 <th>Type</th>
                 <th>Details</th>
             </tr>
@@ -19,57 +19,57 @@ export default {
             <tr>
                 <td>disableDragging</td>
                 <td><span class="label">Boolean</span></td>
-                <td>Whether to disable map dragable function</td>
+                <td><p class="line-text">Whether to disable map dragable function</p></td>
             </tr>
             <tr>
                 <td>enableScrollWheelZoom</td>
                 <td><span class="label">Boolean</span></td>
-                <td>Whether to enable wheel for zooming function</td>
+                <td><p class="line-text">Whether to enable wheel for zooming function</p></td>
             </tr>
             <tr>
                 <td>disableDoubleClickZoom</td>
                 <td><span class="label">Boolean</span></td>
-                <td>Whether to disable double click for zooming function</td>
+                <td><p class="line-text">Whether to disable double click for zooming function</p></td>
             </tr>
             <tr>
                 <td>enableKeyboard</td>
                 <td><span class="label">Boolean</span></td>
-                <td>Whether to enable keyboard for moving map function. You can use <code>up</code>, <code>right</code>, <code>down</code>, <code>left</code>, to move map.</td>
+                <td><p class="line-text">Whether to enable keyboard for moving map function. You can use <code>up</code>, <code>right</code>, <code>down</code>, <code>left</code>, to move map.</p></td>
             </tr>
             <tr>
                 <td>enableInertialDragging</td>
                 <td><span class="label">Boolean</span></td>
-                <td>Whether to enable inertial drag function</td>
+                <td><p class="line-text">Whether to enable inertial drag function</p></td>
             </tr>
             <tr>
                 <td>enableContinuousZoom</td>
                 <td><span class="label">Boolean</span></td>
-                <td>Whether to enable continuous zooming function</td>
+                <td><p class="line-text">Whether to enable continuous zooming function</p></td>
             </tr>
             <tr>
                 <td>disablePinchToZoom</td>
                 <td><span class="label">Boolean</span></td>
-                <td>Whether to disable pinch for zooming function</td>
+                <td><p class="line-text">Whether to disable pinch for zooming function</p></td>
             </tr>
             <tr>
                 <td>cursor</td>
                 <td><span class="label">String</span></td>
-                <td>Set default style of cursor, should follow CSS specification</td>
+                <td><p class="line-text">Set default style of cursor, should follow CSS specification</p></td>
             </tr>
             <tr>
                 <td>draggingCursor</td>
                 <td><span class="label">String</span></td>
-                <td>Set default style of dragging cursor, should follow CSS specification</td>
+                <td><p class="line-text">Set default style of dragging cursor, should follow CSS specification</p></td>
             </tr>
             <tr>
                 <td>currentCity</td>
                 <td><span class="label">String</span></td>
-                <td>Set current city. Like: 北京市</td>
+                <td><p class="line-text">Set current city. Like: 北京市</p></td>
             </tr>
             <tr>
                 <td>centerAndZoom</td>
                 <td><span class="label">Object</span></td>
-                <td>See <a href="#!/apidoc?api=center-and-zoom">centerAndZoom</a></td>
+                <td><p class="line-text">See <a href="#!/apidoc?api=center-and-zoom">centerAndZoom</a></p></td>
             </tr>
         </tbody>
     </table>

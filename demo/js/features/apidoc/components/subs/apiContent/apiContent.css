@@ -30,6 +30,10 @@ api-content .api-introduction baidu-map {
     margin: 10px 0 10px 0;
 }
 
+api-content .api-introduction .line-text {
+    word-break: break-word;
+}
+
 @media screen and (max-width: 960px) {
     api-content {
         border-left: 1px solid #cccccc;

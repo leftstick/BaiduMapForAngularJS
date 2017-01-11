@@ -21,7 +21,7 @@ export default {
     <table class="matrix">
         <thead>
             <tr>
-                <th style="width: 110px;">Param</th>
+                <th style="width: 80px;">Param</th>
                 <th>Type</th>
                 <th>Details</th>
             </tr>
