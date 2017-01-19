@@ -10,8 +10,8 @@ module.exports = {
     },
     output: {
         path: resolve(__dirname, 'build'),
-        filename: '[name].bundle.js',
-        chunkFilename: '[id].bundle.js',
+        filename: (process.env.DEMO ? '[hash].' : '') + '[name].bundle.js',
+        chunkFilename: (process.env.DEMO ? '[hash].' : '') + '[id].bundle.js',
         publicPath: process.env.DEMO ? '/BaiduMapForAngularJS/' : '/'
     },
     debug: !process.env.DEMO,
