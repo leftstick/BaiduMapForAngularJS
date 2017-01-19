@@ -69,13 +69,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _baiduMap2 = _interopRequireDefault(_baiduMap);
 	
-	var _marker = __webpack_require__(7);
+	var _marker = __webpack_require__(6);
 	
 	var _marker2 = _interopRequireDefault(_marker);
 	
-	var _control = __webpack_require__(9);
+	var _control = __webpack_require__(8);
 	
 	var _control2 = _interopRequireDefault(_control);
+	
+	var _mapScript = __webpack_require__(9);
+	
+	var _mapScript2 = _interopRequireDefault(_mapScript);
 	
 	var _preset = __webpack_require__(10);
 	
@@ -84,8 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	(0, _preset.globalConstants)();
 	
 	var moduleName = 'baiduMap';
-	
-	_angular2.default.module(moduleName, []).component('baiduMap', _baiduMap2.default).component('marker', _marker2.default).component('control', _control2.default);
+	_angular2.default.module(moduleName, []).provider('mapScriptService', _mapScript2.default).component('baiduMap', _baiduMap2.default).component('marker', _marker2.default).component('control', _control2.default);
 	
 	var ngBaiduMap = exports.ngBaiduMap = moduleName;
 
@@ -111,11 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var style = _interopRequireWildcard(_style);
 	
-	var _validate = __webpack_require__(4);
-	
-	var _loader = __webpack_require__(5);
-	
-	var _map = __webpack_require__(6);
+	var _map = __webpack_require__(4);
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
@@ -123,7 +122,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports.default = {
 	    bindings: {
-	        ak: '@',
 	        offlineTxt: '<',
 	        mapOptions: '<',
 	        loaded: '&',
@@ -133,14 +131,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    template: '\n        <div ng-style="$ctrl.style.map" class="baidu-map-instance"></div>\n        <div ng-style="$ctrl.style.offline" class="baidu-map-offline">\n            <label ng-style="$ctrl.style.offlineLabel">{{ $ctrl.offlineTxt || \'NO_NETWORK\' }}</label>\n        </div>\n        <div ng-transclude style="display: none"></div>\n    ',
 	    controller: function () {
 	        /* @ngInject */
-	        controller.$inject = ["$scope", "$element", "$attrs"];
-	        function controller($scope, $element, $attrs) {
+	        controller.$inject = ["$scope", "$element", "$attrs", "mapScriptService"];
+	        function controller($scope, $element, $attrs, mapScriptService) {
 	            _classCallCheck(this, controller);
 	
 	            this.$scope = $scope;
 	            this.$element = $element;
 	            this.$attrs = $attrs;
 	            this.style = style;
+	            this.mapScriptService = mapScriptService;
 	        }
 	
 	        _createClass(controller, [{
@@ -148,9 +147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            value: function $onInit() {
 	                var _this = this;
 	
-	                (0, _validate.nullCheck)(this.ak, 'ak is required for <baidu-map>');
-	
-	                this.mapReady = (0, _loader.load)(this.ak).then(function () {
+	                this.mapReady = this.mapScriptService.load().then(function () {
 	                    return (0, _map.create)(_this.$element.children()[0], _this.mapOptions);
 	                }).then(function (map) {
 	                    _this.loaded({
@@ -262,102 +259,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.nullCheck = nullCheck;
-	exports.numberCheck = numberCheck;
-	exports.isNull = isNull;
-	exports.isNumber = isNumber;
-	exports.isArray = isArray;
-	exports.controlTypeCheck = controlTypeCheck;
-	function nullCheck(val, msg) {
-	    if (isNull(val)) {
-	        throw new Error(msg);
-	    }
-	}
-	
-	function numberCheck(val, msg) {
-	    if (isNumber(val)) {
-	        throw new Error(msg);
-	    }
-	}
-	
-	function isNull(obj) {
-	    return obj === null || obj === undefined;
-	}
-	
-	function isNumber(obj) {
-	    return Object.prototype.toString.call(obj) === '[object Number]';
-	}
-	
-	function isArray(obj) {
-	    return Object.prototype.toString.call(obj) === '[object Array]';
-	}
-	
-	var CONTROL_TYPS = ['navigation', 'overviewmap', 'scale', 'maptype', 'copyright', 'geolocation', 'panorama'];
-	function controlTypeCheck(type) {
-	    if (CONTROL_TYPS.indexOf((type || '').toLowerCase()) < 0) {
-	        throw new Error('control type should be one of: [\'navigation\', \'overviewmap\', \'scale\', \'maptype\', \'copyright\', \'geolocation\']');
-	    }
-	}
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.load = load;
-	function load(ak) {
-	    var MAP_URL = '//api.map.baidu.com/api?v=2.0&ak=' + ak + '&callback=baidumapinit&s=' + (location.protocol === 'https:' ? 1 : 0);
-	
-	    var loadBaiduMapPromise = window.loadBaiduMapPromise;
-	    if (loadBaiduMapPromise) {
-	        return loadBaiduMapPromise.then(displayMap);
-	    }
-	
-	    //eslint-disable-next-line
-	    return window.loadBaiduMapPromise = new Promise(function (resolve, reject) {
-	        window.baidumapinit = resolve;
-	        appendScriptTag(MAP_URL);
-	    }).then(displayMap);
-	}
-	
-	function appendScriptTag(url) {
-	    var script = document.createElement('script');
-	    script.type = 'text/javascript';
-	    script.src = url;
-	    script.onerror = function () {
-	
-	        Array.prototype.slice.call(document.querySelectorAll('baidu-map .baidu-map-offline')).forEach(function (node) {
-	            node.style.display = 'block';
-	        });
-	        document.body.removeChild(script);
-	
-	        setTimeout(function () {
-	            appendScriptTag(url);
-	        }, 30000);
-	    };
-	    document.body.appendChild(script);
-	}
-	
-	function displayMap() {
-	    return Array.prototype.slice.call(document.querySelectorAll('baidu-map')).forEach(function (node) {
-	        node.querySelector('.baidu-map-offline') && node.removeChild(node.querySelector('.baidu-map-offline'));
-	        node.querySelector('.baidu-map-instance').style.display = 'block';
-	    });
-	}
-
-/***/ },
-/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -368,7 +269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.create = create;
 	exports.refresh = refresh;
 	
-	var _validate = __webpack_require__(4);
+	var _validate = __webpack_require__(5);
 	
 	var DEFAULT_COORDINATION = {
 	    longitude: 121.506191,
@@ -414,7 +315,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 7 */
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.nullCheck = nullCheck;
+	exports.numberCheck = numberCheck;
+	exports.isNull = isNull;
+	exports.isNumber = isNumber;
+	exports.isArray = isArray;
+	exports.controlTypeCheck = controlTypeCheck;
+	function nullCheck(val, msg) {
+	    if (isNull(val)) {
+	        throw new Error(msg);
+	    }
+	}
+	
+	function numberCheck(val, msg) {
+	    if (isNumber(val)) {
+	        throw new Error(msg);
+	    }
+	}
+	
+	function isNull(obj) {
+	    return obj === null || obj === undefined;
+	}
+	
+	function isNumber(obj) {
+	    return Object.prototype.toString.call(obj) === '[object Number]';
+	}
+	
+	function isArray(obj) {
+	    return Object.prototype.toString.call(obj) === '[object Array]';
+	}
+	
+	var CONTROL_TYPS = ['navigation', 'overviewmap', 'scale', 'maptype', 'copyright', 'geolocation', 'panorama'];
+	function controlTypeCheck(type) {
+	    if (CONTROL_TYPS.indexOf((type || '').toLowerCase()) < 0) {
+	        throw new Error('control type should be one of: [\'navigation\', \'overviewmap\', \'scale\', \'maptype\', \'copyright\', \'geolocation\']');
+	    }
+	}
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -425,9 +372,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _validate = __webpack_require__(4);
+	var _validate = __webpack_require__(5);
 	
-	var _transformer = __webpack_require__(8);
+	var _transformer = __webpack_require__(7);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -507,7 +454,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -519,7 +466,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.transformSize = transformSize;
 	exports.transformPoint = transformPoint;
 	
-	var _validate = __webpack_require__(4);
+	var _validate = __webpack_require__(5);
 	
 	function transformIcon(icon, field) {
 	    var opts = {
@@ -544,7 +491,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -557,7 +504,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _validate = __webpack_require__(4);
+	var _validate = __webpack_require__(5);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -635,6 +582,75 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (type === 'panorama') {
 	        return new BMap.PanoramaControl(options);
 	    }
+	}
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	exports.default = function () {
+	    var ak = null,
+	        MAP_URL = void 0;
+	
+	    this.setKey = function (val) {
+	        ak = val;
+	        MAP_URL = '//api.map.baidu.com/api?v=2.0&ak=' + ak + '&callback=baidumapinit&s=' + (location.protocol === 'https:' ? 1 : 0);
+	    };
+	
+	    this.$get = ["$rootScope", function ($rootScope) {
+	        'ngInject';
+	
+	        return {
+	            load: function load() {
+	
+	                (0, _validate.nullCheck)(ak, 'ak should be set before use. Read: https://leftstick.github.io/BaiduMapForAngularJS/#!/quickstart');
+	
+	                var loadBaiduMapPromise = $rootScope.loadBaiduMapPromise;
+	                if (loadBaiduMapPromise) {
+	                    return loadBaiduMapPromise.then(displayMap);
+	                }
+	
+	                //eslint-disable-next-line
+	                return $rootScope.loadBaiduMapPromise = new Promise(function (resolve, reject) {
+	                    window.baidumapinit = resolve;
+	                    appendScriptTag(MAP_URL);
+	                }).then(displayMap);
+	            }
+	        };
+	    }];
+	};
+	
+	var _validate = __webpack_require__(5);
+	
+	function appendScriptTag(url) {
+	    var script = document.createElement('script');
+	    script.type = 'text/javascript';
+	    script.src = url;
+	    script.onerror = function () {
+	
+	        Array.prototype.slice.call(document.querySelectorAll('baidu-map .baidu-map-offline')).forEach(function (node) {
+	            node.style.display = 'block';
+	        });
+	        document.body.removeChild(script);
+	
+	        setTimeout(function () {
+	            appendScriptTag(url);
+	        }, 30000);
+	    };
+	    document.body.appendChild(script);
+	}
+	
+	function displayMap() {
+	    return Array.prototype.slice.call(document.querySelectorAll('baidu-map')).forEach(function (node) {
+	        node.querySelector('.baidu-map-offline') && node.removeChild(node.querySelector('.baidu-map-offline'));
+	        node.querySelector('.baidu-map-instance').style.display = 'block';
+	    });
 	}
 
 /***/ },

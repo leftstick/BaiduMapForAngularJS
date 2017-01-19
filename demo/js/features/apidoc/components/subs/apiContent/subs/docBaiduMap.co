@@ -7,7 +7,6 @@ export default {
     <h2 class="title">Usage</h2>
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map 
-        ak="{string}" 
         map-options="{expression}"
         offline-txt="{expression}"
         loaded="{expression}"
@@ -54,9 +53,9 @@ export default {
         </tbody>
     </table>
     <h2 class="title">Example</h2>
-    <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts" click="$ctrl.onClick(e)"></baidu-map>
+    <baidu-map map-options="$ctrl.opts" click="$ctrl.onClick(e)"></baidu-map>
     <div class="snippet" highlight>
-        <pre><code class="html">&lt;baidu-map ak="your ak" map-options="opts" click="getCoord(e)"&gt;&lt;/baidu-map&gt;</code></pre>
+        <pre><code class="html">&lt;baidu-map map-options="opts" click="getCoord(e)"&gt;&lt;/baidu-map&gt;</code></pre>
     </div>
     <br/>
     <div class="snippet" highlight>

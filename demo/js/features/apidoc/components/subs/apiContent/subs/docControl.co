@@ -10,7 +10,7 @@ export default {
     </p>
     <h2 class="title">Usage</h2>
     <div class="snippet" highlight>
-        <pre><code class="html">&lt;baidu-map ak="{string}" map-options="{expression}"&gt;
+        <pre><code class="html">&lt;baidu-map map-options="{expression}"&gt;
     &lt;control type="{string}" options="{expression}""&gt;&lt;control&gt;    
 &lt;/baidu-map&gt;</code></pre>
     </div>
@@ -40,13 +40,13 @@ export default {
         </tbody>
     </table>
     <h2 class="title">Example</h2>
-    <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts" loaded="$ctrl.mapLoaded(map)">
+    <baidu-map map-options="$ctrl.opts" loaded="$ctrl.mapLoaded(map)">
         <control type="navigation" options="$ctrl.navOpts"></control>
         <control type="overviewmap" options="$ctrl.overOpts"></control>
         <control ng-if="$ctrl.copyOpts" type="copyright" options="$ctrl.copyOpts"></control>
     </baidu-map>
     <div class="snippet" highlight>
-        <pre><code class="html">&lt;baidu-map ak="your ak" map-options="opts" loaded="mapLoaded(map)"&gt;
+        <pre><code class="html">&lt;baidu-map map-options="opts" loaded="mapLoaded(map)"&gt;
     &lt;control type="navigation" options="navOpts"&gt;&lt;/control&gt;
     &lt;control type="overviewmap" options="overOpts"&gt;&lt;/control&gt;
     &lt;control ng-if="copyOpts" type="copyright" options="copyOpts"&gt;&lt;/control&gt;

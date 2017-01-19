@@ -1,12 +1,9 @@
 
 import * as style from '../style';
-import {nullCheck} from '../helper/validate';
-import {load} from '../helper/loader';
 import {create, refresh} from '../helper/map';
 
 export default {
     bindings: {
-        ak: '@',
         offlineTxt: '<',
         mapOptions: '<',
         loaded: '&',
@@ -22,17 +19,16 @@ export default {
     `,
     controller: class {
         /* @ngInject */
-        constructor($scope, $element, $attrs) {
+        constructor($scope, $element, $attrs, mapScriptService) {
             this.$scope = $scope;
             this.$element = $element;
             this.$attrs = $attrs;
             this.style = style;
+            this.mapScriptService = mapScriptService;
         }
 
         $onInit() {
-            nullCheck(this.ak, 'ak is required for <baidu-map>');
-
-            this.mapReady = load(this.ak)
+            this.mapReady = this.mapScriptService.load()
                 .then(() => {
                     return create(this.$element.children()[0], this.mapOptions);
                 })

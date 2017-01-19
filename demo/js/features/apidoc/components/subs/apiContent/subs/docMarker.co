@@ -12,7 +12,7 @@ export default {
     </p>
     <h2 class="title">Usage</h2>
     <div class="snippet" highlight>
-        <pre><code class="html">&lt;baidu-map ak="{string}" map-options="{expression}"&gt;
+        <pre><code class="html">&lt;baidu-map map-options="{expression}"&gt;
     &lt;marker point="{expression}" options="{expression}" click="{expression}"&gt;&lt;marker&gt;    
 &lt;/baidu-map&gt;</code></pre>
     </div>
@@ -47,11 +47,11 @@ export default {
         </tbody>
     </table>
     <h2 class="title">Example</h2>
-    <baidu-map ak="gd0GyxGUxSCoAbmdyQBhyhrZ" map-options="$ctrl.opts">
+    <baidu-map map-options="$ctrl.opts">
         <marker point="$ctrl.point" options="$ctrl.markerOpts" click="$ctrl.showWindow(e, marker, map)"></marker>
     </baidu-map>
     <div class="snippet" highlight>
-        <pre><code class="html">&lt;baidu-map ak="your ak" map-options="opts"&gt;
+        <pre><code class="html">&lt;baidu-map map-options="opts"&gt;
     &lt;marker point="point" options="markerOpts" click="showWindow(e, marker, map)"&gt;&lt;/marker&gt;
 &lt;/baidu-map&gt;</code></pre>
     </div>

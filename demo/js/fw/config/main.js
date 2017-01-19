@@ -1,3 +1,4 @@
+import map from './mapScriptConfig';
 import router from './routerConfig';
 
-export default [router];
+export default [map, router];
