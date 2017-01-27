@@ -13,10 +13,20 @@ module.exports = {
         libraryTarget: 'umd'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
-                loader: 'ng-annotate!babel?{"presets":["es2015"], "plugins": ["transform-object-rest-spread"]}',
+                use: [{
+                    loader: 'ng-annotate-loader',
+                    options: {
+                        presets: [
+                            ['es2015'], {
+                                modules: false
+                            }
+                        ],
+                        plugins: ['transform-object-rest-spread']
+                    }
+                }],
                 exclude: /(node_modules)/
             }
         ]

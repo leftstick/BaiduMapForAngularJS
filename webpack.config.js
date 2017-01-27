@@ -1,69 +1,79 @@
 const {resolve} = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const postcssVars = require('postcss-simple-vars');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-    entry: {
-        index: resolve(__dirname, 'demo', 'js', 'index.js')
-    },
-    output: {
-        path: resolve(__dirname, 'build'),
-        filename: (process.env.DEMO ? '[hash].' : '') + '[name].bundle.js',
-        chunkFilename: (process.env.DEMO ? '[hash].' : '') + '[id].bundle.js',
-        publicPath: process.env.DEMO ? '/BaiduMapForAngularJS/' : '/'
-    },
-    debug: !process.env.DEMO,
-    devtool: process.env.DEMO ? '' : '#eval',
-    module: {
-        loaders: [
-            {
-                test: /\.css$/,
-                loader: 'style!css!postcss!'
-            },
-            {
-                test: /\.(js|co)$/,
-                loader: 'ng-annotate!babel?{"presets":["es2015"], "plugins": ["transform-object-rest-spread"]}',
-                exclude: /(node_modules)/
-            },
-            {
-                test: /\.(eot|svg|ttf|woff|woff2|png)\w*/,
-                loader: 'file'
+module.exports = function(env = {}) {
+    const isDemo = !!env.isDemo;
+    return {
+        entry: {
+            index: resolve(__dirname, 'demo', 'js', 'index.js')
+        },
+        output: {
+            path: resolve(__dirname, 'build'),
+            filename: (isDemo ? '[hash].' : '') + '[name].bundle.js',
+            chunkFilename: (isDemo ? '[hash].' : '') + '[id].bundle.js',
+            publicPath: isDemo ? '/BaiduMapForAngularJS/' : '/'
+        },
+        devtool: isDemo ? '' : '#eval',
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        {
+                            loader: 'postcss-loader'
+                        }
+                    ]
+                },
+                {
+                    test: /\.(js|co)$/,
+                    use: [
+                        'ng-annotate-loader',
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: [
+                                    ['es2015', {
+                                        modules: false
+                                    }]
+                                ],
+                                plugins: ['transform-object-rest-spread']
+                            }
+                        }],
+                    exclude: /(node_modules)/
+                },
+                {
+                    test: /\.(eot|svg|ttf|woff|woff2|png)\w*/,
+                    use: ['file-loader']
+                }
+            ]
+        },
+        resolve: {
+            modules: [
+                resolve(__dirname, 'node_modules'),
+                resolve(__dirname, 'demo'),
+                resolve(__dirname, 'demo', 'js')
+            ],
+            extensions: [
+                '.js',
+                '.co'
+            ]
+        },
+        plugins: (isDemo ? [new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
             }
-        ]
-    },
-    postcss: function() {
-        return [
-            autoprefixer({
-                browsers: ['last 5 versions']
-            }),
-            postcssVars()
-        ];
-    },
-    resolve: {
-        root: [
-            resolve(__dirname, 'demo'),
-            resolve(__dirname, 'demo', 'js')
-        ],
-        extensions: [
-            '',
-            '.js',
-            '.co'
-        ]
-    },
-    plugins: (process.env.DEMO ? [new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
-    })] : []).concat([
-        new webpack.optimize.CommonsChunkPlugin('common.bundle.js'),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            inject: 'body',
-            template: resolve(__dirname, 'demo', 'index.html'),
-            favicon: resolve(__dirname, 'demo', 'img', 'favicon.ico'),
-            hash: false
-        })
-    ])
+        })] : []).concat([
+            new webpack.optimize.CommonsChunkPlugin('common.bundle.js'),
+            new HtmlWebpackPlugin({
+                filename: 'index.html',
+                inject: 'body',
+                template: resolve(__dirname, 'demo', 'index.html'),
+                favicon: resolve(__dirname, 'demo', 'img', 'favicon.ico'),
+                hash: false
+            })
+        ])
+    }
 };
