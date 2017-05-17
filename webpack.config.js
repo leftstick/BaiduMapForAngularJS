@@ -61,14 +61,13 @@ module.exports = function(env = {}) {
                 '.co'
             ]
         },
-        plugins: (isDemo ? [new webpack.optimize.UglifyJsPlugin({
+        plugins: (isDemo ? [new NgAnnotatePlugin({
+            add: true
+        }), new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
         })] : []).concat([
-            new NgAnnotatePlugin({
-                add: true
-            }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'commons',
                 filename: '[hash].commons.js'
