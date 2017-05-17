@@ -154,8 +154,7 @@ export default {
     `,
     controller: class {
         /* @ngInject */
-        constructor($timeout) {
-            this.$timeout = $timeout;
+        constructor() {
             this.opts = {
                 centerAndZoom: {
                     ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
