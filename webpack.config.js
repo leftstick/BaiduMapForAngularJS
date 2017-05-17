@@ -70,7 +70,8 @@ module.exports = function(env = {}) {
                 add: true
             }),
             new webpack.optimize.CommonsChunkPlugin({
-                name: ['index']
+                name: 'commons',
+                filename: 'commons.js'
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
