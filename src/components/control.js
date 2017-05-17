@@ -18,9 +18,10 @@ export default {
 
             this.mapCtrl
                 .mapReady
-                .then(() => {
-                    const control = this.control = createControl(this.type.toLowerCase(), this.options);
+                .then(() => createControl(this.type.toLowerCase(), this.options))
+                .then(control => {
                     this.mapCtrl.addControl(control);
+                    this.control = control;
                     return control;
                 });
         }

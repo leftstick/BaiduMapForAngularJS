@@ -2,6 +2,7 @@
 const {resolve} = require('path');
 const webpack = require('webpack');
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
+const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -17,12 +18,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 use: [{
-                    loader: 'ng-annotate-loader',
+                    loader: 'babel-loader',
                     options: {
                         presets: [
-                            ['es2015'], {
+                            ['es2015', {
                                 modules: false
-                            }
+                            }]
                         ],
                         plugins: ['transform-object-rest-spread']
                     }
@@ -35,6 +36,9 @@ module.exports = {
         angular: 'angular'
     },
     plugins: [
+        new NgAnnotatePlugin({
+            add: true
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false

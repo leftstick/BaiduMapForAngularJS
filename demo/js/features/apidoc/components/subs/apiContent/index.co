@@ -12,6 +12,7 @@ export default {
             <doc-baidu-map ng-if="$ctrl.api === 'baidu-map'"></doc-baidu-map>
             <doc-marker ng-if="$ctrl.api === 'marker'"></doc-marker>
             <doc-control ng-if="$ctrl.api === 'control'"></doc-control>
+            <doc-overlay ng-if="$ctrl.api === 'overlay'"></doc-overlay>
 
             <doc-map-options ng-if="$ctrl.api === 'map-options'"></doc-map-options>
             <doc-center-and-zoom ng-if="$ctrl.api === 'center-and-zoom'"></doc-center-and-zoom>
@@ -27,7 +28,7 @@ export default {
         constructor($location) {
             this.$location = $location;
             this.selectors = ['.snippet', 'baidu-map'];
-            this.routesOrder = ['baidu-map', 'marker', 'control', 'map-options', 'center-and-zoom', 'marker-options', 'point', 'size', 'icon'];
+            this.routesOrder = ['baidu-map', 'marker', 'control', 'overlay', 'map-options', 'center-and-zoom', 'marker-options', 'point', 'size', 'icon'];
         }
 
         onSwipe(dir) {
@@ -38,7 +39,6 @@ export default {
             } else {
                 route = curIndex + 1 > this.routesOrder.length - 1 ? this.routesOrder[this.routesOrder.length - 1] : this.routesOrder[curIndex + 1];
             }
-            console.log('route', route);
             this.$location.search('api', route);
         }
     }

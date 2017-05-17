@@ -11,7 +11,7 @@ export default {
     <h2 class="title">Usage</h2>
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map map-options="{expression}"&gt;
-    &lt;control type="{string}" options="{expression}""&gt;&lt;control&gt;    
+    &lt;control type="{string}" options="{expression}"&gt;&lt;control&gt;    
 &lt;/baidu-map&gt;</code></pre>
     </div>
     <h2 class="title">Attributes</h2>

@@ -1,6 +1,7 @@
 const {resolve} = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = function(env = {}) {
     const isDemo = !!env.isDemo;
@@ -30,7 +31,6 @@ module.exports = function(env = {}) {
                 {
                     test: /\.(js|co)$/,
                     use: [
-                        'ng-annotate-loader',
                         {
                             loader: 'babel-loader',
                             options: {
@@ -66,6 +66,9 @@ module.exports = function(env = {}) {
                 warnings: false
             }
         })] : []).concat([
+            new NgAnnotatePlugin({
+                add: true
+            }),
             new webpack.optimize.CommonsChunkPlugin('common.bundle.js'),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
