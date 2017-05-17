@@ -45,7 +45,8 @@ export default {
     </baidu-map>
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map map-options="opts"&gt;
-    &lt;overlay type="heatmap" options="heatmapOpts" dataset="dataSet"&gt;&lt;/overlay&gt;</code></pre>
+    &lt;overlay type="heatmap" options="heatmapOpts" dataset="dataSet"&gt;&lt;/overlay&gt;
+&lt;/baidu-map&gt;</code></pre>
     </div>
     <br/>
     <div class="snippet" highlight>
