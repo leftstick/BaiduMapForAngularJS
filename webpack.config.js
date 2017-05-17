@@ -69,7 +69,9 @@ module.exports = function(env = {}) {
             new NgAnnotatePlugin({
                 add: true
             }),
-            new webpack.optimize.CommonsChunkPlugin('common.bundle.js'),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: ['index']
+            }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 inject: 'body',
