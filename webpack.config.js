@@ -69,8 +69,8 @@ module.exports = function(env = {}) {
             }
         })] : []).concat([
             new webpack.optimize.CommonsChunkPlugin({
-                name: 'commons',
-                filename: '[hash].commons.js'
+                name: 'vendor',
+                minChunks: ({resource}) => resource && resource.indexOf('node_modules') >= 0 && resource.match(/\.js$/)
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
