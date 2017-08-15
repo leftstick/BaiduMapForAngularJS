@@ -59,7 +59,7 @@ export default {
         $scope.opts = {
             centerAndZoom: {
                 longitude: 121.51606,
-                latitude: 31.244604
+                latitude: 31.244604,
                 zoom: 16
             }
         };
