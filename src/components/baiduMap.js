@@ -48,6 +48,7 @@ export default {
                         this.click({
                             e
                         });
+                        this.$scope.$apply();
                     };
                     this.map.addEventListener('click', clickListener);
                 });

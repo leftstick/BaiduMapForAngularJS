@@ -48,6 +48,15 @@ export default {
                 });
         }
 
+        $onChanges(changes) {
+            if (!this.marker) {
+                return;
+            }
+            if (changes.point && changes.point.currentValue) {
+                this.marker.setPosition(transformPoint(changes.point.currentValue, '<marker> point'));
+            }
+        }
+
         $onDestroy() {
             this.marker.removeEventListener('click', this.clickHandler);
             this.mapCtrl.removeOverlay(this.marker);

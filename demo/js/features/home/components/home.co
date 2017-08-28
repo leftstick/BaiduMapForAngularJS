@@ -11,7 +11,7 @@ export default {
     template: `
     <h1 class="page-title">angular-baidu-map</h1>
 
-    <baidu-map map-options="$ctrl.opts">
+    <baidu-map map-options="$ctrl.opts" click="$ctrl.onMapClicked(e)">
         <marker point="$ctrl.markerPoint1" click="$ctrl.onMarker1Clicked(e, marker)"></marker>
         <control type="navigation"></control>
         <control type="overviewmap"></control>
@@ -27,7 +27,8 @@ export default {
     `,
     controller: class {
         /* @ngInject */
-        constructor($timeout, mapScriptService) {
+        constructor($timeout, mapScriptService, $scope) {
+            this.$scope = $scope;
             this.opts = {
                 currentCity: '上海市',
                 centerAndZoom: {
@@ -41,6 +42,13 @@ export default {
 
         onLoadMap(map) {
             console.log('Map is created', map);
+        }
+
+        onMapClicked(e) {
+            this.markerPoint1 = {
+                longitude: e.point.lng,
+                latitude: e.point.lat
+            };
         }
 
         onMarker1Clicked(e, marker) {
