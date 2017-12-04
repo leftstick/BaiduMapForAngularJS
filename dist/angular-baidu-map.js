@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("angular")) : factory(root["angular"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -723,7 +723,13 @@ function appendScriptTag(url) {
 
     this.setKey = function (val) {
         ak = val;
-        MAP_URL = '//api.map.baidu.com/api?v=2.0&ak=' + ak + '&callback=baidumapinit&s=' + (location.protocol === 'https:' ? 1 : 0);
+        MAP_URL = '//api.map.baidu.com/api?v=2.0&ak=' + ak + '&callback=baidumapinit';
+
+        if (location.protocol.indexOf('http') > -1) {
+            MAP_URL = MAP_URL + '&s=' + (location.protocol === 'https:' ? 1 : 0);
+        } else {
+            MAP_URL = 'https:' + MAP_URL + '&s=1';
+        }
     };
 
     this.$get = function ($rootScope) {
@@ -731,7 +737,6 @@ function appendScriptTag(url) {
 
         return {
             load: function load() {
-
                 Object(__WEBPACK_IMPORTED_MODULE_0__helper_validate__["d" /* nullCheck */])(ak, 'ak should be set before use. Read: https://leftstick.github.io/BaiduMapForAngularJS/#!/quickstart');
 
                 var loadBaiduMapPromise = $rootScope.loadBaiduMapPromise;
@@ -754,7 +759,6 @@ function appendScriptTag(url) {
     script.type = 'text/javascript';
     script.src = url;
     script.onerror = function () {
-
         Array.prototype.slice.call(document.querySelectorAll('baidu-map .baidu-map-offline')).forEach(function (node) {
             node.style.display = 'block';
         });
