@@ -4,6 +4,7 @@ const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = function(env = {}) {
     const isDemo = !!env.isDemo;
+
     return {
         mode: isDemo ? 'production' : 'development',
         entry: {
@@ -15,7 +16,6 @@ module.exports = function(env = {}) {
             chunkFilename: (isDemo ? '[hash].' : '') + '[id].bundle.js',
             publicPath: isDemo ? '/BaiduMapForAngularJS/' : '/'
         },
-        devtool: isDemo ? '' : '#eval',
         module: {
             rules: [
                 {
