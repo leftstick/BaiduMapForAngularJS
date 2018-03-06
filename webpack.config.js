@@ -1,11 +1,11 @@
 const {resolve} = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = function(env = {}) {
     const isDemo = !!env.isDemo;
     return {
+        mode: isDemo ? 'production' : 'development',
         entry: {
             index: resolve(__dirname, 'demo', 'js', 'index.js')
         },
@@ -61,17 +61,14 @@ module.exports = function(env = {}) {
                 '.co'
             ]
         },
+        optimization: {
+            splitChunks: {
+                chunks: 'all'
+            }
+        },
         plugins: (isDemo ? [new NgAnnotatePlugin({
             add: true
-        }), new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
         })] : []).concat([
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                minChunks: ({resource}) => resource && resource.indexOf('node_modules') >= 0 && resource.match(/\.js$/)
-            }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 inject: 'body',

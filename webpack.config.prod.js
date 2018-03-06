@@ -1,10 +1,10 @@
 
 const {resolve} = require('path');
-const webpack = require('webpack');
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
+    mode: 'production',
     entry: {
         index: resolve(__dirname, 'src', 'index.js')
     },
@@ -35,14 +35,12 @@ module.exports = {
     externals: {
         angular: 'angular'
     },
+    optimization: {
+        minimize: true
+    },
     plugins: [
         new NgAnnotatePlugin({
             add: true
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
         }),
         new UnminifiedWebpackPlugin()
     ]
