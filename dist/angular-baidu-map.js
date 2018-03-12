@@ -166,22 +166,22 @@ function overlayTypeCheck(type) {
 // CONCATENATED MODULE: ./src/helper/map.js
 
 
-var DEFAULT_COORDINATION = {
+var map_DEFAULT_COORDINATION = {
     longitude: 121.506191,
     latitude: 31.245554
 };
 
-var DEFAULT_ZOOM = 10;
+var map_DEFAULT_ZOOM = 10;
 
-function create(element, mapOptions) {
+function map_create(element, mapOptions) {
     var map = new BMap.Map(element, mapOptions);
 
-    refresh(map, mapOptions);
+    map_refresh(map, mapOptions);
 
     return map;
 }
 
-function refresh(map, mapOptions) {
+function map_refresh(map, mapOptions) {
     if (!isNull(mapOptions) && !isNull(mapOptions.disableDragging)) {
         map[(mapOptions.disableDragging ? 'disable' : 'enable') + 'Dragging']();
     }
@@ -206,12 +206,12 @@ function refresh(map, mapOptions) {
     !isNull(mapOptions) && !isNull(mapOptions.cursor) && map.setDefaultCursor(mapOptions.cursor);
     !isNull(mapOptions) && !isNull(mapOptions.draggingCursor) && map.setDraggingCursor(mapOptions.draggingCursor);
     !isNull(mapOptions) && !isNull(mapOptions.currentCity) && map.setCurrentCity(mapOptions.currentCity);
-    !isNull(mapOptions) && !isNull(mapOptions.centerAndZoom) && map.centerAndZoom(new BMap.Point(mapOptions.centerAndZoom.longitude || DEFAULT_COORDINATION.longitude, mapOptions.centerAndZoom.latitude || DEFAULT_COORDINATION.latitude), mapOptions.centerAndZoom.zoom || DEFAULT_ZOOM);
+    !isNull(mapOptions) && !isNull(mapOptions.centerAndZoom) && map.centerAndZoom(new BMap.Point(mapOptions.centerAndZoom.longitude || map_DEFAULT_COORDINATION.longitude, mapOptions.centerAndZoom.latitude || map_DEFAULT_COORDINATION.latitude), mapOptions.centerAndZoom.zoom || map_DEFAULT_ZOOM);
 }
 // CONCATENATED MODULE: ./src/components/baiduMap.js
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var baiduMap_createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function baiduMap_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
@@ -228,7 +228,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     controller: function () {
         /* @ngInject */
         function controller($scope, $element, $attrs, mapScriptService) {
-            _classCallCheck(this, controller);
+            baiduMap_classCallCheck(this, controller);
 
             this.$scope = $scope;
             this.$element = $element;
@@ -237,13 +237,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.mapScriptService = mapScriptService;
         }
 
-        _createClass(controller, [{
+        baiduMap_createClass(controller, [{
             key: '$onInit',
             value: function $onInit() {
                 var _this = this;
 
                 this.mapReady = this.mapScriptService.load().then(function () {
-                    return create(_this.$element.children()[0], _this.mapOptions);
+                    return map_create(_this.$element.children()[0], _this.mapOptions);
                 }).then(function (map) {
                     _this.loaded({
                         map: map
@@ -270,7 +270,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (!this.map) {
                     return;
                 }
-                refresh(this.map, changes.mapOptions.currentValue);
+                map_refresh(this.map, changes.mapOptions.currentValue);
             }
         }, {
             key: '$onDestroy',
@@ -280,22 +280,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'addOverlay',
             value: function addOverlay(marker) {
-                return handleMapOperation(this.map, 'addOverlay', marker);
+                return baiduMap_handleMapOperation(this.map, 'addOverlay', marker);
             }
         }, {
             key: 'removeOverlay',
             value: function removeOverlay(marker) {
-                return handleMapOperation(this.map, 'removeOverlay', marker);
+                return baiduMap_handleMapOperation(this.map, 'removeOverlay', marker);
             }
         }, {
             key: 'addControl',
             value: function addControl(control) {
-                return handleMapOperation(this.map, 'addControl', control);
+                return baiduMap_handleMapOperation(this.map, 'addControl', control);
             }
         }, {
             key: 'removeControl',
             value: function removeControl(control) {
-                return handleMapOperation(this.map, 'removeControl', control);
+                return baiduMap_handleMapOperation(this.map, 'removeControl', control);
             }
         }, {
             key: 'getMap',
@@ -308,7 +308,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }()
 });
 
-function handleMapOperation(map, method) {
+function baiduMap_handleMapOperation(map, method) {
     for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
         args[_key - 2] = arguments[_key];
     }
@@ -321,23 +321,23 @@ function handleMapOperation(map, method) {
 // CONCATENATED MODULE: ./src/helper/transformer.js
 
 
-function transformIcon(icon, field) {
+function transformer_transformIcon(icon, field) {
     var opts = {
         url: icon.url
     };
     nullCheck(icon.url, 'url is required in ' + field);
     nullCheck(icon.size, 'size is required in ' + field);
-    opts.size = transformSize(icon.size, field + '.size');
+    opts.size = transformer_transformSize(icon.size, field + '.size');
     return new BMap.Icon(opts.url, opts.size);
 }
 
-function transformSize(size, field) {
+function transformer_transformSize(size, field) {
     nullCheck(size.width, 'width is required in ' + field);
     nullCheck(size.height, 'height is required in ' + field);
     return new BMap.Size(size.width, size.height);
 }
 
-function transformPoint(point, field) {
+function transformer_transformPoint(point, field) {
     nullCheck(point.longitude, 'longitude is required in ' + field);
     nullCheck(point.latitude, 'latitude is required in ' + field);
     return new BMap.Point(point.longitude, point.latitude);
@@ -377,8 +377,8 @@ function marker_classCallCheck(instance, Constructor) { if (!(instance instanceo
                 nullCheck(this.point, 'point is required for <marker>');
 
                 this.mapCtrl.mapReady.then(function () {
-                    var point = transformPoint(_this.point, '<marker> point');
-                    var opts = transformOptions(_this.options);
+                    var point = transformer_transformPoint(_this.point, '<marker> point');
+                    var opts = marker_transformOptions(_this.options);
                     var marker = _this.marker = new BMap.Marker(point, opts);
                     _this.mapCtrl.addOverlay(marker);
                     return marker;
@@ -404,7 +404,7 @@ function marker_classCallCheck(instance, Constructor) { if (!(instance instanceo
                     return;
                 }
                 if (changes.point && changes.point.currentValue) {
-                    this.marker.setPosition(transformPoint(changes.point.currentValue, '<marker> point'));
+                    this.marker.setPosition(transformer_transformPoint(changes.point.currentValue, '<marker> point'));
                 }
             }
         }, {
@@ -419,16 +419,16 @@ function marker_classCallCheck(instance, Constructor) { if (!(instance instanceo
     }()
 });
 
-function transformOptions(options) {
+function marker_transformOptions(options) {
     var opts = JSON.parse(JSON.stringify(options || {}));
     if (opts.offset) {
-        opts.offset = transformSize(opts.offset, '<marker> options.offset');
+        opts.offset = transformer_transformSize(opts.offset, '<marker> options.offset');
     }
     if (opts.icon) {
-        opts.icon = transformIcon(opts.icon, '<marker> options.icon');
+        opts.icon = transformer_transformIcon(opts.icon, '<marker> options.icon');
     }
     if (opts.shadow) {
-        opts.shadow = transformIcon(opts.shadow, '<marker> options.shadow');
+        opts.shadow = transformer_transformIcon(opts.shadow, '<marker> options.shadow');
     }
     return opts;
 }
@@ -462,7 +462,7 @@ function control_classCallCheck(instance, Constructor) { if (!(instance instance
                 controlTypeCheck(this.type);
 
                 this.mapCtrl.mapReady.then(function () {
-                    return createControl(_this.type.toLowerCase(), _this.options);
+                    return control_createControl(_this.type.toLowerCase(), _this.options);
                 }).then(function (control) {
                     _this.mapCtrl.addControl(control);
                     _this.control = control;
@@ -480,7 +480,7 @@ function control_classCallCheck(instance, Constructor) { if (!(instance instance
     }()
 });
 
-function createControl(type, options) {
+function control_createControl(type, options) {
     if (type === 'navigation') {
         return new BMap.NavigationControl(options);
     }
@@ -521,10 +521,10 @@ var SCRIPT_URL = '//api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js';
     }
 
     //eslint-disable-next-line
-    return window.loadHeatMapPromise = appendScriptTag(SCRIPT_URL);
+    return window.loadHeatMapPromise = heatmapScriptLoader_appendScriptTag(SCRIPT_URL);
 });
 
-function appendScriptTag(url) {
+function heatmapScriptLoader_appendScriptTag(url) {
     return new Promise(function (resolve, reject) {
         var script = document.createElement('script');
         script.type = 'text/javascript';
@@ -533,7 +533,7 @@ function appendScriptTag(url) {
             document.body.removeChild(script);
 
             setTimeout(function () {
-                appendScriptTag(url);
+                heatmapScriptLoader_appendScriptTag(url);
             }, 30000);
         };
         script.onload = resolve;
@@ -543,7 +543,7 @@ function appendScriptTag(url) {
 // CONCATENATED MODULE: ./src/components/heatmap/index.js
 
 
-function createHeatmapOverlay(options) {
+function heatmap_createHeatmapOverlay(options) {
     return heatmapScriptLoader().then(function () {
         return new BMapLib.HeatmapOverlay(options);
     });
@@ -582,11 +582,11 @@ function overlay_classCallCheck(instance, Constructor) { if (!(instance instance
                 this.realType = this.type.toLowerCase();
 
                 this.mapCtrl.mapReady.then(function () {
-                    return createOverlay(_this.realType, _this.options);
+                    return overlay_createOverlay(_this.realType, _this.options);
                 }).then(function (overlay) {
                     _this.mapCtrl.addOverlay(overlay);
                     _this.overlay = overlay;
-                    setExtraData(_this.realType, _this.overlay, _this.dataset);
+                    overlay_setExtraData(_this.realType, _this.overlay, _this.dataset);
                     return overlay;
                 });
             }
@@ -594,7 +594,7 @@ function overlay_classCallCheck(instance, Constructor) { if (!(instance instance
             key: '$onChanges',
             value: function $onChanges(changes) {
                 if (changes.dataset && changes.dataset.currentValue) {
-                    setExtraData(this.realType, this.overlay, changes.dataset.currentValue);
+                    overlay_setExtraData(this.realType, this.overlay, changes.dataset.currentValue);
                 }
             }
         }, {
@@ -608,13 +608,13 @@ function overlay_classCallCheck(instance, Constructor) { if (!(instance instance
     }()
 });
 
-function createOverlay(type, options) {
+function overlay_createOverlay(type, options) {
     if (type === 'heatmap') {
-        return createHeatmapOverlay(options);
+        return heatmap_createHeatmapOverlay(options);
     }
 }
 
-function setExtraData(type, overlay, data) {
+function overlay_setExtraData(type, overlay, data) {
     if (type === 'heatmap') {
         if (data) {
             overlay.setDataSet(data);
@@ -648,14 +648,14 @@ function setExtraData(type, overlay, data) {
 
                 var loadBaiduMapPromise = $rootScope.loadBaiduMapPromise;
                 if (loadBaiduMapPromise) {
-                    return loadBaiduMapPromise.then(displayMap);
+                    return loadBaiduMapPromise.then(mapScript_displayMap);
                 }
 
                 //eslint-disable-next-line
                 return $rootScope.loadBaiduMapPromise = new Promise(function (resolve, reject) {
                     window.baidumapinit = resolve;
                     mapScript_appendScriptTag(MAP_URL);
-                }).then(displayMap);
+                }).then(mapScript_displayMap);
             }
         };
     };
@@ -678,7 +678,7 @@ function mapScript_appendScriptTag(url) {
     document.body.appendChild(script);
 }
 
-function displayMap() {
+function mapScript_displayMap() {
     return Array.prototype.slice.call(document.querySelectorAll('baidu-map')).forEach(function (node) {
         node.querySelector('.baidu-map-offline') && node.removeChild(node.querySelector('.baidu-map-offline'));
         node.querySelector('.baidu-map-instance').style.display = 'block';
@@ -735,7 +735,7 @@ function globalConstants() {
     window.BMAP_PANORAMA_POI_NONE = 'none';
 }
 // CONCATENATED MODULE: ./src/index.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ngBaiduMap", function() { return ngBaiduMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ngBaiduMap", function() { return src_ngBaiduMap; });
 
 
 
@@ -748,10 +748,10 @@ function globalConstants() {
 
 globalConstants();
 
-var moduleName = 'baiduMap';
-external_angular_default.a.module(moduleName, []).provider('mapScriptService', mapScript).component('baiduMap', baiduMap).component('marker', components_marker).component('control', control).component('overlay', overlay);
+var src_moduleName = 'baiduMap';
+external_angular_default.a.module(src_moduleName, []).provider('mapScriptService', mapScript).component('baiduMap', baiduMap).component('marker', components_marker).component('control', control).component('overlay', overlay);
 
-var ngBaiduMap = moduleName;
+var src_ngBaiduMap = src_moduleName;
 
 /***/ })
 /******/ ]);
