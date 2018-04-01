@@ -1,7 +1,7 @@
-import './apidoc.css';
-import {isString} from '../../../fw/helper/object';
+import './apidoc.css'
+import { isString } from '../../../fw/helper/object'
 export default {
-    template: `
+  template: `
     <div class="container">
         <h1 class="page-title">API Documentation</h1>
         <div class="doc">
@@ -10,17 +10,17 @@ export default {
         </div>
     </div>
     `,
-    controller: class {
-        /* @ngInject */
-        constructor($location) {
-            this.$location = $location;
-        }
-
-        $onInit() {
-            if (!isString(this.$location.search().api)) {
-                return this.$location.search('api', 'baidu-map');
-            }
-            this.api = this.$location.search().api;
-        }
+  controller: class {
+    /* @ngInject */
+    constructor($location) {
+      this.$location = $location
     }
-};
+
+    $onInit() {
+      if (!isString(this.$location.search().api)) {
+        return this.$location.search('api', 'baidu-map')
+      }
+      this.api = this.$location.search().api
+    }
+  }
+}

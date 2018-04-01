@@ -1,13 +1,14 @@
-import './apiSidebar.css';
+import './apiSidebar.css'
 export default {
-    bindings: {
-        api: '<'
-    },
-    template: `
+  bindings: {
+    api: '<'
+  },
+  template: `
     <div class="api-nav">
         <div class="api-nav-header">Components</div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'baidu-map'}"><a href="#!/apidoc?api=baidu-map">baidu-map</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'marker'}"><a href="#!/apidoc?api=marker">marker</a></div>
+        <div class="api-nav-item" ng-class="{active: $ctrl.api === 'polyline'}"><a href="#!/apidoc?api=polyline">polyline</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'control'}"><a href="#!/apidoc?api=control">control</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'overlay'}"><a href="#!/apidoc?api=overlay">overlay</a></div>
         <div class="api-nav-header">Models</div>
@@ -19,8 +20,5 @@ export default {
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'icon'}"><a href="#!/apidoc?api=icon">icon</a></div>
     </div>
     `,
-    controller: class {
-        /* @ngInject */
-        constructor() {}
-    }
-};
+  controller: class {}
+}
