@@ -12,14 +12,8 @@
     "dist": "rm -rf dist && webpack --config webpack.config.prod.js",
     "deployDemo": "webpack --env.isDemo && git checkout gh-pages && rm -f *.* && mv build/* ."
   },
-  "files": [
-    "dist/angular-baidu-map.js",
-    "dist/angular-baidu-map.min.js"
-  ],
-  "keywords": [
-    "baidu-map",
-    "angularjs"
-  ],
+  "files": ["dist/angular-baidu-map.js", "dist/angular-baidu-map.min.js"],
+  "keywords": ["baidu-map", "angularjs"],
   "author": "Howard.Zuo",
   "license": "GPL-3.0",
   "bugs": {
