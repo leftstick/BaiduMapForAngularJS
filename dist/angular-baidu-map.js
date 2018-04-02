@@ -125,43 +125,46 @@ var offlineLabel = {
     transform: 'translate(-50%, -50%)'
 };
 // CONCATENATED MODULE: ./src/helper/validate.js
-
 function nullCheck(val, msg) {
-    if (isNull(val)) {
-        throw new Error(msg);
-    }
+  if (isNull(val)) {
+    throw new Error(msg);
+  }
 }
 
-function numberCheck(val, msg) {
-    if (isNumber(val)) {
-        throw new Error(msg);
-    }
+function arrayCheck(val, msg) {
+  if (!isArray(val)) {
+    throw new Error(msg);
+  }
 }
 
 function isNull(obj) {
-    return obj === null || obj === undefined;
+  return obj === null || obj === undefined;
+}
+
+function isUndefined(obj) {
+  return obj === undefined;
 }
 
 function isNumber(obj) {
-    return Object.prototype.toString.call(obj) === '[object Number]';
+  return Object.prototype.toString.call(obj) === '[object Number]';
 }
 
 function isArray(obj) {
-    return Object.prototype.toString.call(obj) === '[object Array]';
+  return Object.prototype.toString.call(obj) === '[object Array]';
 }
 
 var CONTROL_TYPS = ['navigation', 'overviewmap', 'scale', 'maptype', 'copyright', 'geolocation', 'panorama'];
 function controlTypeCheck(type) {
-    if (CONTROL_TYPS.indexOf((type || '').toLowerCase()) < 0) {
-        throw new Error('control type should be one of: [' + CONTROL_TYPS.join(',') + ']');
-    }
+  if (CONTROL_TYPS.indexOf((type || '').toLowerCase()) < 0) {
+    throw new Error('control type should be one of: [' + CONTROL_TYPS.join(',') + ']');
+  }
 }
 
 var OVERLAY_TYPS = ['heatmap'];
 function overlayTypeCheck(type) {
-    if (OVERLAY_TYPS.indexOf((type || '').toLowerCase()) < 0) {
-        throw new Error('overlay type should be one of: [' + OVERLAY_TYPS.join(',') + ']');
-    }
+  if (OVERLAY_TYPS.indexOf((type || '').toLowerCase()) < 0) {
+    throw new Error('overlay type should be one of: [' + OVERLAY_TYPS.join(',') + ']');
+  }
 }
 // CONCATENATED MODULE: ./src/helper/map.js
 
@@ -217,130 +220,139 @@ function baiduMap_classCallCheck(instance, Constructor) { if (!(instance instanc
 
 
 /* harmony default export */ var baiduMap = ({
-    bindings: {
-        offlineTxt: '<',
-        mapOptions: '<',
-        loaded: '&',
-        click: '&'
-    },
-    transclude: true,
-    template: '\n        <div ng-style="$ctrl.style.map" class="baidu-map-instance"></div>\n        <div ng-style="$ctrl.style.offline" class="baidu-map-offline">\n            <label ng-style="$ctrl.style.offlineLabel">{{ $ctrl.offlineTxt || \'NO_NETWORK\' }}</label>\n        </div>\n        <div ng-transclude style="display: none"></div>\n    ',
-    controller: function () {
-        /* @ngInject */
-        function controller($scope, $element, $attrs, mapScriptService) {
-            baiduMap_classCallCheck(this, controller);
+  bindings: {
+    offlineTxt: '<',
+    mapOptions: '<',
+    loaded: '&',
+    click: '&'
+  },
+  transclude: true,
+  template: '\n        <div ng-style="$ctrl.style.map" class="baidu-map-instance"></div>\n        <div ng-style="$ctrl.style.offline" class="baidu-map-offline">\n            <label ng-style="$ctrl.style.offlineLabel">{{ $ctrl.offlineTxt || \'NO_NETWORK\' }}</label>\n        </div>\n        <div ng-transclude style="display: none"></div>\n    ',
+  controller: function () {
+    /* @ngInject */
+    function controller($scope, $element, $attrs, mapScriptService) {
+      baiduMap_classCallCheck(this, controller);
 
-            this.$scope = $scope;
-            this.$element = $element;
-            this.$attrs = $attrs;
-            this.style = style_namespaceObject;
-            this.mapScriptService = mapScriptService;
+      this.$scope = $scope;
+      this.$element = $element;
+      this.$attrs = $attrs;
+      this.style = style_namespaceObject;
+      this.mapScriptService = mapScriptService;
+    }
+
+    baiduMap_createClass(controller, [{
+      key: '$onInit',
+      value: function $onInit() {
+        var _this = this;
+
+        this.mapReady = this.mapScriptService.load().then(function () {
+          return map_create(_this.$element.children()[0], _this.mapOptions);
+        }).then(function (map) {
+          _this.loaded({
+            map: map
+          });
+          _this.$scope.$apply();
+          // eslint-disable-next-line
+          return _this.map = map;
+        }).then(function () {
+          if (!_this.$attrs.click) {
+            return;
+          }
+          var clickListener = _this.clickListener = function (e) {
+            _this.click({
+              e: e
+            });
+            _this.$scope.$apply();
+          };
+          _this.map.addEventListener('click', clickListener);
+        });
+      }
+    }, {
+      key: '$onChanges',
+      value: function $onChanges(changes) {
+        if (!this.map) {
+          return;
         }
+        map_refresh(this.map, changes.mapOptions.currentValue);
+      }
+    }, {
+      key: '$onDestroy',
+      value: function $onDestroy() {
+        this.map.removeEventListener('click', this.clickListener);
+      }
+    }, {
+      key: 'addOverlay',
+      value: function addOverlay(marker) {
+        return baiduMap_handleMapOperation(this.map, 'addOverlay', marker);
+      }
+    }, {
+      key: 'removeOverlay',
+      value: function removeOverlay(marker) {
+        return baiduMap_handleMapOperation(this.map, 'removeOverlay', marker);
+      }
+    }, {
+      key: 'addControl',
+      value: function addControl(control) {
+        return baiduMap_handleMapOperation(this.map, 'addControl', control);
+      }
+    }, {
+      key: 'removeControl',
+      value: function removeControl(control) {
+        return baiduMap_handleMapOperation(this.map, 'removeControl', control);
+      }
+    }, {
+      key: 'getMap',
+      value: function getMap() {
+        return this.map;
+      }
+    }]);
 
-        baiduMap_createClass(controller, [{
-            key: '$onInit',
-            value: function $onInit() {
-                var _this = this;
-
-                this.mapReady = this.mapScriptService.load().then(function () {
-                    return map_create(_this.$element.children()[0], _this.mapOptions);
-                }).then(function (map) {
-                    _this.loaded({
-                        map: map
-                    });
-                    _this.$scope.$apply();
-                    //eslint-disable-next-line
-                    return _this.map = map;
-                }).then(function () {
-                    if (!_this.$attrs.click) {
-                        return;
-                    }
-                    var clickListener = _this.clickListener = function (e) {
-                        _this.click({
-                            e: e
-                        });
-                        _this.$scope.$apply();
-                    };
-                    _this.map.addEventListener('click', clickListener);
-                });
-            }
-        }, {
-            key: '$onChanges',
-            value: function $onChanges(changes) {
-                if (!this.map) {
-                    return;
-                }
-                map_refresh(this.map, changes.mapOptions.currentValue);
-            }
-        }, {
-            key: '$onDestroy',
-            value: function $onDestroy() {
-                this.map.removeEventListener('click', this.clickListener);
-            }
-        }, {
-            key: 'addOverlay',
-            value: function addOverlay(marker) {
-                return baiduMap_handleMapOperation(this.map, 'addOverlay', marker);
-            }
-        }, {
-            key: 'removeOverlay',
-            value: function removeOverlay(marker) {
-                return baiduMap_handleMapOperation(this.map, 'removeOverlay', marker);
-            }
-        }, {
-            key: 'addControl',
-            value: function addControl(control) {
-                return baiduMap_handleMapOperation(this.map, 'addControl', control);
-            }
-        }, {
-            key: 'removeControl',
-            value: function removeControl(control) {
-                return baiduMap_handleMapOperation(this.map, 'removeControl', control);
-            }
-        }, {
-            key: 'getMap',
-            value: function getMap() {
-                return this.map;
-            }
-        }]);
-
-        return controller;
-    }()
+    return controller;
+  }()
 });
 
 function baiduMap_handleMapOperation(map, method) {
-    for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-        args[_key - 2] = arguments[_key];
-    }
+  for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    args[_key - 2] = arguments[_key];
+  }
 
-    return new Promise(function (resolve) {
-        map[method].apply(map, args);
-        resolve();
-    });
+  return new Promise(function (resolve) {
+    map[method].apply(map, args);
+    resolve();
+  });
 }
 // CONCATENATED MODULE: ./src/helper/transformer.js
 
 
 function transformer_transformIcon(icon, field) {
-    var opts = {
-        url: icon.url
-    };
-    nullCheck(icon.url, 'url is required in ' + field);
-    nullCheck(icon.size, 'size is required in ' + field);
-    opts.size = transformer_transformSize(icon.size, field + '.size');
-    return new BMap.Icon(opts.url, opts.size);
+  var opts = {
+    url: icon.url
+  };
+  nullCheck(icon.url, 'url is required in ' + field);
+  nullCheck(icon.size, 'size is required in ' + field);
+  opts.size = transformer_transformSize(icon.size, field + '.size');
+  return new BMap.Icon(opts.url, opts.size);
 }
 
 function transformer_transformSize(size, field) {
-    nullCheck(size.width, 'width is required in ' + field);
-    nullCheck(size.height, 'height is required in ' + field);
-    return new BMap.Size(size.width, size.height);
+  nullCheck(size.width, 'width is required in ' + field);
+  nullCheck(size.height, 'height is required in ' + field);
+  return new BMap.Size(size.width, size.height);
 }
 
 function transformer_transformPoint(point, field) {
+  nullCheck(point.longitude, 'longitude is required in ' + field);
+  nullCheck(point.latitude, 'latitude is required in ' + field);
+  return new BMap.Point(point.longitude, point.latitude);
+}
+
+function transformer_transformPoints(points, field) {
+  arrayCheck(points, field + ' must be Array');
+  return points.map(function (point) {
     nullCheck(point.longitude, 'longitude is required in ' + field);
     nullCheck(point.latitude, 'latitude is required in ' + field);
     return new BMap.Point(point.longitude, point.latitude);
+  });
 }
 // CONCATENATED MODULE: ./src/components/marker.js
 var marker_createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -351,87 +363,481 @@ function marker_classCallCheck(instance, Constructor) { if (!(instance instanceo
 
 
 /* harmony default export */ var components_marker = ({
-    bindings: {
-        point: '<',
-        options: '<',
-        click: '&'
-    },
-    require: {
-        mapCtrl: '^baiduMap'
-    },
-    template: '',
-    controller: function () {
-        /* @ngInject */
-        function controller($scope, $attrs) {
-            marker_classCallCheck(this, controller);
+  bindings: {
+    point: '<',
+    options: '<',
+    loaded: '&',
+    click: '&'
+  },
+  require: {
+    mapCtrl: '^baiduMap'
+  },
+  template: '',
+  controller: function () {
+    /* @ngInject */
+    function controller($scope, $attrs) {
+      marker_classCallCheck(this, controller);
 
-            this.$scope = $scope;
-            this.$attrs = $attrs;
+      this.$scope = $scope;
+      this.$attrs = $attrs;
+    }
+
+    marker_createClass(controller, [{
+      key: '$onInit',
+      value: function $onInit() {
+        var _this = this;
+
+        nullCheck(this.point, 'point is required for <marker>');
+
+        this.mapCtrl.mapReady.then(function () {
+          var point = transformer_transformPoint(_this.point, '<marker> point');
+          var opts = marker_transformOptions(_this.options);
+          var marker = _this.marker = new BMap.Marker(point, opts);
+          _this.mapCtrl.addOverlay(marker);
+          return marker;
+        }).then(function (marker) {
+          _this.loaded({
+            marker: marker
+          });
+          _this.$scope.$apply();
+
+          if (!_this.$attrs.click) {
+            return;
+          }
+          _this.clickHandler = function (e) {
+            _this.click({
+              e: e,
+              marker: marker,
+              map: _this.mapCtrl.getMap()
+            });
+            _this.$scope.$apply();
+          };
+          marker.addEventListener('click', _this.clickHandler);
+        });
+      }
+    }, {
+      key: '$onChanges',
+      value: function $onChanges(changes) {
+        if (!this.marker) {
+          return;
         }
+        if (changes.point && changes.point.currentValue) {
+          this.marker.setPosition(transformer_transformPoint(changes.point.currentValue, '<marker> point'));
+        }
+      }
+    }, {
+      key: '$onDestroy',
+      value: function $onDestroy() {
+        this.marker.removeEventListener('click', this.clickHandler);
+        this.mapCtrl.removeOverlay(this.marker);
+      }
+    }]);
 
-        marker_createClass(controller, [{
-            key: '$onInit',
-            value: function $onInit() {
-                var _this = this;
-
-                nullCheck(this.point, 'point is required for <marker>');
-
-                this.mapCtrl.mapReady.then(function () {
-                    var point = transformer_transformPoint(_this.point, '<marker> point');
-                    var opts = marker_transformOptions(_this.options);
-                    var marker = _this.marker = new BMap.Marker(point, opts);
-                    _this.mapCtrl.addOverlay(marker);
-                    return marker;
-                }).then(function (marker) {
-                    if (!_this.$attrs.click) {
-                        return;
-                    }
-                    _this.clickHandler = function (e) {
-                        _this.click({
-                            e: e,
-                            marker: marker,
-                            map: _this.mapCtrl.getMap()
-                        });
-                        _this.$scope.$apply();
-                    };
-                    marker.addEventListener('click', _this.clickHandler);
-                });
-            }
-        }, {
-            key: '$onChanges',
-            value: function $onChanges(changes) {
-                if (!this.marker) {
-                    return;
-                }
-                if (changes.point && changes.point.currentValue) {
-                    this.marker.setPosition(transformer_transformPoint(changes.point.currentValue, '<marker> point'));
-                }
-            }
-        }, {
-            key: '$onDestroy',
-            value: function $onDestroy() {
-                this.marker.removeEventListener('click', this.clickHandler);
-                this.mapCtrl.removeOverlay(this.marker);
-            }
-        }]);
-
-        return controller;
-    }()
+    return controller;
+  }()
 });
 
 function marker_transformOptions(options) {
-    var opts = JSON.parse(JSON.stringify(options || {}));
-    if (opts.offset) {
-        opts.offset = transformer_transformSize(opts.offset, '<marker> options.offset');
-    }
-    if (opts.icon) {
-        opts.icon = transformer_transformIcon(opts.icon, '<marker> options.icon');
-    }
-    if (opts.shadow) {
-        opts.shadow = transformer_transformIcon(opts.shadow, '<marker> options.shadow');
-    }
-    return opts;
+  var opts = JSON.parse(JSON.stringify(options || {}));
+  if (opts.offset) {
+    opts.offset = transformer_transformSize(opts.offset, '<marker> options.offset');
+  }
+  if (opts.icon) {
+    opts.icon = transformer_transformIcon(opts.icon, '<marker> options.icon');
+  }
+  if (opts.shadow) {
+    opts.shadow = transformer_transformIcon(opts.shadow, '<marker> options.shadow');
+  }
+  return opts;
 }
+// CONCATENATED MODULE: ./src/components/polyline.js
+var polyline_createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function polyline_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+
+/* harmony default export */ var components_polyline = ({
+  bindings: {
+    points: '<',
+    options: '<',
+    loaded: '&'
+  },
+  require: {
+    mapCtrl: '^baiduMap'
+  },
+  template: '',
+  controller: function () {
+    /* @ngInject */
+    function controller($scope, $attrs) {
+      polyline_classCallCheck(this, controller);
+
+      this.$scope = $scope;
+      this.$attrs = $attrs;
+    }
+
+    polyline_createClass(controller, [{
+      key: '$onInit',
+      value: function $onInit() {
+        var _this = this;
+
+        nullCheck(this.points, 'points is required for <polyline>');
+
+        this.mapCtrl.mapReady.then(function () {
+          var points = transformer_transformPoints(_this.points, '<polyline> points');
+          var opts = _this.options;
+          var polyline = _this.polyline = new BMap.Polyline(points, opts);
+          _this.mapCtrl.addOverlay(polyline);
+          return polyline;
+        }).then(function (polyline) {
+          _this.loaded({
+            polyline: polyline
+          });
+          _this.$scope.$apply();
+        });
+      }
+    }, {
+      key: '$onChanges',
+      value: function $onChanges(changes) {
+        if (!this.polyline) {
+          return;
+        }
+        if (changes.points && changes.points.currentValue) {
+          this.polyline.setPath(transformer_transformPoints(changes.points.currentValue, '<polyline> points'));
+        }
+        if (!changes.options || !changes.options.currentValue) {
+          return;
+        }
+        if (!isUndefined(changes.options.currentValue.strokeColor)) {
+          this.polyline.setStrokeColor(changes.options.currentValue.strokeColor);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeWeight)) {
+          this.polyline.setStrokeWeight(changes.options.currentValue.strokeWeight);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeOpacity)) {
+          this.polyline.setStrokeOpacity(changes.options.currentValue.strokeOpacity);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeStyle)) {
+          this.polyline.setStrokeStyle(changes.options.currentValue.strokeStyle);
+        }
+
+        if (!isUndefined(changes.options.currentValue.enableMassClear)) {
+          this.polyline[changes.options.currentValue.enableMassClear ? 'enableMassClear' : 'disableMassClear']();
+        }
+        if (!isUndefined(changes.options.currentValue.enableEditing)) {
+          this.polyline[changes.options.currentValue.enableEditing ? 'enableEditing' : 'disableEditing']();
+        }
+      }
+    }, {
+      key: '$onDestroy',
+      value: function $onDestroy() {
+        this.mapCtrl.removeOverlay(this.polyline);
+      }
+    }]);
+
+    return controller;
+  }()
+});
+// CONCATENATED MODULE: ./src/components/circle.js
+var circle_createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function circle_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+
+/* harmony default export */ var components_circle = ({
+  bindings: {
+    center: '<',
+    radius: '<',
+    options: '<',
+    loaded: '&'
+  },
+  require: {
+    mapCtrl: '^baiduMap'
+  },
+  template: '',
+  controller: function () {
+    /* @ngInject */
+    function controller($scope, $attrs) {
+      circle_classCallCheck(this, controller);
+
+      this.$scope = $scope;
+      this.$attrs = $attrs;
+    }
+
+    circle_createClass(controller, [{
+      key: '$onInit',
+      value: function $onInit() {
+        var _this = this;
+
+        nullCheck(this.center, 'center is required for <circle>');
+        nullCheck(this.radius, 'radius is required for <circle>');
+
+        this.mapCtrl.mapReady.then(function () {
+          var center = _this.center,
+              radius = _this.radius,
+              options = _this.options;
+
+          var point = transformer_transformPoint(center, '<circle> center');
+          var circle = _this.circle = new BMap.Circle(point, radius, options);
+          _this.mapCtrl.addOverlay(circle);
+          return circle;
+        }).then(function (circle) {
+          _this.loaded({
+            circle: circle
+          });
+          _this.$scope.$apply();
+        });
+      }
+    }, {
+      key: '$onChanges',
+      value: function $onChanges(changes) {
+        if (!this.circle) {
+          return;
+        }
+        if (changes.center && changes.center.currentValue) {
+          this.circle.setCenter(transformer_transformPoint(changes.center.currentValue, '<circle> center'));
+        }
+        if (changes.radius && changes.radius.currentValue) {
+          this.circle.setRadius(changes.radius.currentValue);
+        }
+        if (!changes.options || !changes.options.currentValue) {
+          return;
+        }
+
+        if (!isUndefined(changes.options.currentValue.strokeColor)) {
+          this.circle.setStrokeColor(changes.options.currentValue.strokeColor);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeWeight)) {
+          this.circle.setStrokeWeight(changes.options.currentValue.strokeWeight);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeOpacity)) {
+          this.circle.setStrokeOpacity(changes.options.currentValue.strokeOpacity);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeStyle)) {
+          this.circle.setStrokeStyle(changes.options.currentValue.strokeStyle);
+        }
+        if (!isUndefined(changes.options.currentValue.fillOpacity)) {
+          this.circle.setFillOpacity(changes.options.currentValue.fillOpacity);
+        }
+        if (!isUndefined(changes.options.currentValue.fillColor)) {
+          this.circle.setFillColor(changes.options.currentValue.fillColor);
+        }
+
+        if (!isUndefined(changes.options.currentValue.enableMassClear)) {
+          this.circle[changes.options.currentValue.enableMassClear ? 'enableMassClear' : 'disableMassClear']();
+        }
+
+        if (!isUndefined(changes.options.currentValue.enableEditing)) {
+          this.circle[changes.options.currentValue.enableEditing ? 'enableEditing' : 'disableEditing']();
+        }
+      }
+    }, {
+      key: '$onDestroy',
+      value: function $onDestroy() {
+        this.mapCtrl.removeOverlay(this.circle);
+      }
+    }]);
+
+    return controller;
+  }()
+});
+// CONCATENATED MODULE: ./src/components/polygon.js
+var polygon_createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function polygon_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+
+/* harmony default export */ var components_polygon = ({
+  bindings: {
+    points: '<',
+    options: '<',
+    loaded: '&'
+  },
+  require: {
+    mapCtrl: '^baiduMap'
+  },
+  template: '',
+  controller: function () {
+    /* @ngInject */
+    function controller($scope, $attrs) {
+      polygon_classCallCheck(this, controller);
+
+      this.$scope = $scope;
+      this.$attrs = $attrs;
+    }
+
+    polygon_createClass(controller, [{
+      key: '$onInit',
+      value: function $onInit() {
+        var _this = this;
+
+        nullCheck(this.points, 'points is required for <polygon>');
+
+        this.mapCtrl.mapReady.then(function () {
+          var points = transformer_transformPoints(_this.points, '<polygon> points');
+          var opts = _this.options;
+          var polygon = _this.polygon = new BMap.Polygon(points, opts);
+          _this.mapCtrl.addOverlay(polygon);
+          return polygon;
+        }).then(function (polygon) {
+          _this.loaded({
+            polygon: polygon
+          });
+          _this.$scope.$apply();
+        });
+      }
+    }, {
+      key: '$onChanges',
+      value: function $onChanges(changes) {
+        if (!this.polygon) {
+          return;
+        }
+        if (changes.points && changes.points.currentValue) {
+          this.polygon.setPath(transformer_transformPoints(changes.points.currentValue, '<polygon> points'));
+        }
+        if (!changes.options || !changes.options.currentValue) {
+          return;
+        }
+        if (!isUndefined(changes.options.currentValue.strokeColor)) {
+          this.polygon.setStrokeColor(changes.options.currentValue.strokeColor);
+        }
+        if (!isUndefined(changes.options.currentValue.fillColor)) {
+          this.polygon.setFillColor(changes.options.currentValue.fillColor);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeWeight)) {
+          this.polygon.setStrokeWeight(changes.options.currentValue.strokeWeight);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeOpacity)) {
+          this.polygon.setStrokeOpacity(changes.options.currentValue.strokeOpacity);
+        }
+        if (!isUndefined(changes.options.currentValue.fillOpacity)) {
+          this.polygon.setFillOpacity(changes.options.currentValue.fillOpacity);
+        }
+        if (!isUndefined(changes.options.currentValue.strokeStyle)) {
+          this.polygon.setStrokeStyle(changes.options.currentValue.strokeStyle);
+        }
+
+        if (!isUndefined(changes.options.currentValue.enableMassClear)) {
+          this.polygon[changes.options.currentValue.enableMassClear ? 'enableMassClear' : 'disableMassClear']();
+        }
+        if (!isUndefined(changes.options.currentValue.enableEditing)) {
+          this.polygon[changes.options.currentValue.enableEditing ? 'enableEditing' : 'disableEditing']();
+        }
+      }
+    }, {
+      key: '$onDestroy',
+      value: function $onDestroy() {
+        this.mapCtrl.removeOverlay(this.polygon);
+      }
+    }]);
+
+    return controller;
+  }()
+});
+// CONCATENATED MODULE: ./src/helper/heatmapScriptLoader.js
+var SCRIPT_URL = '//api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js';
+
+/* harmony default export */ var heatmapScriptLoader = (function () {
+  var loadHeatMapPromise = window.loadHeatMapPromise;
+  if (loadHeatMapPromise) {
+    return loadHeatMapPromise;
+  }
+
+  // eslint-disable-next-line
+  return window.loadHeatMapPromise = heatmapScriptLoader_appendScriptTag(SCRIPT_URL);
+});
+
+function heatmapScriptLoader_appendScriptTag(url) {
+  return new Promise(function (resolve, reject) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    script.onerror = function () {
+      document.body.removeChild(script);
+
+      setTimeout(function () {
+        heatmapScriptLoader_appendScriptTag(url);
+      }, 30000);
+    };
+    script.onload = resolve;
+    document.body.appendChild(script);
+  });
+}
+// CONCATENATED MODULE: ./src/components/heatmap.js
+var heatmap_createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function heatmap_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+/* harmony default export */ var heatmap = ({
+  bindings: {
+    dataset: '<',
+    options: '<',
+    loaded: '&'
+  },
+  require: {
+    mapCtrl: '^baiduMap'
+  },
+  template: '',
+  controller: function () {
+    /* @ngInject */
+    function controller($scope, $attrs) {
+      heatmap_classCallCheck(this, controller);
+
+      this.$scope = $scope;
+      this.$attrs = $attrs;
+    }
+
+    heatmap_createClass(controller, [{
+      key: '$onInit',
+      value: function $onInit() {
+        var _this = this;
+
+        this.mapCtrl.mapReady.then(function () {
+          return heatmapScriptLoader();
+        }).then(function () {
+          var heatmap = _this.heatmap = new BMapLib.HeatmapOverlay(_this.options);
+          _this.mapCtrl.addOverlay(heatmap);
+          return heatmap;
+        }).then(function (heatmap) {
+          _this.loaded({
+            heatmap: heatmap
+          });
+          _this.$scope.$apply();
+          if (_this.dataset) {
+            heatmap.setDataSet(_this.dataset);
+          }
+        });
+      }
+    }, {
+      key: '$onChanges',
+      value: function $onChanges(changes) {
+        if (!this.heatmap) {
+          return;
+        }
+        if (changes.options && changes.options.currentValue) {
+          this.heatmap.setOptions(changes.options.currentValue);
+        }
+        if (changes.dataset && changes.dataset.currentValue) {
+          this.heatmap.setDataSet(changes.dataset.currentValue);
+        }
+      }
+    }, {
+      key: '$onDestroy',
+      value: function $onDestroy() {
+        this.mapCtrl.removeOverlay(this.heatmap);
+      }
+    }]);
+
+    return controller;
+  }()
+});
 // CONCATENATED MODULE: ./src/components/control.js
 var control_createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -509,44 +915,13 @@ function control_createControl(type, options) {
         return new BMap.PanoramaControl(options);
     }
 }
-// CONCATENATED MODULE: ./src/helper/heatmapScriptLoader.js
-
-var SCRIPT_URL = '//api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js';
-
-/* harmony default export */ var heatmapScriptLoader = (function () {
-
-    var loadHeatMapPromise = window.loadHeatMapPromise;
-    if (loadHeatMapPromise) {
-        return loadHeatMapPromise;
-    }
-
-    //eslint-disable-next-line
-    return window.loadHeatMapPromise = heatmapScriptLoader_appendScriptTag(SCRIPT_URL);
-});
-
-function heatmapScriptLoader_appendScriptTag(url) {
-    return new Promise(function (resolve, reject) {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
-        script.onerror = function () {
-            document.body.removeChild(script);
-
-            setTimeout(function () {
-                heatmapScriptLoader_appendScriptTag(url);
-            }, 30000);
-        };
-        script.onload = resolve;
-        document.body.appendChild(script);
-    });
-}
 // CONCATENATED MODULE: ./src/components/heatmap/index.js
 
 
 function heatmap_createHeatmapOverlay(options) {
-    return heatmapScriptLoader().then(function () {
-        return new BMapLib.HeatmapOverlay(options);
-    });
+  return heatmapScriptLoader().then(function () {
+    return new BMapLib.HeatmapOverlay(options);
+  });
 }
 // CONCATENATED MODULE: ./src/components/overlay.js
 var overlay_createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -557,69 +932,69 @@ function overlay_classCallCheck(instance, Constructor) { if (!(instance instance
 
 
 /* harmony default export */ var overlay = ({
-    bindings: {
-        type: '@',
-        options: '<',
-        dataset: '<'
-    },
-    require: {
-        mapCtrl: '^baiduMap'
-    },
-    template: '',
-    controller: function () {
-        /* @ngInject */
-        function controller() {
-            overlay_classCallCheck(this, controller);
+  bindings: {
+    type: '@',
+    options: '<',
+    dataset: '<'
+  },
+  require: {
+    mapCtrl: '^baiduMap'
+  },
+  template: '',
+  controller: function () {
+    function controller() {
+      overlay_classCallCheck(this, controller);
+    }
+
+    overlay_createClass(controller, [{
+      key: '$onInit',
+      value: function $onInit() {
+        var _this = this;
+
+        overlayTypeCheck(this.type);
+
+        this.realType = this.type.toLowerCase();
+
+        this.mapCtrl.mapReady.then(function () {
+          return overlay_createOverlay(_this.realType, _this.options);
+        }).then(function (overlay) {
+          _this.mapCtrl.addOverlay(overlay);
+          _this.overlay = overlay;
+          overlay_setExtraData(_this.realType, _this.overlay, _this.dataset);
+          return overlay;
+        });
+      }
+    }, {
+      key: '$onChanges',
+      value: function $onChanges(changes) {
+        if (changes.dataset && changes.dataset.currentValue) {
+          overlay_setExtraData(this.realType, this.overlay, changes.dataset.currentValue);
         }
+      }
+    }, {
+      key: '$onDestroy',
+      value: function $onDestroy() {
+        this.mapCtrl.removeOverlay(this.overlay);
+      }
+    }]);
 
-        overlay_createClass(controller, [{
-            key: '$onInit',
-            value: function $onInit() {
-                var _this = this;
-
-                overlayTypeCheck(this.type);
-
-                this.realType = this.type.toLowerCase();
-
-                this.mapCtrl.mapReady.then(function () {
-                    return overlay_createOverlay(_this.realType, _this.options);
-                }).then(function (overlay) {
-                    _this.mapCtrl.addOverlay(overlay);
-                    _this.overlay = overlay;
-                    overlay_setExtraData(_this.realType, _this.overlay, _this.dataset);
-                    return overlay;
-                });
-            }
-        }, {
-            key: '$onChanges',
-            value: function $onChanges(changes) {
-                if (changes.dataset && changes.dataset.currentValue) {
-                    overlay_setExtraData(this.realType, this.overlay, changes.dataset.currentValue);
-                }
-            }
-        }, {
-            key: '$onDestroy',
-            value: function $onDestroy() {
-                this.mapCtrl.removeOverlay(this.overlay);
-            }
-        }]);
-
-        return controller;
-    }()
+    return controller;
+  }()
 });
 
 function overlay_createOverlay(type, options) {
-    if (type === 'heatmap') {
-        return heatmap_createHeatmapOverlay(options);
-    }
+  if (type === 'heatmap') {
+    console.warn('heatmap type is deprecated, please try with new <heatmap /> component, see: https://leftstick.github.io/BaiduMapForAngularJS/#!/apidoc?api=heatmap');
+    return heatmap_createHeatmapOverlay(options);
+  }
 }
 
 function overlay_setExtraData(type, overlay, data) {
-    if (type === 'heatmap') {
-        if (data) {
-            overlay.setDataSet(data);
-        }
+  if (type === 'heatmap') {
+    if (data) {
+      overlay.setDataSet(data);
     }
+  }
 }
 // CONCATENATED MODULE: ./src/provider/mapScript.js
 
@@ -746,10 +1121,14 @@ function globalConstants() {
 
 
 
+
+
+
+
 globalConstants();
 
 var src_moduleName = 'baiduMap';
-external_angular_default.a.module(src_moduleName, []).provider('mapScriptService', mapScript).component('baiduMap', baiduMap).component('marker', components_marker).component('control', control).component('overlay', overlay);
+external_angular_default.a.module(src_moduleName, []).provider('mapScriptService', mapScript).component('baiduMap', baiduMap).component('marker', components_marker).component('polyline', components_polyline).component('circle', components_circle).component('polygon', components_polygon).component('heatmap', heatmap).component('control', control).component('overlay', overlay);
 
 var src_ngBaiduMap = src_moduleName;
 
