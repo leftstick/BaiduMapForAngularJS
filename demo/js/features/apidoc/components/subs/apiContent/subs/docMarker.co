@@ -13,7 +13,7 @@ export default {
     <h2 class="title">Usage</h2>
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map map-options="{expression}"&gt;
-    &lt;marker point="{expression}" options="{expression}" click="{expression}"&gt;&lt;/marker&gt;    
+    &lt;marker point="{expression}" options="{expression}" loaded="{expression}" click="{expression}"&gt;&lt;/marker&gt;    
 &lt;/baidu-map&gt;</code></pre>
     </div>
     <h2 class="title">Attributes</h2>
@@ -38,6 +38,11 @@ export default {
                 <td>
                 Literal for constructing marker. See <a href="#!/apidoc?api=marker-options">MarkerOptions</a>
                 </td>
+            </tr>
+            <tr>
+                <td>loaded</td>
+                <td><span class="label">expression</span></td>
+                <td>Expression to evaluate upon marker load event. (The object passed to this callback, <code>marker</code> for instance of <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a3b2" target="_blank">BMap.Marker</a>)</td>
             </tr>
             <tr>
                 <td>click</td>

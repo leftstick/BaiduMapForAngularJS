@@ -28,13 +28,13 @@ export default {
             <tr>
                 <td>type</td>
                 <td><span class="label required">string</span></td>
-                <td><p class="line-text">What kind of overlay to be added to the map. Available options: <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html" target="_blank">heatmap</a></p> </td>
+                <td><p class="line-text">What kind of overlay to be added to the map. Available options: <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html" target="_blank">heatmap</a>(deprecated, use <code>&lt;heatmap /&gt;</code> instead)</p> </td>
             </tr>
             <tr>
                 <td>options</td>
                 <td><span class="label">expression</span></td>
                 <td>
-                <p class="line-text">Literal for constructing <code>overlay</code>. See <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html" target="_blank">HeatmapOverlayOptions</a></p>
+                <p class="line-text">Literal for constructing <code>overlay</code>. See <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html" target="_blank">HeatmapOverlayOptions</a>(deprecated, use <code>&lt;heatmap options="{expression}"/&gt;</code> instead)</p>
                 </td>
             </tr>
         </tbody>
