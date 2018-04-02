@@ -7,6 +7,7 @@ import docMapOptions from './components/subs/apiContent/subs/docMapOptions'
 import docCenterAndZoom from './components/subs/apiContent/subs/docCenterAndZoom'
 import docMarker from './components/subs/apiContent/subs/docMarker'
 import docPolyline from './components/subs/apiContent/subs/docPolyline'
+import docCircle from './components/subs/apiContent/subs/docCircle'
 import docPoint from './components/subs/apiContent/subs/docPoint'
 import docMarkerOptions from './components/subs/apiContent/subs/docMarkerOptions'
 import docSize from './components/subs/apiContent/subs/docSize'
@@ -27,6 +28,7 @@ export default {
     docCenterAndZoom,
     docMarker,
     docPolyline,
+    docCircle,
     docPoint,
     docMarkerOptions,
     docSize,

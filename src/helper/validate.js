@@ -14,6 +14,10 @@ export function isNull(obj) {
   return obj === null || obj === undefined
 }
 
+export function isUndefined(obj) {
+  return obj === undefined
+}
+
 export function isNumber(obj) {
   return Object.prototype.toString.call(obj) === '[object Number]'
 }
