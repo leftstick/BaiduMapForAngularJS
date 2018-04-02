@@ -21,6 +21,7 @@
     ]
   },
   "globals": {
-    "BMap": true
+    "BMap": true,
+    "BMapLib": true
   }
 }

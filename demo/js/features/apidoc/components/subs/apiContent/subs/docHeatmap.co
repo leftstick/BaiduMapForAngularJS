@@ -1,17 +1,12 @@
-const NEW_SHANGHAI_INTERNATIONAL_TOWER = {
-  longitude: 116.418261,
-  latitude: 39.921984
-}
-
 export default {
   template: `
     <p>
-        The <code>overlay</code> component is sub-component of <code>baidu-map</code>. It is used to add <code>BMap.Overlay</code> to the map.
+        The <code>heatmap</code> component is sub-component of <code>baidu-map</code>. It is used to add <code>BMapLib.HeatmapOverlay</code> to the map.
     </p>
     <h2 class="title">Usage</h2>
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map map-options="{expression}"&gt;
-    &lt;overlay type="{string}" options="{expression}" dataset="{expression}"&gt;&lt;overlay&gt;    
+    &lt;heatmap options="{expression}" dataset="{expression}" loaded="{expression}"&gt;&lt;heatmap&gt;    
 &lt;/baidu-map&gt;</code></pre>
     </div>
     <h2 class="title">Attributes</h2>
@@ -26,26 +21,31 @@ export default {
         </thead>
         <tbody>
             <tr>
-                <td>type</td>
-                <td><span class="label required">string</span></td>
-                <td><p class="line-text">What kind of overlay to be added to the map. Available options: <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html" target="_blank">heatmap</a></p> </td>
+                <td>options</td>
+                <td><span class="label required">expression</span></td>
+                <td>Literal for constructing heatmap. See <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html">options</a></td>
             </tr>
             <tr>
-                <td>options</td>
+                <td>dataset</td>
                 <td><span class="label">expression</span></td>
                 <td>
-                <p class="line-text">Literal for constructing <code>overlay</code>. See <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html" target="_blank">HeatmapOverlayOptions</a></p>
+                Data for displaying this heatmap. See <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html">dataset</a>
                 </td>
+            </tr>
+            <tr>
+                <td>loaded</td>
+                <td><span class="label">expression</span></td>
+                <td>Expression to evaluate upon heatmap loaded event. (The object passed to this callback, <code>heatmap</code> for instance of <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html" target="_blank">BMapLib.HeatmapOverlay</a>)</td>
             </tr>
         </tbody>
     </table>
     <h2 class="title">Example</h2>
     <baidu-map map-options="$ctrl.opts">
-        <overlay type="heatmap" options="$ctrl.heatmapOpts" dataset="$ctrl.dataSet"></overlay>
+        <heatmap options="$ctrl.heatmapOpts" dataset="$ctrl.heatmapDataset" loaded="$ctrl.heatmapLoaded(heatmap)"></heatmap>
     </baidu-map>
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map map-options="opts"&gt;
-    &lt;overlay type="heatmap" options="heatmapOpts" dataset="dataSet"&gt;&lt;/overlay&gt;
+    &lt;heatmap options="heatmapOpts" dataset="heatmapDataset" loaded="heatmapLoaded(heatmap)"&gt;&lt;/heatmap&gt;
 &lt;/baidu-map&gt;</code></pre>
     </div>
     <br/>
@@ -55,99 +55,104 @@ export default {
         $scope.opts = {
             centerAndZoom: {
                 longitude: 116.418261,
-                latitude: 39.921984
-                zoom: 16
+                latitude: 39.921984,
+                zoom: 15
             }
         };
 
+        $scope.heatmapDataset = {
+            data: [
+                {
+                    lng: 116.421674,
+                    lat: 39.924396,
+                    count: 21
+                },
+                {
+                    lng: 116.427268,
+                    lat: 39.92267,
+                    count: 1
+                },
+                {
+                    lng: 116.417721,
+                    lat: 39.920034,
+                    count: 51
+                },
+                {
+                    lng: 116.412456,
+                    lat: 39.92667,
+                    count: 7
+                },
+                {
+                    lng: 116.420432,
+                    lat: 39.919114,
+                    count: 11
+                },
+                {
+                    lng: 116.425013,
+                    lat: 39.921611,
+                    count: 35
+                },
+                {
+                    lng: 116.418733,
+                    lat: 39.931037,
+                    count: 22
+                },
+                {
+                    lng: 116.419336,
+                    lat: 39.931134,
+                    count: 4
+                },
+                {
+                    lng: 116.413557,
+                    lat: 39.923254,
+                    count: 5
+                },
+                {
+                    lng: 116.418367,
+                    lat: 39.92943,
+                    count: 3
+                },
+                {
+                    lng: 116.424312,
+                    lat: 39.919621,
+                    count: 100
+                },
+                {
+                    lng: 116.423874,
+                    lat: 39.919447,
+                    count: 87
+                },
+                {
+                    lng: 116.424225,
+                    lat: 39.923091,
+                    count: 32
+                },
+                {
+                    lng: 116.417801,
+                    lat: 39.921854,
+                    count: 44
+                },
+                {
+                    lng: 116.417129,
+                    lat: 39.928227,
+                    count: 21
+                },
+                {
+                    lng: 116.426426,
+                    lat: 39.922286,
+                    count: 80
+                }],
+            max: 100
+        };
+        
+        //below are for heatmap
         $scope.heatmapOpts = {
             visible: true
         };
 
-        $scope.dataSet = {
-                data: [
-                    {
-                        lng: 116.421674,
-                        lat: 39.924396,
-                        count: 21
-                    },
-                    {
-                        lng: 116.427268,
-                        lat: 39.92267,
-                        count: 1
-                    },
-                    {
-                        lng: 116.417721,
-                        lat: 39.920034,
-                        count: 51
-                    },
-                    {
-                        lng: 116.412456,
-                        lat: 39.92667,
-                        count: 7
-                    },
-                    {
-                        lng: 116.420432,
-                        lat: 39.919114,
-                        count: 11
-                    },
-                    {
-                        lng: 116.425013,
-                        lat: 39.921611,
-                        count: 35
-                    },
-                    {
-                        lng: 116.418733,
-                        lat: 39.931037,
-                        count: 22
-                    },
-                    {
-                        lng: 116.419336,
-                        lat: 39.931134,
-                        count: 4
-                    },
-                    {
-                        lng: 116.413557,
-                        lat: 39.923254,
-                        count: 5
-                    },
-                    {
-                        lng: 116.418367,
-                        lat: 39.92943,
-                        count: 3
-                    },
-                    {
-                        lng: 116.424312,
-                        lat: 39.919621,
-                        count: 100
-                    },
-                    {
-                        lng: 116.423874,
-                        lat: 39.919447,
-                        count: 87
-                    },
-                    {
-                        lng: 116.424225,
-                        lat: 39.923091,
-                        count: 32
-                    },
-                    {
-                        lng: 116.417801,
-                        lat: 39.921854,
-                        count: 44
-                    },
-                    {
-                        lng: 116.417129,
-                        lat: 39.928227,
-                        count: 21
-                    },
-                    {
-                        lng: 116.426426,
-                        lat: 39.922286,
-                        count: 80
-                    }],
-                max: 100
-            };
+        $scope.heatmapLoaded = function(heatmap) {
+            console.log('heatmap loaded', heatmap)
+        };
     }
 ]);</code></pre>
     </div>
@@ -157,14 +162,13 @@ export default {
     constructor() {
       this.opts = {
         centerAndZoom: {
-          ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
-          zoom: 16
+          longitude: 116.418261,
+          latitude: 39.921984,
+          zoom: 15
         }
       }
-      this.heatmapOpts = {
-        visible: true
-      }
-      this.dataSet = {
+
+      this.heatmapDataset = {
         data: [
           {
             lng: 116.418261,
@@ -338,6 +342,15 @@ export default {
           }
         ],
         max: 100
+      }
+
+      // below are for heatmap
+      this.heatmapOpts = {
+        visible: true
+      }
+
+      this.heatmapLoaded = function(heatmap) {
+        console.log('heatmap loaded', heatmap)
       }
     }
   }

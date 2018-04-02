@@ -9,6 +9,7 @@ import docMarker from './components/subs/apiContent/subs/docMarker'
 import docPolyline from './components/subs/apiContent/subs/docPolyline'
 import docCircle from './components/subs/apiContent/subs/docCircle'
 import docPolygon from './components/subs/apiContent/subs/docPolygon'
+import docHeatmap from './components/subs/apiContent/subs/docHeatmap'
 import docPoint from './components/subs/apiContent/subs/docPoint'
 import docMarkerOptions from './components/subs/apiContent/subs/docMarkerOptions'
 import docSize from './components/subs/apiContent/subs/docSize'
@@ -31,6 +32,7 @@ export default {
     docPolyline,
     docCircle,
     docPolygon,
+    docHeatmap,
     docPoint,
     docMarkerOptions,
     docSize,

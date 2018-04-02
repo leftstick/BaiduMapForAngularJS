@@ -5,6 +5,7 @@ import marker from './components/marker'
 import polyline from './components/polyline'
 import circle from './components/circle'
 import polygon from './components/polygon'
+import heatmap from './components/heatmap'
 import control from './components/control'
 import overlay from './components/overlay'
 import mapScriptProvider from './provider/mapScript'
@@ -22,6 +23,7 @@ angular
   .component('polyline', polyline)
   .component('circle', circle)
   .component('polygon', polygon)
+  .component('heatmap', heatmap)
   .component('control', control)
   .component('overlay', overlay)
 

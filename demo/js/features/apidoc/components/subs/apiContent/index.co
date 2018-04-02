@@ -14,6 +14,7 @@ export default {
             <doc-polyline ng-if="$ctrl.api === 'polyline'"></doc-polyline>
             <doc-circle ng-if="$ctrl.api === 'circle'"></doc-circle>
             <doc-polygon ng-if="$ctrl.api === 'polygon'"></doc-polygon>
+            <doc-heatmap ng-if="$ctrl.api === 'heatmap'"></doc-heatmap>
             <doc-control ng-if="$ctrl.api === 'control'"></doc-control>
             <doc-overlay ng-if="$ctrl.api === 'overlay'"></doc-overlay>
 
@@ -37,6 +38,7 @@ export default {
         'polyline',
         'circle',
         'polygon',
+        'heatmap',
         'control',
         'overlay',
         'map-options',
