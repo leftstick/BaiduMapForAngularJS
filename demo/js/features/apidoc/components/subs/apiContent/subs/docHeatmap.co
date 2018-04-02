@@ -22,12 +22,12 @@ export default {
         <tbody>
             <tr>
                 <td>options</td>
-                <td><span class="label required">expression</span></td>
+                <td><span class="label">expression</span></td>
                 <td>Literal for constructing heatmap. See <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html">options</a></td>
             </tr>
             <tr>
                 <td>dataset</td>
-                <td><span class="label">expression</span></td>
+                <td><span class="label required">expression</span></td>
                 <td>
                 Data for displaying this heatmap. See <a href="http://api.map.baidu.com/library/Heatmap/2.0/docs/symbols/BMapLib.HeatmapOverlay.html">dataset</a>
                 </td>
