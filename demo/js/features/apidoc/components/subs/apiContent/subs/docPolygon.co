@@ -1,0 +1,140 @@
+export default {
+  template: `
+    <p>
+        The <code>polygon</code> component is sub-component of <code>baidu-map</code>. It is used to add <code>BMap.Polygon</code> to the map.
+    </p>
+    <h2 class="title">Usage</h2>
+    <div class="snippet" highlight>
+        <pre><code class="html">&lt;baidu-map map-options="{expression}"&gt;
+    &lt;polygon points="{expression}" options="{expression}" loaded="{expression}"&gt;&lt;polygon&gt;    
+&lt;/baidu-map&gt;</code></pre>
+    </div>
+    <h2 class="title">Attributes</h2>
+    <blockquote>Required properties are in red</blockquote>
+    <table class="matrix">
+        <thead>
+            <tr>
+                <th style="width: 80px;">Param</th>
+                <th>Type</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>points</td>
+                <td><span class="label required">expression</span></td>
+                <td>How polygon draws. Should be Array of point, See <a href="#!/apidoc?api=point">point</a></td>
+            </tr>
+            <tr>
+                <td>options</td>
+                <td><span class="label">expression</span></td>
+                <td>
+                Literal for constructing polygon. See <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a3b15">PolygonOptions</a>
+                </td>
+            </tr>
+            <tr>
+                <td>loaded</td>
+                <td><span class="label">expression</span></td>
+                <td>Expression to evaluate upon polygon loaded event. (The object passed to this callback, <code>polygon</code> for instance of <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a3b14" target="_blank">BMap.Polygon</a>)</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="title">Example</h2>
+    <baidu-map map-options="$ctrl.opts">
+        <polygon points="$ctrl.points" options="$ctrl.polygonOpts" loaded="$ctrl.polygonLoaded(polygon)"></polygon>
+    </baidu-map>
+    <div class="snippet" highlight>
+        <pre><code class="html">&lt;baidu-map map-options="opts"&gt;
+    &lt;polygon point="points" options="polygonOpts" loaded="polygonLoaded(polygon)"&gt;&lt;/polygon&gt;
+&lt;/baidu-map&gt;</code></pre>
+    </div>
+    <br/>
+    <div class="snippet" highlight>
+        <pre><code class="javascript">app.controller('demoCtrl', ['$scope',
+    function($scope) {
+        $scope.opts = {
+            centerAndZoom: {
+                longitude: 116.404,
+                latitude: 39.915,
+                zoom: 14
+            }
+        };
+
+        $scope.points = [
+            {
+                longitude: 116.387112,
+                latitude: 39.920977
+            }, {
+                longitude: 116.385243,
+                latitude: 39.913063
+            }, {
+                longitude: 116.394226,
+                latitude: 39.917988
+            }, {
+                longitude: 116.401772,
+                latitude: 39.921364
+            }, {
+                longitude: 116.41248,
+                latitude: 39.927893
+            }
+        ];
+        
+        //below are for polygon
+        $scope.polygonOpts = {
+            strokeColor: 'blue',
+            strokeWeight: 2
+        };
+
+        $scope.polygonLoaded = function(polygon) {
+            console.log('polygon loaded', polygon)
+        };
+    }
+]);</code></pre>
+    </div>
+    `,
+  controller: class {
+    /* @ngInject */
+    constructor() {
+      this.opts = {
+        centerAndZoom: {
+          longitude: 116.404,
+          latitude: 39.915,
+          zoom: 14
+        }
+      }
+
+      this.points = [
+        {
+          longitude: 116.387112,
+          latitude: 39.920977
+        },
+        {
+          longitude: 116.385243,
+          latitude: 39.913063
+        },
+        {
+          longitude: 116.394226,
+          latitude: 39.917988
+        },
+        {
+          longitude: 116.401772,
+          latitude: 39.921364
+        },
+        {
+          longitude: 116.41248,
+          latitude: 39.927893
+        }
+      ]
+
+      // below are for polygon
+      this.polygonOpts = {
+        strokeColor: 'blue',
+        strokeWeight: 2
+      }
+
+      this.polygonLoaded = function(polygon) {
+        console.log('polygon loaded', polygon)
+      }
+    }
+  }
+}

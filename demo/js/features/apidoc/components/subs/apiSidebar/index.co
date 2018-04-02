@@ -10,6 +10,7 @@ export default {
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'marker'}"><a href="#!/apidoc?api=marker">marker</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'polyline'}"><a href="#!/apidoc?api=polyline">polyline</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'circle'}"><a href="#!/apidoc?api=circle">circle</a></div>
+        <div class="api-nav-item" ng-class="{active: $ctrl.api === 'polygon'}"><a href="#!/apidoc?api=polygon">polygon</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'control'}"><a href="#!/apidoc?api=control">control</a></div>
         <div class="api-nav-item" ng-class="{active: $ctrl.api === 'overlay'}"><a href="#!/apidoc?api=overlay">overlay</a></div>
         <div class="api-nav-header">Models</div>

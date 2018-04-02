@@ -13,6 +13,7 @@ export default {
             <doc-marker ng-if="$ctrl.api === 'marker'"></doc-marker>
             <doc-polyline ng-if="$ctrl.api === 'polyline'"></doc-polyline>
             <doc-circle ng-if="$ctrl.api === 'circle'"></doc-circle>
+            <doc-polygon ng-if="$ctrl.api === 'polygon'"></doc-polygon>
             <doc-control ng-if="$ctrl.api === 'control'"></doc-control>
             <doc-overlay ng-if="$ctrl.api === 'overlay'"></doc-overlay>
 
@@ -35,6 +36,7 @@ export default {
         'marker',
         'polyline',
         'circle',
+        'polygon',
         'control',
         'overlay',
         'map-options',

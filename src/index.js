@@ -4,6 +4,7 @@ import baiduMap from './components/baiduMap'
 import marker from './components/marker'
 import polyline from './components/polyline'
 import circle from './components/circle'
+import polygon from './components/polygon'
 import control from './components/control'
 import overlay from './components/overlay'
 import mapScriptProvider from './provider/mapScript'
@@ -20,6 +21,7 @@ angular
   .component('marker', marker)
   .component('polyline', polyline)
   .component('circle', circle)
+  .component('polygon', polygon)
   .component('control', control)
   .component('overlay', overlay)
 
