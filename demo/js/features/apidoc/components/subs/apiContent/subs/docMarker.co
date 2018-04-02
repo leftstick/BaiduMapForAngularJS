@@ -1,19 +1,19 @@
-import markericonUrl from 'img/markericon.png';
+import markericonUrl from 'img/markericon.png'
 
 const NEW_SHANGHAI_INTERNATIONAL_TOWER = {
-    longitude: 121.51606,
-    latitude: 31.244604
-};
+  longitude: 121.51606,
+  latitude: 31.244604
+}
 
 export default {
-    template: `
+  template: `
     <p>
         The <code>marker</code> component is sub-component of <code>baidu-map</code>. It is used to add <code>BMap.Marker</code> to the map.
     </p>
     <h2 class="title">Usage</h2>
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map map-options="{expression}"&gt;
-    &lt;marker point="{expression}" options="{expression}" click="{expression}"&gt;&lt;marker&gt;    
+    &lt;marker point="{expression}" options="{expression}" click="{expression}"&gt;&lt;/marker&gt;    
 &lt;/baidu-map&gt;</code></pre>
     </div>
     <h2 class="title">Attributes</h2>
@@ -100,39 +100,42 @@ export default {
 ]);</code></pre>
     </div>
     `,
-    controller: class {
-        /* @ngInject */
-        constructor() {
-            this.opts = {
-                centerAndZoom: {
-                    ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
-                    zoom: 16
-                }
-            };
-            this.markerOpts = {
-                offset: {
-                    width: 0,
-                    height: -30
-                },
-                icon: {
-                    url: markericonUrl,
-                    size: {
-                        width: 49,
-                        height: 60
-                    }
-                }
-            };
-            this.point = NEW_SHANGHAI_INTERNATIONAL_TOWER;
+  controller: class {
+    /* @ngInject */
+    constructor() {
+      this.opts = {
+        centerAndZoom: {
+          ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
+          zoom: 16
         }
-
-        showWindow(e, marker, map) {
-            map.openInfoWindow(new BMap.InfoWindow('地址：浦东南路360号', {
-                title: '新上海国际大厦',
-                offset: {
-                    width: 0,
-                    height: -30
-                }
-            }), marker.getPosition());
+      }
+      this.markerOpts = {
+        offset: {
+          width: 0,
+          height: -30
+        },
+        icon: {
+          url: markericonUrl,
+          size: {
+            width: 49,
+            height: 60
+          }
         }
+      }
+      this.point = NEW_SHANGHAI_INTERNATIONAL_TOWER
     }
-};
+
+    showWindow(e, marker, map) {
+      map.openInfoWindow(
+        new BMap.InfoWindow('地址：浦东南路360号', {
+          title: '新上海国际大厦',
+          offset: {
+            width: 0,
+            height: -30
+          }
+        }),
+        marker.getPosition()
+      )
+    }
+  }
+}

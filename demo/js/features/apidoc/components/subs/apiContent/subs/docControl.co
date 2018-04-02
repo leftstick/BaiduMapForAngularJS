@@ -1,17 +1,17 @@
 const NEW_SHANGHAI_INTERNATIONAL_TOWER = {
-    longitude: 121.51606,
-    latitude: 31.244604
-};
+  longitude: 121.51606,
+  latitude: 31.244604
+}
 
 export default {
-    template: `
+  template: `
     <p>
         The <code>control</code> component is sub-component of <code>baidu-map</code>. It is used to add <code>BMap.Control</code> to the map.
     </p>
     <h2 class="title">Usage</h2>
     <div class="snippet" highlight>
         <pre><code class="html">&lt;baidu-map map-options="{expression}"&gt;
-    &lt;control type="{string}" options="{expression}"&gt;&lt;control&gt;    
+    &lt;control type="{string}" options="{expression}"&gt;&lt;/control&gt;    
 &lt;/baidu-map&gt;</code></pre>
     </div>
     <h2 class="title">Attributes</h2>
@@ -85,32 +85,34 @@ export default {
 ]);</code></pre>
     </div>
     `,
-    controller: class {
-        /* @ngInject */
-        constructor() {
-            this.opts = {
-                centerAndZoom: {
-                    ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
-                    zoom: 16
-                }
-            };
-            this.navOpts = {
-                anchor: window.BMAP_ANCHOR_TOP_LEFT
-            };
-            this.overOpts = {
-                anchor: window.BMAP_ANCHOR_BOTTOM_RIGHT
-            };
+  controller: class {
+    /* @ngInject */
+    constructor() {
+      this.opts = {
+        centerAndZoom: {
+          ...NEW_SHANGHAI_INTERNATIONAL_TOWER,
+          zoom: 16
         }
-
-        mapLoaded(map) {
-            this.copyOpts = {
-                anchor: 1,
-                copyrights: [{
-                    id: 0,
-                    content: '<strong>This is the customized Copyright</strong>!',
-                    bounds: map.getBounds()
-                }]
-            };
-        }
+      }
+      this.navOpts = {
+        anchor: window.BMAP_ANCHOR_TOP_LEFT
+      }
+      this.overOpts = {
+        anchor: window.BMAP_ANCHOR_BOTTOM_RIGHT
+      }
     }
-};
+
+    mapLoaded(map) {
+      this.copyOpts = {
+        anchor: 1,
+        copyrights: [
+          {
+            id: 0,
+            content: '<strong>This is the customized Copyright</strong>!',
+            bounds: map.getBounds()
+          }
+        ]
+      }
+    }
+  }
+}
